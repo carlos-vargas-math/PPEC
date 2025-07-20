@@ -13,9 +13,8 @@ Compute these sums of odd numbers:
   \item What is the value of $I_{1000}$ (the sum of the first thousand odd numbers)?
   \item What is the value of $I_n$ (the sum of the first $n$ odd numbers?)
 \end{itemize}
-\hint{find a pattern}
+\hint{Find a pattern. Draw a square}
 \end{exercise}
-%Sug: Diagramas cuadrangulares. %Fig
 \tutpagebreak
 
 \begin{exercise}\label{Prob:SumGau}
@@ -25,17 +24,13 @@ Compute the following sums of \emph{consecutive} numbers:
     \item $1+2+3+4+5+\dots+999+1000$.
     \item $1+2+3+4+5+\dots+(n-2)+(n-1)+n$.    
 \end{itemize}
-\hint{write the sum again in reverse order to compute twice the required sum}
+\hint{Write the sum again in a new line, in reverse order, to compute \emph{twice the required sum}}
 \end{exercise}
-
-%Sug: Suma dos veces al derecho y en orden inverso:
-
-%Sug: Diagramas triangulares. %Fig:
 
 \begin{exercise}
 Compute these sums of numbers in \emph{arithmetic progression}:
 \begin{itemize} 
-    \item $2+4+6\cdots +2k$.
+    \item $2+4+6+\cdots +2k$.
     \item $7+14+21+\cdots +7k$.
     \item $-16-9-2+5+12+19+26+\cdots +145$.
     \item $\frac{-21}{7} + \frac{-17}{7} + \frac{-13}{7}+ \frac{-9}{7} + \cdots + \frac{11}{7} + \frac{15}{7}$.  
@@ -50,7 +45,7 @@ What is the value of these sums of numbers in \emph{geometric progression}?:
     \item $1+2+4+8+16+32+64$
     \item $1+2+4+8+16+\cdots+1024$
 \end{itemize}
-\hint{find a pattern, or try using binary numbers}
+\hint{Find a pattern. Try using binary numbers}
 \end{exercise}
 
 \begin{exercise}
@@ -60,7 +55,7 @@ What about these fractions (also in \emph{geometric progression})?:
     \item $\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\frac{1}{32}$
     \item $\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\dots +\left(\frac{1}{2}\right)^{15}$    
     \end{itemize}
-\hint{can you relate these sums to the ones in the previous exercise?}
+\hint{Can you relate these sums to the ones in the previous exercise?}
 \end{exercise}
 \tutpagebreak
 
@@ -81,7 +76,7 @@ Compute these sums of numbers in \emph{geometric progression}:
     \item $1+3+9+27+81+\dots +3^{10}$.
     \item $1+k+k^2+k^3+\dots +k^{10}$.
     \end{itemize}
-\hint{write the sums in binary/ternary/$k$-nary numbers and multiply by $k-1$}
+\hint{Write the sums in binary/ternary/$k$-nary numbers. Multiply by $k-1$}
 \end{exercise}
 
 \begin{exercise}
@@ -92,49 +87,54 @@ What is the value of the following sums of fractions in \emph{geometric progress
     \item $1+\frac{1}{k}+\frac{1}{k^2}+\frac{1}{k^3}+\dots+\left(\frac{1}{k}\right)^{10}$
     \end{itemize}
 \end{exercise}
-\hint{can you relate these sums to the ones in the previous exercise?}
+\hint{Can you relate these sums to the ones in the previous exercise?}
 \tutpagebreak
 
 Consider the sequence of numbers: $$c_n:=\frac{1}{6}n(n+1)(2n+1), \quad n=1,2,3,\dots $$
 
-For example, to obtain $c_5$, we replace $n$ by $5$ in the expression, and we get $$c_5 = \frac{1}{6}5(5+1)(2\cdot5+1) = \frac{1}{6}5(6)(11) = 55.$$ 
+For example, to obtain $c_5$, we replace $n$ by $5$ in the expression and we get 
+$$c_5 = \frac{1}{6}5(5+1)(2\cdot5+1) = \frac{1}{6}5(6)(11) = 55.$$ 
 
 \begin{exercise} 
 Compute the values of $c_1,c_2,c_3$, and $c_4$.
 \end{exercise}
 
 \begin{exercise} 
-For some reason $c_n$ is always an integer. This means that the expression $n(n+1)(2n+1)$ is always divisible by $6$. Can you explain why this is the case?
-\hint{Separate by prime numbers: show that $n(n+1)(2n+1)$ is divisible by $2$ and by $3$. To show that it is divisible by $3$, 
+For some reason $c_n$ is always an integer. 
+This means that the expression $n(n+1)(2n+1)$ is always divisible by $6$. 
+Can you explain why this is the case?
+\hint{Separate by prime numbers: show that $n(n+1)(2n+1)$ is divisible by $2$ and by $3$. 
+To show that it is divisible by $3$, 
 separate in three cases: $n= 3k$, $n= 3k+1$ and $n= 3k+2$} 
 \end{exercise}
 
 \begin{exercise} 
-What is the value of the difference between two consecutive terms in the sequence? More concretely, what is the value of $c_k-c_{k-1}$?
+What is the value of the difference between two consecutive terms in the sequence? 
+More concretely, what is the value of $c_k-c_{k-1}$?
 \end{exercise}
 $$c_k-c_{k-1} = \frac{1}{6}k(k+1)(2k+1)-\frac{1}{6}(k-1)(k)(2k-1) = $$
 \tutpagebreak
 
-In the last exercise we obtained that the difference $c_k-c_{k-1} = k^2$ for all $k=2,3,4,\dots$. Equivalently, we obtain that $c_{k}+(k+1)^2=c_{k+1}$ for all $k=1,2,3,4,5\dots$. 
-
-With this result anterior we can obtain a sophisticated formula:
-
+In the last exercise we obtained that the difference $c_k-c_{k-1} = k^2$ for all $k=2,3,4,\dots$. 
+Equivalently, we obtain that $c_{k}+(k+1)^2=c_{k+1}$ for all $k=1,2,3,4,5,\dots$. 
+With this result we can obtain a sophisticated formula:
 \begin{exercise}
-Show that the formula for the sum of the first $n$ squares is given by: $$1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n(n+1)(2n+1).$$ 
+Show that the formula for the sum of the first $n$ squares is given by: 
+$$1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n(n+1)(2n+1).$$ 
 Test it for $n=1,2,3,4$.
 
 Use the previous exercise anterior to conclude that the formula is valid for \emph{all} $n=1,2,3, \dots$.
 \end{exercise}
 \tutpagebreak
 
-The formula for the sums of cubes is a bit simpler.
+The formula for the sums of cubes is a bit simpler than the sum of squares.
 \begin{exercise}
 \begin{enumerate}
     \item Compute the sum: $$1^3+2^3+3^3+\cdots+10^3.$$
     \item Compute the sum: $$1^3+2^3+3^3+\cdots+100^3.$$ Hint: Test for smaller cases and find a pattern.
     \item Make a conjecture for the formula to compute $c_n = 1^3+2^3+3^3+\cdots+n^3$. 
     \item What is the difference $c_k-c_{k-1}$ between two consecutive elements from your formula?
-    \item Conclude that you formula is valid for all $n\geq 1$.
+    \item Conclude that your formula is valid for all $n\geq 1$.
 \end{enumerate}
 \end{exercise}
 \tutpagebreak
