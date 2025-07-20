@@ -1,0 +1,1443 @@
+\chapter{Geometría elemental I}
+
+\section{Configuraciones de líneas}
+
+Dos rectas $l,l'$ en el plano se llaman {\bf paralelas} si no se intersectan en ningún punto. En el caso contrario, dos rectas $l,m$ no paralelas tienen un único punto de intersección.
+
+Los dos pares de ángulos $(\alpha,\gamma)$ y $(\beta,\delta)$ se llaman {\bf opuestos por el vértice} y miden lo mismo.
+
+\begin{ejercicio}
+Figura (a): ¿Cuánto vale $\gamma+\beta$ en grados y en radianes?
+\end{ejercicio}
+%Obs: Introducir medida de ángulos en radianes vs grados.
+
+Cuando tenemos dos paralelas $l, l'$ y una tercera línea transversal $m$, se obtienen dos colecciones de ángulos correspondientes.
+%Obs: Ángulos correspondientes entre paralelas.
+
+\definecolor{ffqqtt}{rgb}{1,0,0.2}
+\definecolor{qqwwzz}{rgb}{0,0.4,0.6}
+\begin{figure}[h]
+\begin{subfigure}{.32\textwidth}
+\centering
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
+(8.55629629629625,4.036296296296293);
+\draw [shift={(6.260681625951539,0.7951480173142947)},line width=1pt,color=qqwwzz,fill=qqwwzz,fill opacity=0.1] (0,0) -- (-33.436267283393505:0.22222222222222107) arc (-33.436267283393505:29.626460977420926:0.22222222222222107) -- cycle;
+\draw [shift={(6.260681625951539,0.7951480173142947)},line width=1pt,color=ffqqtt,fill=ffqqtt,fill opacity=0.1] (0,0) -- (29.62646097742092:0.22222222222222107) arc (29.62646097742092:146.56373271660652:0.22222222222222107) -- cycle;
+\draw [shift={(6.260681625951539,0.7951480173142947)},line width=1pt,color=qqwwzz,fill=qqwwzz,fill opacity=0.1] (0,0) -- (146.5637327166065:0.22222222222222107) arc (146.5637327166065:209.62646097742092:0.22222222222222107) -- cycle;
+\draw [shift={(6.260681625951539,0.7951480173142947)},line width=1pt,color=ffqqtt,fill=ffqqtt,fill opacity=0.1] (0,0) -- (-150.37353902257908:0.22222222222222107) arc (-150.37353902257908:-33.436267283393505:0.22222222222222107) -- cycle;
+\draw [line width=1pt] (6.260681625951539,0.7951480173142947) -- (8.52,2.08);
+\draw [line width=1pt] (6.260681625951539,0.7951480173142947) -- (4.86,1.72);
+\draw [line width=1pt] (6.260681625951539,0.7951480173142947) -- (4.691743294280375,-0.09709167290125631);
+\draw [line width=1pt] (6.260681625951539,0.7951480173142947) -- (7.896641069926044,-0.2850548691377711);
+\draw [fill=black] (6.260681625951539,0.7951480173142947) circle (1pt);
+\draw[color=qqwwzz] (6.787407407407369,0.7351851851851834) node {$\alpha$};
+\draw[color=ffqqtt] (6.250740740740704,1.1385185185185167) node {$\beta$};
+\draw[color=qqwwzz] (5.802962962962928,0.7785185185185167) node {$\gamma$};
+\draw[color=ffqqtt] (6.256296296296259,0.4029629629629612) node {$\delta$};
+\draw[color=black] (7.507407407407365,1.6318518518518499) node {$l$};
+\draw[color=black] (7.347407407407366,0.2096296296296279) node {$m$};
+\end{tikzpicture}
+  \caption{Ángulos opuestos por el vértice}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.32\textwidth}
+  \centering
+   \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.6cm,y=.6cm]
+ \clip(5,-3) rectangle (14,4);
+\draw [shift={(10.178618247765447,2.0141992314003194)},line width=1pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (1.577662875497712:0.6) arc (1.577662875497712:49.4456883534957:0.6) -- cycle;
+\draw [shift={(10.178618247765447,2.0141992314003194)},line width=1pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (49.44568835349569:0.6) arc (49.44568835349569:181.5776628754977:0.6) -- cycle;
+\draw [shift={(10.178618247765447,2.0141992314003194)},line width=1pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (-178.4223371245023:0.6) arc (-178.4223371245023:-130.55431164650432:0.6) -- cycle;
+\draw [shift={(10.178618247765447,2.0141992314003194)},line width=1pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (-130.55431164650432:0.6) arc (-130.55431164650432:1.5776628754976951:0.6) -- cycle;
+\draw [shift={(7.554985102983721,-1.0517906645364654)},line width=1pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (1.5776628754977127:0.6) arc (1.5776628754977127:49.44568835349569:0.6) -- cycle;
+\draw [shift={(7.554985102983721,-1.0517906645364654)},line width=1pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (49.44568835349569:0.6) arc (49.44568835349569:181.5776628754977:0.6) -- cycle;
+\draw [shift={(7.554985102983721,-1.0517906645364654)},line width=1pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (-178.4223371245023:0.6) arc (-178.4223371245023:-130.55431164650432:0.6) -- cycle;
+\draw [shift={(7.554985102983721,-1.0517906645364654)},line width=1pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (-130.55431164650432:0.6) arc (-130.55431164650432:1.5776628754977207:0.6) -- cycle;
+\draw [->,line width=1pt] (4.58,1.86) -- (13.966279351681408,2.118520405872581);
+\draw [->,line width=1pt] (2.9,-1.18) -- (12.34,-0.92);
+\draw [->,line width=1pt] (5.46,-3.5) -- (12.34,4.54);
+\draw[color=black] (11.434074074074011,2.348518518518512) node {$\alpha_1$};
+\draw[color=black] (9.914074074074018,2.848518518518512) node {$\alpha_2$};
+\draw[color=black] (9.234074074074021,1.568518518518513) node {$\alpha_3$};
+\draw[color=black] (11.134074074074013,1.2485185185185135) node {$\alpha_4$};
+\draw[color=black] (8.854074074074026,-0.6114814814814842) node {$\beta_1$};
+\draw[color=black] (7.314074074074032,-0.07148148148148487) node {$\beta_2$};
+\draw[color=black] (6.554074074074035,-1.4314814814814834) node {$\beta_3$};
+\draw[color=black] (8.434074074074028,-1.8714814814814829) node {$\beta_4$};
+\draw[color=black] (5.89407407407403,2.328518518518512) node {$l$};
+\draw[color=black] (11.534074074074022,-0.4114814814814842) node {$l'$};
+\draw[color=black] (8.554074074074027,0.7885185185185142) node {$m$};
+\end{tikzpicture}
+  \caption{Dos paralelas y una transversal.}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.32\textwidth}
+  \centering
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-1.9068768493010926,-1.3161412100806018) rectangle (5.005683093561883,1.4
+2223344556677895);
+\draw [line width=1.pt,domain=-1.9068768493010926:5.005683093561883] plot(\x,{(-0.--0.41223344556678004*\x)/0.7918273645546372});
+\draw [line width=1.pt,domain=-1.9068768493010926:5.005683093561883] plot(\x,{(-0.--0.9785021936537096*\x)/0.4347209468421588});
+\draw [line width=1.pt,domain=-1.9068768493010926:5.005683093561883] plot(\x,{(-0.--0.9274869911233556*\x)/-0.42233445566778943});
+\draw[color=black] (.5,.5) node {$\alpha_1$};
+\draw[color=black] (0,.5) node {$\alpha_2$};
+\draw[color=black] (-.5,.2) node {$\alpha_3$};
+\draw[color=black] (-.5,-.5) node {$\alpha_4$};
+\draw[color=black] (0,-.5) node {$\alpha_5$};
+\draw[color=black] (.5,-.2) node {$\alpha_6$};
+\end{tikzpicture}
+  \caption{Tres líneas concurrentes}
+  \label{fig:sfig2}
+\end{subfigure}
+  \caption{}
+\end{figure}
+
+
+\begin{ejercicio}
+Figura (b): ¿Qué relaciones hay entre los ocho ángulos de la figura? 
+\end{ejercicio}
+
+\begin{ejercicio}
+Figura (c). ¿Qué relaciones guardan los ángulos $\alpha_1,\alpha_2,\alpha_3, \alpha_4, \alpha_5, \alpha_6$?
+\end{ejercicio}
+\newpage
+
+Decimos que tres líneas  $(l, m, n)$ se encuentran {\bf en posición general} si no son  concurrentes y no hay dos paralelas. Éstas delimitan un único triángulo.
+
+\begin{ejercicio}
+Demuestra que la suma de los tres ángulos interiores de un triángulo es igual a media vuelta al círculo (es decir: $180^{\circ}$ o $\pi$ radianes).
+
+Sug: Trace una paralela.
+\end{ejercicio}
+
+A las magnitudes de los lados y ángulos de un triángulo con vértices $A,B,C$ se les suele llamar $|AB|=c$, $|AC|=b$, $|BC|=a$, y a los ángulos $\angle CAB=\alpha, \angle ABC= \beta, \angle BCA = \gamma$, como en la figura.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.4\textwidth}
+    \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [shift={(1.15,-1.125)},line width=1.pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (-1.1233027140754284:0.45) arc (-1.1233027140754284:57.68038349181983:0.45) -- cycle;
+\draw [shift={(4.975,-1.2)},line width=1.pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (136.8240898323761:0.45) arc (136.8240898323761:178.87669728592456:0.45) -- cycle;
+\draw [shift={(2.545,1.08)},line width=1.pt,fill=black,fill opacity=0.10000000149011612] (0,0) -- (-122.3196165081802:0.45) arc (-122.3196165081802:-43.17591016762391:0.45) -- cycle;
+\draw [line width=1.pt] (2.545,1.08)-- (4.975,-1.2);
+\draw [line width=1.pt] (2.545,1.08)-- (1.15,-1.125);
+\draw [line width=1.pt] (1.15,-1.125)-- (4.975,-1.2);
+\draw[color=black] (0.865,-1.0875) node {$B$};
+\draw[color=black] (5.23,-1.1625) node {$A$};
+\draw[color=black] (2.485,1.4325) node {$C$};
+\draw[color=black] (3.94,0.2575) node {$b$};
+\draw[color=black] (1.675,0.2475) node {$a$};
+\draw[color=black] (3.1,-1.4675) node {$c$};
+\draw[color=black] (1.8,-0.8375) node {$\beta$};
+\draw[color=black] (4.3,-1.0425) node {$\alpha$};
+\draw[color=black] (2.55,0.4075) node {$\gamma$};
+\end{tikzpicture}
+    \caption{}
+\end{subfigure}
+\begin{subfigure}{.55\textwidth}
+ \definecolor{rvwvcq}{rgb}{0.36235294117647059,0.546078431372549,0.6629411764705882}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.8cm,y=.8cm]
+\clip(3.4074074074073883,-1) rectangle (13.51407407407399,3.025185185185175);
+\fill[line width=1pt,color=rvwvcq,fill=rvwvcq,fill opacity=0.40000000149011612] (5.618177814240684,-0.2985247635908286) -- (6.234795894642444,0.42205799315773773) -- (7.656691608979234,-0.24237925653235157) -- cycle;
+\fill[line width=1pt,color=rvwvcq,fill=rvwvcq,fill opacity=0.40000000149011612] (5.344159897563122,1.8810467768396621) -- (10.906520143356797,2.034247376829742) -- (9.223994419902349,0.06803999069983671) -- cycle;
+\draw [line width=1pt,domain=3.4074074074073883:15.51407407407399] plot(\x,{(-4.2788--0.26*\x)/9.44});
+\draw [line width=1pt,domain=3.4074074074073883:15.51407407407399] plot(\x,{(--16.3676--0.26*\x)/9.44});
+\draw [line width=1pt,domain=3.4074074074073883:15.51407407407399] plot(\x,{(--73.6928-8.04*\x)/-6.88});
+\draw [line width=1pt,domain=3.4074074074073883:15.51407407407399] plot(\x,{(-7.138--1*\x)/-2.14});
+\draw [line width=1pt,domain=3.4074074074073883:15.51407407407399] plot(\x,{(-9.3696--1*\x)/-2.14});
+\draw [line width=1pt,domain=3.4074074074073883:15.51407407407399] plot(\x,{(--47.224-8.04*\x)/-6.88});
+\draw[color=black] (12.1,-0.501481481481486) node {$m'$};
+\draw[color=black] (12.1,1.5918518518518452) node {$m$};
+\draw[color=black] (7.6,2.8) node {$l'$};
+\draw[color=black] (4.100740740740719,1) node {$n'$};
+\draw[color=black] (4.354074074074051,2.5518518518518447) node {$n$};
+\draw[color=black] (11.34074074074069,2.8) node {$l$};
+\end{tikzpicture}
+  %dfnemrdm
+      \caption{}
+\end{subfigure}
+      \caption{}
+\end{figure}
+
+\begin{ejercicio}
+Si se cumplen las desigualdades $a<b<c$, ¿qué puedes decir de $\alpha, \beta, \gamma$?
+\end{ejercicio}
+
+\begin{teorema}[Desigualdad del triángulo]
+Si un triángulo tiene lados $a,b,c$, entonces se cumplen las siguientes desigualdades: $$a\leq b+c,\quad b\leq a+c ,\quad c\leq a+b.$$
+\end{teorema}
+
+\begin{ejercicio}
+¿Qué pasa si pones algún <<$=$>> en los dos anteriores ejercicios?
+\end{ejercicio}
+
+\begin{ejercicio}
+¿Cuánto vale la suma de los ángulos interiores de un $n$-ágono?
+\end{ejercicio}
+%\vspace{2cm}
+
+Considera tres líneas  $(l, m, n)$ en posición general.
+Si considero otras tres líneas $(l', m', n')$ no concurrentes, tales que $l$ es paralela a $l'$, $m$ es paralela a $m'$ y $n$ es paralela a $n'$, se obtiene un {\bf triángulo semejante}.
+
+Recordemos que dos triángulos $ABC$ y $A'B'C'$ se llaman {\bf semejantes} si sus ángulos correspondientes son iguales: es decir $$\measuredangle ABC=\measuredangle A'B'C',\quad \measuredangle BCA=\measuredangle B'C'A', \quad \measuredangle CAB=\measuredangle C'A'B'$$
+
+\begin{ejercicio}
+Demuestra que los triángulos delimitados por las rectas $(l,m,n)$ y $(l',m',n')$ de la figura son semejantes.
+\end{ejercicio}
+
+\begin{ejercicio}
+¿Cuántos triángulos semejantes puedes encontrar en la figura?
+\end{ejercicio}
+
+\begin{ejercicio}
+Si se dibujan $k_1$ rectas paralelas a $l$, $k_2$ rectas paralelas a $m$ y $k_3$ rectas paralelas a $n$ y no hay tres rectas concurrentes, ¿cuántos triángulos semejantes se forman?
+\end{ejercicio}
+\newpage
+
+\section{Semejanza de triángulos}
+
+Existen otras maneras de verificar que dos triángulos $ABC$ y $A'B'C'$ son semejantes.
+
+\begin{teorema}[Criterios de semejanza de triángulos]
+Los siguientes enunciados son equivalentes (cada uno significa que el triángulo $ABC$ es semejante al triángulo $A'B'C'$):
+\begin{enumerate}
+\item Sus ángulos correspondientes son iguales: es decir $$\measuredangle ABC=\measuredangle A'B'C',\quad \measuredangle BCA=\measuredangle B'C'A', \quad \measuredangle CAB=\measuredangle C'A'B'$$
+\item Sus lados correspondientes son proporcionales, es decir: $$\frac{|AB|}{|A'B'|}=\frac{|BC|}{|B'C'|}=\frac{|CA|}{|C'A'|}.$$
+\item Un ángulo es igual y los lados incidentes son proporcionales, es decir: $$\frac{|AB|}{|AC|}=\frac{|A'B'|}{|A'C'|},\quad \measuredangle CAB=\measuredangle C'A'B'.$$
+\end{enumerate}
+\end{teorema}
+
+\begin{teorema}
+Teoremas de Tales:
+\end{teorema}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-2,-2) rectangle (5,3.5);
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-0.--2.36*\x)/3.78});
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-0.-1.7*\x)/3.84});
+\draw [line width=1.pt,domain=-2.18:7] plot(\x,{(-15.4884--4.06*\x)/-0.06});
+\draw [line width=1.pt,domain=-2.18:5.82] plot(\x,{(-9.265146898319307--4.06*\x)/-0.06});
+\draw[color=black] (0.14,0.33) node {$A$};
+\draw[color=black] (3.92,2.73) node {$B$};
+\draw[color=black] (3.98,-1.33) node {$C$};
+\draw[color=black] (2.44,-0.65) node {$E$};
+\draw[color=black] (2.4,1.75) node {$D$};
+\draw[color=black] (0,3) node {{\Large $\frac{|AB|}{|AD|}=\frac{|AC|}{|AE|}=\frac{|BC|}{|DE|}$}};
+\draw[color=black] (0,1.5) node {{\Large $\frac{|AD|}{|DB|}=\frac{|AE|}{|EC|}$}};
+\end{tikzpicture}
+%-------------------------------------------------
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.18,-2) rectangle (5,3.5);
+\draw [line width=1.pt,domain=-5.18:7.82] plot(\x,{(-0.--2.36*\x)/3.78});
+\draw [line width=1.pt,domain=-3.18:7.82] plot(\x,{(-0.-1.7*\x)/3.84});
+\draw [line width=1.pt,domain=-3.18:5.82] plot(\x,{(-15.4884--4.06*\x)/-0.06});
+\draw [line width=1.pt,domain=-2:1] plot(\x,{(--7.663576991993467--4.06*\x)/-0.06});
+\draw[color=black] (0.14,0.33) node {$A$};
+\draw[color=black] (3.92,2.73) node {$B$};
+\draw[color=black] (3.98,-1.33) node {$C$};
+\draw[color=black] (-1.76,1.21) node {$E$};
+\draw[color=black] (-1.74,-0.83) node {$D$};
+\draw[color=black] (.2,3) node {{\Large $\frac{|AB|}{|AD|}=\frac{|AC|}{|AE|}=\frac{|BC|}{|DE|}$}};
+\draw[color=black] (0.2,1.5) node {{\Large $\frac{|AD|}{|DB|}=\frac{|AE|}{|EC|}$}};
+\end{tikzpicture}
+\vspace{1cm}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.18,-2) rectangle (5,4);
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-0.--2.16*\x)/3.38});
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-0.-1.7*\x)/3.84});
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-14.0404--3.86*\x)/-0.46});
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(--6.947114382272223--3.86*\x)/-0.46});
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-0.--0.18*\x)/5.88});
+\draw[color=black] (0.14,0.33) node {$A$};
+\draw[color=black] (3.52,2.53) node {$B$};
+\draw[color=black] (3.98,-1.33) node {$C$};
+\draw[color=black] (-1.76,1.21) node {$D$};
+\draw[color=black] (-1.54,-0.73) node {$E$};
+\draw[color=black] (3.76,0.45) node {$G$};
+\draw[color=black] (-1.66,0.27) node {$H$};
+\draw[color=black] (0.2,1.5) node {{\Large $\frac{|DH|}{|HE|}=\frac{|CG|}{|GB|}$}};
+\draw[color=black] (0.2,3) node {{\Large $\frac{|DH|}{|CG|}=\frac{|HE|}{|GB|}$}};
+\end{tikzpicture}
+\hspace{1cm}
+%---------------------------------------------------------------
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-2,-2) rectangle (5,3.5);
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-0.--2.16*\x)/3.38});
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-0.-1.7*\x)/3.84});
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-14.0404--3.86*\x)/-0.46});
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-8.616141495611153--3.86*\x)/-0.46});
+\draw [line width=1.pt,domain=-5.18:17.82] plot(\x,{(-0.--0.18*\x)/5.88});
+\draw[color=black] (0.14,0.33) node {$A$};
+\draw[color=black] (3.52,2.53) node {$B$};
+\draw[color=black] (3.98,-1.33) node {$C$};
+\draw[color=black] (2.5,-0.67) node {$D$};
+\draw[color=black] (2.22,1.65) node {$E$};
+\draw[color=black] (3.76,0.45) node {$G$};
+\draw[color=black] (2.36,0.39) node {$H$};
+\draw[color=black] (0.2,1.5) node {{\Large $\frac{|DH|}{|HE|}=\frac{|CG|}{|GB|}$}};
+\draw[color=black] (0.2,3) node {{\Large $\frac{|DH|}{|CG|}=\frac{|HE|}{|GB|}$}};
+\end{tikzpicture}
+
+Demostración: Ejercicio.
+\newpage
+
+\begin{ejercicio}
+[Caracterización de un paralelogramo] Sea ABCD un cuadrilátero. Demuestra que los siguientes enunciados son equivalentes (todos signfican que el cuadrilátero es un paralelgramo) 
+\begin{enumerate}
+    \item $|AB|\parallel |CD|$ y $|BC|\parallel |DA|$ (dos pares de lados opuestos son paralelos).
+    \item $|AB|= |CD|$ y $|BC|= |DA|$ (dos pares de lados opuestos miden lo mismo).
+    \item $\angle ABC= \angle BCD$ y $\angle BCD= \angle DAB$ (dos pares de ángulos opuestos miden lo mismo).
+    \item Las diagonales $AC$ y $BD$ se intersectan en el punto medio.
+    \item $|AB|\parallel |CD|$ y $|AB|= |CD|$ (dos pares de lados opuestos son paralelos y del mismo tamaño).
+\end{enumerate}
+\end{ejercicio}
+%Sug:
+
+\begin{problema}
+En los lados $AB, BC, CD, DA$ de un cuadrilátero convexo $ABCD$ se toman los puntos medios $P,Q,R,S$.
+\begin{enumerate}
+    \item Demuestra que $PQRS$ es un paralelogramo.
+    \item Demuestra que el área del paralelogramo $PQRS$ es la mitad del área del cuadrilátero $ABCD$.
+\end{enumerate}
+\end{problema}
+%\vspace{5cm}
+%Sug: Los lados son paralelos a las diagonales AC y BD. $$\mathrm a[ABCD]=\frac{1}{2}(\mathrm a[ABC]+\mathrm a[BCD]+\mathrm a[CDA]+\mathrm a[DAB]).$$ Por otro lado $\mathrm a[PQRS]=\mathrm a[ABCD]-\text{¿qué?}$
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=4.0cm,y=4.0cm]
+\draw [line width=1.pt] (0.,0.)-- (0.5037037037037022,0.44);
+\draw [line width=1.pt] (0.5037037037037022,0.44)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.32037037037036886,-0.56);
+\draw [line width=1.pt] (0.32037037037036886,-0.56)-- (0.,0.);
+\draw [line width=1.pt] (0.2518518518518511,0.22)-- (0.7518518518518511,0.22);
+\draw [line width=1.pt] (0.7518518518518511,0.22)-- (0.6601851851851844,-0.28);
+\draw [line width=1.pt] (0.6601851851851844,-0.28)-- (0.16018518518518443,-0.28);
+\draw [line width=1.pt] (0.16018518518518443,-0.28)-- (0.2518518518518511,0.22);
+\draw[color=black] (-0.07962962962963109,0.0205555555555558) node {$A$};
+\draw[color=black] (1.053703703703702,0.026111111111111356) node {$C$};
+\draw[color=black] (0.4925925925925911,0.5083333333333333) node {$B$};
+\draw[color=black] (0.3148148148148133,-0.618333333333333) node {$D$};
+\draw [fill=black] (0.2518518518518511,0.22) circle (1.5pt);
+\draw[color=black] (0.2037037037037022,0.2983333333333335) node {$P$};
+\draw [fill=black] (0.7518518518518511,0.22) circle (1.5pt);
+\draw[color=black] (0.803703703703702,0.2872222222222224) node {$Q$};
+\draw [fill=black] (0.6601851851851844,-0.28) circle (1.5pt);
+\draw[color=black] (0.7037037037037022,-0.3072222222222219) node {$R$};
+\draw [fill=black] (0.16018518518518443,-0.28) circle (1.5pt);
+\draw[color=black] (0.0925925925925911,-0.29055555555555523) node {$S$};
+\end{tikzpicture}
+
+\newpage
+
+\section{Pitágoras y el cálculo de distancias}
+
+\begin{ejercicio}
+Sea $ABC$ un triángulo rectángulo. Demuestra que la altura desde el ángulo recto divide al triángulo en dos triángulos semejantes al original.
+\end{ejercicio}
+%\vspace{3cm}
+
+\begin{ejercicio}
+Enuncia y demuestra el Teorema de Pitágoras (puedes ayudarte de la figura)
+\end{ejercicio}
+%Sug: Puedes apoyarte de este dibujo %bt4naud4
+
+\begin{figure}
+    \begin{subfigure}{.4\textwidth}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=4.0cm,y=4.0cm]
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (0.,0.)-- (0.31697534608537803,0.46529772840562295);
+\draw [line width=1.pt] (0.31697534608537803,0.46529772840562295)-- (1.,0.);
+\draw [dashed, line width=1.pt] (0.31697534608537803,0.46529772840562295)-- (0.31697534608537803,0.);
+\draw[color=black] (-0.046296296296297765,-0.012777777777777527) node {$B$};
+\draw[color=black] (1.053703703703702,-0.00722222222222197) node {$C$};
+\draw[color=black] (0.28703703703703554,0.5483333333333333) node {$A$};
+\end{tikzpicture}
+
+\vspace{1cm}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2cm,y=2cm]
+\draw [line width=1pt] (-1,-1)-- (0.22666666666666835,-1);
+\draw [line width=1pt] (1,-1)-- (1,0.2266666666666683);
+\draw [line width=1pt] (1,1)-- (-0.22666666666666824,1);
+\draw [line width=1pt] (-1,1)-- (-1,-0.22666666666666815);
+\draw [line width=1pt] (-1,-0.22666666666666815)-- (-1,-1);
+\draw [line width=1pt] (0.22666666666666835,-1)-- (1,-1);
+\draw [line width=1pt] (1,0.2266666666666683)-- (1,1);
+\draw [line width=1pt] (-0.22666666666666824,1)-- (-1,1);
+\draw [line width=1pt] (-0.22666666666666824,1)-- (-1,-0.22666666666666815);
+\draw [line width=1pt] (-1,-0.22666666666666815)-- (0.22666666666666835,-1);
+\draw [line width=1pt] (0.22666666666666835,-1)-- (1,0.2266666666666683);
+\draw [line width=1pt] (1,0.2266666666666683)-- (-0.22666666666666824,1);
+\draw[color=black] (-0.36,-1.1811111111111103) node {$a$};
+\draw[color=black] (1.1244444444444466,-0.4788888888888901) node {$a$};
+\draw[color=black] (0.5111111111111126,1.076666666666661) node {$a$};
+\draw[color=black] (-1.097777777777778,0.4277777777777741) node {$a$};
+\draw[color=black] (-1.08,-0.6744444444444451) node {$b$};
+\draw[color=black] (0.68,-1.1633333333333327) node {$b$};
+\draw[color=black] (1.1688888888888909,0.6233333333333291) node {$b$};
+\draw[color=black] (-0.6355555555555551,1.076666666666661) node {$b$};
+\draw[color=black] (-0.4577777777777772,0.28555555555555223) node {$c$};
+\draw[color=black] (-0.28,-0.5144444444444456) node {$c$};
+\draw[color=black] (0.4666666666666681,-0.39) node {$c$};
+\draw[color=black] (0.34222222222222354,0.4722222222222184) node {$c$};
+\end{tikzpicture}
+    \caption{~}
+\end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{axis}[
+x=1.0cm,y=1.0cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-1.260000000000003,
+xmax=5.740000000000006,
+ymin=-1.5399999999999914,
+ymax=8.100000000000003,
+xtick={-8.0,-7.0,...,14.0},
+ytick={-1.0,0.0,...,10.0},]
+\draw [fill=black] (1.,3.) circle (1pt);
+\draw[color=black] (0.74,2.67) node {$P$};
+\draw [fill=black] (3.,7.) circle (1pt);
+\draw[color=black] (3.14,7.37) node {$Q$};
+\draw [fill=black] (0.,6.) circle (1pt);
+\draw[color=black] (0.14,6.33) node {$R$};
+
+\draw [line width=1pt] (1,3)-- (3,7);
+
+%\draw [dashed, line width=1pt] (-1,6.5)-- (5,3.5);
+\end{axis}
+\end{tikzpicture}    
+    \caption{~}
+    \end{subfigure}
+    \end{figure}
+
+El teorema de Pitágoras nos permite calcular {\bf distancias} en el plano. La distancia entre dos puntos $P=(x_1,y_1), Q=(x_2,y_2)$ está dada por 
+$$\mathrm d(P,Q):=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}.$$
+
+\begin{ejercicio}
+Sean $P=(1,3)$, $Q=(3,7)$, $R=(0,6)$ tres puntos en el plano. Calcula las distancia entre $P$, $Q$ y $R$.
+\end{ejercicio}
+
+\begin{ejercicio}\label{P:LugGeoMed}
+El punto $R$ del ejercicio anterior está a la \emph{misma distancia} del punto $P$ y el punto $Q$. Encuentra {\bf todos} los puntos en el plano que están a la misma distancia de $P$ y de $Q$.
+\end{ejercicio}
+
+\begin{ejercicio}
+Construye un triángulo equilátero con regla (sin graduar) y un compás.
+\end{ejercicio}
+
+\begin{ejercicio}
+Sea $l$ una línea y $P$ que no se encuentra en $l$. Construye usando regla (sin graduar) y un compás la recta perpendicular a $l$ que pasa por $P$
+\end{ejercicio}
+%\vspace{3cm}
+%Sug:
+
+\newpage 
+La distancia entre una recta $l$ y un punto $P$ se define como la mínima de las distancias de $P$ a otro punto $Q$ en la recta $l$: $$\mathrm d(P,l):=\min_{Q\in l} |PQ|.$$
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (0.,0.)-- (5.46,2.74);
+\draw[color=black] (5.6,3.11) node {$l$};
+\draw [fill=black] (3.04,-0.32) circle (1.0pt);
+\draw[color=black] (3.18,0.05) node {$P$};
+
+\draw [dashed, line width=1.pt] (3.04,-0.32)-- (2.300154772878304,1.1542901241184165);
+\end{tikzpicture}
+\hspace{1.5cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (-0.8518518518518546,0.14962962962966514)-- (0.7007407407407388,-0.52);
+\draw [line width=1.pt] (-0.5792592592592619,-0.5911111111110763)-- (0.7896296296296277,0.4992592592592951);
+%\draw [dashed, line width=1.pt] (-0.9420181123163018,-0.3030243517345032)--(1.031738133035407,-0.03952553703119757);
+%\draw [dashed, line width=1.pt] (-0.18183600689444354,0.6379804703164009)-- (0.016319659468979272,-0.8463183660067091);
+\end{tikzpicture}
+
+\begin{ejercicio}
+Sea $P$ un punto y $l$ una recta que no pasa por $P$. Muestra que el punto de $l$ más cercano a $P$ es es el punto $Q$ en $l$ tal que el segmento $PQ$ es perpendicular a $l$.
+\end{ejercicio}
+
+
+\begin{ejercicio}
+Considera dos lineas no paralelas. ¿Cuáles son los puntos que equidistan de las dos rectas?
+
+¿Qué pasa si las rectas son paralelas?
+\end{ejercicio}
+
+\begin{problema} %Shariguin
+Considera un triángulo equilátero y un punto $P$ en su interior. Demuestra que la suma de las distancias desde $P$ a los lados del triángulo es igual a la altura del triángulo.
+\end{problema}
+%Sug: Primero verificar punto en la base, trazar una paralela a un lado. Para un punto en el interior trazar una paralela a la base.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=4.0cm,y=4.0cm]
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.5,0.8660254037844388);
+\draw [line width=1.pt] (0.5,0.8660254037844388)-- (0.,0.);
+\draw [dashed, line width=1.pt] (0.802731149212046,0.3416796723154605)-- (0.5592592592592577,0.2011111111111113);
+\draw [dashed, line width=1.pt] (0.22689848041758312,0.39299969624342584)-- (0.5592592592592577,0.2011111111111113);
+\draw [dashed, line width=1.pt] (0.5592592592592577,0.)-- (0.5592592592592577,0.2011111111111113);
+\draw[color=black] (-0.046296296296297765,-0.012777777777777527) node {$B$};
+\draw[color=black] (1.053703703703702,-0.00722222222222197) node {$C$};
+\draw[color=black] (0.4981481481481466,0.9594444444444444) node {$A$};
+\draw [fill=black] (0.5592592592592577,0.2011111111111113) circle (1.5pt);
+\draw[color=black] (0.5592592592592578,0.30944444444444463) node {$P$};
+\end{tikzpicture}
+\newpage
+
+\section{Triángulos, sus círculos y cevianas}
+
+Sea ABC un triágulo. Para cada ángulo del triángulo se consideran las siguientes rectas notables (en este caso desde el vércice $A$):
+
+\begin{definicion}  
+\begin{enumerate}
+    \item La {\bf altura} es la perpendicular a $BC$ desde $A$. A su intersección $D$ con la base se le llama el {\bf pie de altura}. Nótese que a veces el pie de altura se encuentra fuera del segmento.
+    \item La {\bf bisectriz} (interior) es la recta que divide al ángulo $\angle BAC$ en dos ángulos iguales. 
+    \item La {\bf medatriz} es la recta perpendicular al $BC$ por el punto medio $M$. 
+    \item La {\bf mediana} es el segmento que une al vértice $A$ con $M$.
+\end{enumerate}
+\end{definicion}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=5.0cm,y=5.0cm]
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (0.,0.)-- (0.1785733882030177,0.666172839506168);
+\draw [line width=1.pt] (0.1785733882030177,0.666172839506168)-- (1.,0.);
+\draw [line width=1.pt] (0.1785733882030177,0.666172839506168)-- (0.5,0.);
+\draw [line width=1.pt] (0.5,0.7767901234567852)-- (0.5,-0.18320987654321455);
+\draw [line width=1.pt] (0.1785733882030177,0.820246913580242)-- (0.1785733882030177,-0.17530864197531332);
+\draw [line width=1.pt] (0.1785733882030177,0.666172839506168)-- (0.5,0.);
+\draw [line width=1.pt] (0.12845239890423074,0.8206482811827577)-- (0.4538779828195871,-0.18232994234172117);
+\draw[color=black] (-0.05846364883401933,-0.007407407407412123) node {$B$};
+\draw[color=black] (1.0358573388203016,-0.019259259259263972) node {$C$};
+\draw[color=black] (0.12721536351165968,0.7274074074074025) node {$A$};
+\draw [fill=black] (0.5,0.) circle (1.0pt);
+\draw[color=black] (0.5499314128943757,-0.027160493827165205) node {$M$};
+\draw [fill=black] (0.1785733882030177,0.) circle (1.0pt);
+\draw[color=black] (0.21412894375857328,-0.031111111111115815) node {$D$};
+\draw [fill=black] (0.39471934252198965,0.) circle (1.0pt);
+\draw[color=black] (0.37610425240054857,-0.031111111111115815) node {$E$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=5.0cm,y=5.0cm]
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (0.,0.)-- (-0.2955006858710564,0.4449382716049335);
+\draw [line width=1.pt] (-0.2955006858710564,0.4449382716049335)-- (1.,0.);
+\draw [line width=1.pt] (-0.2955006858710564,0.4449382716049335)-- (0.5,0.);
+\draw [line width=1.pt] (0.5,0.4567901234567853)-- (0.5,-0.11604938271605407);
+\draw [line width=1.pt] (-0.2955006858710564,0.5990123456790075)-- (-0.2955006858710564,-0.18320987654321455);
+\draw [line width=1.pt] (-0.2955006858710564,0.4449382716049335)-- (0.5,0.);
+\draw [line width=1.pt] (-0.4531606560454268,0.5667155129547207)-- (0.4278000217141357,-0.11374231636331512);
+\draw [line width=1.pt] (1.,0.)-- (-0.5167352537722909,0.);
+\draw[color=black] (-0.03475994513031562,-0.03506172839506643) node {$B$};
+\draw[color=black] (1.0358573388203016,-0.019259259259263972) node {$C$};
+\draw[color=black] (-0.2401920438957477,0.506172839506168) node {$A$};
+\draw [fill=black] (0.5,0.) circle (1.0pt);
+\draw[color=black] (0.5499314128943757,-0.027160493827165205) node {$M$};
+\draw [fill=black] (0.2805425374203728,0.) circle (1.0pt);
+\draw[color=black] (0.2615363511659807,-0.031111111111115815) node {$E$};
+\draw [fill=black] (-0.2955006858710564,0.) circle (1.0pt);
+\draw[color=black] (-0.3468587105624144,-0.019259259259263972) node {$D$};
+\end{tikzpicture}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=5.0cm,y=5.0cm]
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (0.,0.)-- (0.5,0.4988);
+\draw [line width=1.pt] (0.5,0.4988)-- (1.,0.);
+\draw [line width=1.pt] (0.5,0.4988)-- (0.5,0.);
+\draw [line width=1.pt] (0.5,0.4988)-- (0.5,0.);
+\draw[color=black] (-0.03475994513031562,-0.03506172839506643) node {$B$};
+\draw[color=black] (1.0358573388203016,-0.019259259259263972) node {$C$};
+\draw[color=black] (0.5538820301783264,0.5614814814814766) node {$A$};
+\draw [fill=black] (0.5,0.) circle (1.0pt);
+\draw[color=black] (0.5499314128943757,-0.047160493827165205) node {$M=D=E$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=5.0cm,y=5.0cm]
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (0.,0.)-- (0.3326474622770918,0.46864197530863716);
+\draw [line width=1.pt] (0.3326474622770918,0.46864197530863716)-- (1.,0.);
+\draw [line width=1.pt] (0.3326474622770918,0.46864197530863716)-- (0.5,0.);
+\draw [line width=1.pt] (0.5,0.4567901234567853)-- (0.5,-0.11604938271605407);
+\draw [line width=1.pt] (0.3326474622770918,0.6227160493827112)-- (0.3326474622770918,-0.15950617283951085);
+\draw [line width=1.pt] (0.3326474622770918,0.46864197530863716)-- (0.5,0.);
+\draw [line width=1.pt] (0.3069321817729737,0.6178720267636074)-- (0.44016077436864154,-0.15527566358108486);
+\draw[color=black] (-0.03475994513031562,-0.03506172839506643) node {$B$};
+\draw[color=black] (1.0358573388203016,-0.019259259259263972) node {$C$};
+\draw[color=black] (0.3879561042524004,0.5298765432098717) node {$A$};
+\draw [fill=black] (0.5,0.) circle (1.0pt);
+\draw[color=black] (0.538079561042524,-0.02320987654321459) node {$M$};
+\draw [fill=black] (0.3326474622770918,0.) circle (1.0pt);
+\draw[color=black] (0.2931412894375856,-0.02320987654321459) node {$D$};
+\draw [fill=black] (0.4134037156829415,0.) circle (1.0pt);
+\draw[color=black] (0.38400548696844977,-0.027160493827165205) node {$E$};
+\end{tikzpicture}
+
+\begin{ejercicio}
+Demuestra que dos medianas se intersectan en proporción $2:1$
+
+Concluye que las tres medianas de un triángulo se intersectan en un mismo punto.
+\end{ejercicio}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=4.0cm,y=4.0cm]
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (0.,0.)-- (0.32037037037036886,0.6566666666666667);
+\draw [line width=1.pt] (0.32037037037036886,0.6566666666666667)-- (1.,0.);
+\draw [line width=1.pt] (0.32037037037036886,0.6566666666666667)-- (0.5,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.16018518518518443,0.32833333333333337);
+\draw[color=black] (-0.046296296296297765,-0.012777777777777527) node {$A$};
+\draw[color=black] (1.053703703703702,-0.00722222222222197) node {$B$};
+\draw[color=black] (0.3592592592592577,0.7594444444444445) node {$C$};
+\draw[color=black] (0.4870370370370355,-0.06277777777777752) node {$D$};
+\draw[color=black] (0.09814814814814667,0.3761111111111113) node {$E$};
+\draw[color=black] (0.48148148148147996,0.30944444444444463) node {$G$};
+\end{tikzpicture}
+\newpage 
+
+\subsection*{Mediatrices}
+
+\begin{ejercicio}
+Construye la mediatriz de un segmento $AB$, utilizando regla (sin graduación) y un compás.
+\end{ejercicio}
+%Sug: Se abre el compás a una distancia $r>\frac{1}{2}|AB|$. Se dibujan dos círculos de radio r, con centros en A y en B. Las intersecciones de los círculos están en la mediatriz y por tanto la determinan.
+
+
+\begin{ejercicio}\label{P:LugGeoMed3}
+Sean $P$, $Q$ y $R$ tres puntos en el plano. Encuentra todos los puntos que equidistan de $P$, $Q$ y  $R$.
+\end{ejercicio}
+
+\begin{ejercicio}
+Demuestra que las tres mediatrices de un triángulo $ABC$ concurren en un mismo punto $O$. 
+
+Muestra que $O$ es el centro del círculo que pasa por los puntos $A,B,C$. 
+
+¿Para qué tipo de triángulos $ABC$ se encuentra $O$ en el interior del triángulo?
+\end{ejercicio}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.5cm,y=2.5cm]
+\draw [line width=1.pt] (0.,0.) circle (2.5cm);
+\draw [line width=1pt] (-0.8944271909999159,-0.4472135954999581)-- (1.,0.);
+\draw [line width=1pt] (1.,0.)-- (-0.42256246490594884,0.9063338034370166);
+\draw [line width=1pt] (-0.42256246490594884,0.9063338034370166)-- (-0.8944271909999159,-0.4472135954999581);
+\draw [line width=1pt] (0.05278640450004207,-0.22360679774997905)-- (0.,0.);
+\draw [line width=1pt] (0.,0.)-- (-0.8944271909999159,-0.4472135954999581);
+\draw [line width=1pt] (0.,0.)-- (1.,0.);
+\draw [line width=1pt] (0.2887187675470256,0.4531669017185083)-- (0.,0.);
+\draw [line width=1pt] (0.,0.)-- (-0.42256246490594884,0.9063338034370166);
+\draw [line width=1pt] (0.,0.)-- (-0.6584948279529323,0.22956010396852927);
+\draw[color=black] (-0.05,-.1) node {$O$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.5cm,y=2.5cm]
+\draw [line width=1.pt] (0.,0.) circle (2.5cm);
+\draw [line width=1pt] (-0.9258815429358703,0.37781393363756743)-- (1.,0.);
+\draw [line width=1pt] (1.,0.)-- (-0.222804702522627,0.9748631004063102);
+\draw [line width=1pt] (-0.222804702522627,0.9748631004063102)-- (-0.9258815429358703,0.37781393363756743);
+\draw [line width=1pt] (0.037059228532064836,0.18890696681878372)-- (0.,0.);
+\draw [line width=1pt] (0.,0.)-- (-0.9258815429358703,0.37781393363756743);
+\draw [line width=1pt] (0.,0.)-- (1.,0.);
+\draw [line width=1pt] (0.3885976487386865,0.4874315502031551)-- (0.,0.);
+\draw [line width=1pt] (0.,0.)-- (-0.222804702522627,0.9748631004063102);
+\draw [line width=1pt] (0.,0.)-- (-0.5743431227292487,0.6763385170219388);
+\draw[color=black] (0,-.1) node {$O$};
+\end{tikzpicture}
+
+Al círculo y su centro $O$ del ejercicio anterior se les llama, respectivamente, el {\bf circuncírculo} y {\bf circuncentro} de $ABC$.
+
+\begin{ejercicio}
+Sea $ABC$ un triángulo y $O$ su circuncentro. Muestre que $\measuredangle AOC = 2\measuredangle ABC$.
+
+Deja fijo al circuncírculo de $ABC$ y al lado $BC$. Si colocas otro punto $A'$ distinto en la circunferencia. ¿Cuál es la relación entre el ángulo $\measuredangle BA'C$ y el $\measuredangle BAC$?
+\end{ejercicio}
+Obs: Hay dos respuestas diferentes, dependiendo de \emph{donde en el círculo} se ubique $A'$
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (-0.7730733704825902,-0.634316611678023)-- (-0.6043864813742317,0.7966912709023964);
+\draw [line width=1.pt] (-0.6043864813742317,0.7966912709023964)-- (1.,0.);
+\draw [line width=1.pt] (-0.7730733704825902,-0.634316611678023)-- (1.,0.);
+\draw [line width=1.pt] (-0.7730733704825902,-0.634316611678023)-- (0.,0.);
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+
+\draw[color=black] (1.0671604938271592,0.03259259259259451) node {$A$};
+\draw[color=black] (-0.6267901234567913,0.870617283950618) node {$B$};
+\draw[color=black] (-0.8166666666666678,-0.695061728395033) node {$C$};
+\draw[color=black] (0,0.1) node {$O$};
+
+%\draw[color=black] (0.2804938271604927,1.0286419753086424) node {$E$};
+%\draw[color=black] (0.71111111111111,-0.654320987654318) node {$F$};
+%\draw[color=black] (-0.031604938271606056,-0.583209876543207) node {$n$};
+%\draw[color=black] (0.9086419753086409,-0.35407407407407154) node {$p$};
+
+%\draw [line width=1.pt] (0.6846193950183727,-0.7289007367019719)-- (1.,0.);
+%\draw [line width=1.pt] (-0.7730733704825902,-0.634316611678023)-- (0.2510831802060881,0.967965514167523);
+%\draw [line width=1.pt] (0.2510831802060881,0.967965514167523)-- (1.,0.);
+%\draw [line width=1.pt] (-0.6043864813742317,0.7966912709023964)-- (0.,0.);
+%\draw [line width=1.pt] (0.6846193950183727,-0.7289007367019719)-- (-0.7730733704825902,-0.634316611678023);
+\end{tikzpicture}
+
+\begin{ejercicio}
+¿Para cuáles triángulos se encuentra el circuncentro en el interior del triángulo?
+\end{ejercicio}
+
+\newpage
+
+\subsection*{Cuadriláteros cíclicos}
+
+Caracterización de cuadriláteros cíclicos.
+
+1. Un par de ángulos opuestos suman $180^{\circ}$.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (-0.8024623409461336,-0.5967027663445607)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.,1.);
+\draw [line width=1.pt] (0.,1.)-- (-1.,0.);
+\draw [line width=1.pt] (-1.,0.)-- (-0.8024623409461336,-0.5967027663445607);
+\draw[color=black] (1.1111111111111118,0.07333333333333297) node {$B$};
+\draw[color=black] (0.002962962962962966,1.163703703703703) node {$C$};
+\draw[color=black] (-1.1466666666666672,0.0318518518518515) node {$D$};
+\draw[color=black] (-0.9392592592592598,-0.7088888888888889) node {$E$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (-0.7240976963409272,0.6896974163745739)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.5014412639610989,0.8651916890476327);
+\draw [line width=1.pt] (0.5014412639610989,0.8651916890476327)-- (-0.17755861123271632,0.9841102273511383);
+\draw [line width=1.pt] (-0.17755861123271632,0.9841102273511383)-- (-0.7240976963409272,0.6896974163745739);
+\draw[color=black] (1.1111111111111118,-0.009629629629629967) node {$B$};
+\draw[color=black] (0.5777777777777781,1.009629629629629) node {$C$};
+\draw[color=black] (-0.21037037037037049,1.1340740740740733) node {$D$};
+\draw[color=black] (-0.8977777777777782,0.7666666666666662) node {$E$};
+\end{tikzpicture}
+
+2. Un par de ángulos inscritos son iguales.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\clip(-1.92888888888889,-1.4585185185185183) rectangle (2.5451851851851863,1.8955555555555545);
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (-0.3549961771582605,-0.9348677522532377)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.5014412639610989,0.8651916890476327);
+\draw [line width=1.pt] (0.5014412639610989,0.8651916890476327)-- (-0.17755861123271655,0.9841102273511383);
+\draw [line width=1.pt] (-0.17755861123271655,0.9841102273511383)-- (-0.3549961771582605,-0.9348677522532377);
+\draw [line width=1.pt] (-0.17755861123271655,0.9841102273511383)-- (1.,0.);
+\draw [line width=1.pt] (0.5014412639610989,0.8651916890476327)-- (-0.3549961771582605,-0.9348677522532377);
+\draw[color=black] (1.093333333333334,0.025925925925925578) node {$B$};
+\draw[color=black] (0.58962962962963,0.9622222222222216) node {$C$};
+\draw[color=black] (-0.24,1.1459259259259253) node {$D$};
+\draw[color=black] (-0.4533333333333336,-0.945925925925926) node {$E$};
+\end{tikzpicture}
+
+
+\newpage
+Cuando hacemos que el punto $D$ se acerce a $C$ el segmento $CD$ se vuelve tangente a la circunferencia y obtenemos los {\bf ángulos semi-inscritos}:
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (-0.3549961771582605,-0.9348677522532377)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.5014412639610989,0.8651916890476327);
+\draw [line width=1.pt] (0.5014412639610989,0.8651916890476327)-- (0.3741393361546969,0.9273725018253036);
+\draw [line width=1.pt] (0.3741393361546969,0.9273725018253036)-- (-0.3549961771582605,-0.9348677522532377);
+\draw [line width=1.pt] (0.3741393361546969,0.9273725018253036)-- (1.,0.);
+\draw [line width=1.pt] (0.5014412639610989,0.8651916890476327)-- (-0.3549961771582605,-0.9348677522532377);
+\draw[color=black] (1.093333333333334,0.025925925925925578) node {$B$};
+\draw[color=black] (0.6014814814814818,0.9385185185185179) node {$C$};
+\draw[color=black] (0.31703703703703723,1.0688888888888883) node {$D$};
+\draw[color=black] (-0.42962962962962986,-0.9992592592592593) node {$A$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (-0.3549961771582605,-0.9348677522532377)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.5014412639610989,0.8651916890476327);
+\draw [line width=1.pt] (0.5014412639610989,0.8651916890476327)-- (0.500545798299617,0.8657100575854476);
+\draw [line width=1.pt] (0.500545798299617,0.8657100575854476)-- (-0.3549961771582605,-0.9348677522532377);
+\draw [line width=1.pt] (0.500545798299617,0.8657100575854476)-- (1.,0.);
+\draw [line width=1.pt] (0.5014412639610989,0.8651916890476327)-- (-0.3549961771582605,-0.9348677522532377);
+\draw [line width=1.pt] (1.4160229051759798,0.33575726351714175)-- (-0.376632896313735,1.3734926079254157);
+\draw[color=black] (1.093333333333334,0.025925925925925578) node {$B$};
+\draw[color=black] (0.6014814814814818,0.9385185185185179) node {$D=C$};
+\draw[color=black] (-0.42962962962962986,-0.9992592592592593) node {$A$};
+\end{tikzpicture}
+
+\begin{ejercicio}[Potencia de un punto a una circunferencia]
+En la siguiente figura, demuestra que $|PQ|\cdot|PR|=|PS|\cdot|PT|$
+\end{ejercicio}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (1.7807407407407416,1.1844444444444437)-- (-1.4548148148148157,-0.3740740740740743);
+\draw [line width=1.pt] (1.7807407407407416,1.1844444444444437)-- (-0.16296296296296306,-1.174074074074074);
+\draw[color=black] (1.8696296296296306,1.246666666666666) node {$P$};
+\draw[color=black] (-1.075555555555556,-0.05111111111111143) node {$R$};
+\draw[color=black] (0.008888888888888894,-1.0762962962962963) node {$T$};
+\draw[color=black] (0.7259259259259263,0.7962962962962957) node {$Q$};
+\draw[color=black] (1.0577777777777784,0.20962962962962922) node {$S$};
+\end{tikzpicture}
+
+\newpage
+\begin{ejercicio}
+En la siguiente figura, demuestra que $|PQ|\cdot|PR|=|PS|^2$
+\end{ejercicio}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (1.7807407407407416,1.1844444444444437)-- (-1.4548148148148157,-0.3740740740740743);
+\draw [line width=1.pt] (1.7807407407407416,1.1844444444444437)-- (0.45883752636980857,-1.2508821931279661);
+\draw[color=black] (1.8696296296296306,1.246666666666666) node {$P$};
+\draw[color=black] (-1.075555555555556,-0.05111111111111143) node {$Q$};
+\draw[color=black] (0.7259259259259263,0.7962962962962957) node {$R$};
+\draw[color=black] (0.9629629629629635,-0.5548148148148149) node {$S$};
+\end{tikzpicture}
+
+\begin{ejercicio}[Potencia de un punto interior]
+En la siguiente figura, demuestra que $|PQ|\cdot|PR|=|PS|\cdot|PT|$
+\end{ejercicio}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (-0.8743319740778694,0.4853283415432235)-- (0.6869537824455602,-0.7267011082857505);
+\draw [line width=1.pt] (1.,0.)-- (-0.8232492334325737,-0.56768010327356);
+\draw[color=black] (1.093333333333334,0.025925925925925578) node {$S$};
+\draw[color=black] (-0.9985185185185191,0.6007407407407402) node {$Q$};
+\draw[color=black] (-0.921481481481482,-0.6140740740740741) node {$T$};
+\draw[color=black] (0.7911111111111115,-0.7681481481481481) node {$R$};
+\draw[color=black] (0.0918518518518519,-0.4125925925925928) node {$P$};
+\end{tikzpicture}
+
+\begin{ejercicio}
+Demuestra que las tres alturas de un triángulo concurren en un punto.
+\end{ejercicio}
+%Sug: Cíclicos.
+
+\begin{ejercicio}
+Sean $A$ y $B$ dos puntos en el plano y $P$ y $Q$ otros dos puntos en el plano. Demuestra que $AP^2-BP^2 = AQ^2-BQ^2$ si y solo si $AB$ es perpendicular a $PQ$. 
+\end{ejercicio}
+
+\subsection*{Bisectrices}
+
+Además de las mediatrices, hay otras ternas de líneas asociadas a triángulos que concurren en un solo punto.
+
+La bisectriz de un ángulo $\angle ABC$ es la semi-recta que parte al ángulo en dos ángulos iguales.
+
+Obs: La continuación de la bisectriz de $\angle ABC$ es la bisectriz del ángulo complementario $\angle CBA$.
+
+\begin{ejercicio}
+Construye la bisectriz de un ángulo $ABC$, utilizando regla (sin graduación) y un compás.
+\end{ejercicio}
+%Sug. La bisectriz es la mediatriz dede un triángulo isósceles.
+\vspace{3cm}
+
+Todos los puntos en la bisectriz de un ángulo se encuentran a la misma distancia de las dos rectas. 
+
+\begin{ejercicio}
+Demuestra que las tres bisectrices de un triángulo $ABC$ concurren en un punto $I$.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (-0.6666666666666671,0.005185185185184847)-- (1.1881481481481488,0.05259259259259224);
+\draw [line width=1.pt] (-0.6666666666666671,0.005185185185184847)-- (-0.062222222222222255,1.2733333333333325);
+\draw [line width=1.pt] (-0.062222222222222255,1.2733333333333325)-- (1.1881481481481488,0.05259259259259224);
+\draw [line width=1.pt] (-0.6666666666666671,0.005185185185184847)-- (0.47655820677936916,0.7473202130758552);
+%\draw [line width=1.pt] (1.1881481481481488,0.05259259259259224)-- (-0.35538876925859014,0.6582584209236986);
+\draw [line width=1.pt] (-0.062222222222222255,1.2733333333333325)-- (0.15993791218778133,0.026312458766129195);
+\draw[color=black] (-0.7733333333333338,-0.0688888888888892) node {$A$};
+\draw[color=black] (-0.08592592592592596,1.4125925925925917) node {$B$};
+\draw[color=black] (1.2829629629629637,0.02) node {$C$};
+\draw[color=black] (0.1570370370370371,0.41111111111111065) node {$I$};
+\end{tikzpicture}
+
+Demuestra que $I$ es el centro del círculo inscrito (tangente a los tres segmentos $AB$, $BC$ y $CA$).
+\end{ejercicio}
+
+\begin{ejercicio}
+Muestra que el área del triángulo $ABC$ es $sr$, donde $s=\frac{1}{2}(a+b+c)$ es el {\bf semiperímetro} y $r$ es el inradio.
+\end{ejercicio}
+
+\begin{ejercicio}
+Mostrar que en el siguiente dibujo el incentro de ABC se encuentra en el arco de la circunferencia tangente por $B$ y $C$. 
+\end{ejercicio}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.5cm,y=2.5cm]
+\draw [line width=1.pt] (0.,0.) circle (2.5cm);
+\draw [line width=1.pt] (1.9414814814814823,1.1395061728395062)-- (-0.0703992984840427,0.9975188914366258);
+\draw [line width=1.pt] (-0.0703992984840427,0.9975188914366258)-- (0.8365984515330039,-0.5478166033378141);
+\draw [line width=1.pt] (0.8365984515330039,-0.5478166033378141)-- (1.9414814814814823,1.1395061728395062);
+\draw [line width=1.pt] (1.9414814814814823,1.1395061728395062)-- (-1.1801528483527446,0.9191986991358906);
+\draw [line width=1.pt] (1.9414814814814823,1.1395061728395062)-- (0.32084571431010445,-1.3354487026674366);
+
+\draw[color=black] (2.036296296296297,1.231358024691358) node {$A$};
+\draw[color=black] (-0.132592592592593,1.1483950617283951) node {$B$};
+\draw[color=black] (0.8985185185185186,-0.6412345679012339) node {$C$};
+\draw [fill=black] (0.8624272336757908,0.5061810610980253) circle (1.5pt);
+\draw[color=black] (0.9044444444444446,0.6032098765432101) node {$I$};
+
+%Sug
+%\draw [line width=1.pt] (1.9414814814814823,1.1395061728395062)-- (0.8624272336757908,0.5061810610980253);
+%\draw [line width=1.pt] (0.8624272336757908,0.5061810610980253)-- (-0.0703992984840427,0.9975188914366258);
+\end{tikzpicture}
+\newpage
+
+
+\begin{ejercicio}
+Demuestra que las bisectrices exteriores a $B$ y a $C$ de un triángulo $ABC$ y la prolongación de la bisectriz interior en $A$ se concurren en un punto. 
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw [line width=1.pt] (-0.6666666666666671,0.005185185185184847)-- (1.1881481481481488,0.05259259259259224);
+\draw [line width=1.pt] (-0.6666666666666671,0.005185185185184847)-- (-0.062222222222222255,1.2733333333333325);
+\draw [line width=1.pt] (-0.062222222222222255,1.2733333333333325)-- (1.1881481481481488,0.05259259259259224);
+\draw [line width=1.pt] (1.797130661258658,1.6045820677645852) circle (2*1.5359228243041165cm);
+\draw [line width=1.pt] (-0.6666666666666671,0.005185185185184847)-- (0.9998845393436135,3.5016749703440055);
+\draw [line width=1.pt] (3.2607120882575087,0.10556547285097838)-- (-0.6666666666666671,0.005185185185184847);
+\draw [line width=1.pt] (-0.062222222222222255,1.2733333333333325)-- (1.797130661258658,1.6045820677645852);
+\draw [line width=1.pt] (1.1881481481481488,0.05259259259259224)-- (1.797130661258658,1.6045820677645852);
+\draw [line width=1.pt] (-0.6666666666666671,0.005185185185184847)-- (1.797130661258658,1.6045820677645852);
+\draw[color=black] (-0.8859259259259267,-0.08888888888888981) node {$A$};
+\draw[color=black] (-0.13925925925925953,1.5111111111111086) node {$B$};
+\draw[color=black] (1.2474074074074082,-0.0755555555555565) node {$C$};
+\end{tikzpicture}
+
+Ese punto es el centro del círculo (ubicado el exterior de $ABC$) que es tangente al lado $BC$ y a las prolongaciones de $AB$ y $AC$.
+\end{ejercicio}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.3*1.0cm,y=.3*1.0cm]
+\clip(-18.21083333333336,-21.64583333333331) rectangle (32.41416666666669,17.639166666666657);
+\draw [line width=1.pt] (3.24470263161417,1.0941423224029345) circle (.3*2.2986308406263434cm);
+\draw [line width=1.pt] (-3.9980188870669684,4.827456150909049) circle (.3*5.77648087898075cm);
+\draw [line width=1.pt] (12.571517704455092,7.434090396204657) circle (.3*8.960739345557396cm);
+\draw [line width=1.pt] (4.661446593065524,-7.911643952542564) circle (.3*6.6521265489400045cm);
+\draw [line width=1.pt] (-12.626391107896858,-0.6507529239794501)-- (20.171535947279477,-1.7979633643853818);
+\draw [line width=1.pt] (-4.612509334841702,15.12577437595197)-- (15.941712305724394,-11.694978252591575);
+\draw [line width=1.pt] (-3.52837533235122,-11.085592069439267)-- (6.049052534494206,15.833959738485555);
+\draw[color=black] (-0.9983333333333422,-1.5645833333333266) node {$B$};
+\draw[color=black] (2.309166666666661,7.277916666666667) node {$A$};
+\draw[color=black] (9.396666666666668,-1.902083333333326) node {$C$};
+\draw [fill=black] (-3.9980188870669684,4.827456150909049) circle (1.pt);
+\draw [fill=black] (4.661446593065524,-7.911643952542564) circle (1.pt);
+\draw [fill=black] (12.571517704455092,7.434090396204657) circle (1.pt);
+\draw [fill=black] (3.24470263161417,1.0941423224029345) circle (1.pt);
+\draw [fill=black] (3.1643499428687836,-1.20308365404996) circle (1.pt);
+\draw [fill=black] (0.5869226729370871,8.341149682874779) circle (1.pt);
+\draw [fill=black] (12.25827928146155,-1.5211723754498359) circle (1.pt);
+\draw [fill=black] (-1.605841381044761,-5.681870629380531) circle (1.pt);
+\draw [fill=black] (9.94141066039625,-3.8653163495414415) circle (1.pt);
+\draw [fill=black] (-4.199945948128214,-0.9454942912168329) circle (1.pt);
+\draw [fill=black] (4.129174803881926,10.43770421428485) circle (1.pt);
+\draw [fill=black] (1.4442812374372613,2.891196689976321) circle (1.pt);
+\draw [fill=black] (5.459148236859981,1.9834894958046612) circle (1.pt);
+\draw [fill=black] (5.069185096473359,2.4923438375286686) circle (1.pt);
+\draw [fill=black] (1.0790520684912361,1.864636566329447) circle (1.pt);
+\draw [fill=black] (4.893983236790102,-1.2635830072414624) circle (1.pt);
+\end{tikzpicture}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.5*1.0cm,y=.5*1.0cm]
+\clip(-5.508333333333349,-17.205833333333306) rectangle (12.541666666666678,7.18416666666666);
+\draw [line width=1.pt] (3.24470263161417,1.0941423224029345) circle (.5*2.2986308406263434cm);
+\draw [line width=1.pt] (-3.9980188870669684,4.827456150909049) circle (.5*5.77648087898075cm);
+\draw [line width=1.pt] (12.571517704455092,7.434090396204657) circle (.5*8.960739345557396cm);
+\draw [line width=1.pt] (4.661446593065524,-7.911643952542564) circle (.5*6.6521265489400045cm);
+\draw [line width=1.pt] (-12.626391107896858,-0.6507529239794501)-- (20.171535947279477,-1.7979633643853818);
+\draw [line width=1.pt] (-4.612509334841702,15.12577437595197)-- (15.941712305724394,-11.694978252591575);
+\draw [line width=1.pt] (-3.52837533235122,-11.085592069439267)-- (6.049052534494206,15.833959738485555);
+\draw[color=black] (-0.653333333333341,-1.3883333333333274) node {$A$};
+\draw[color=black] (2.361666666666662,6.801666666666662) node {$B$};
+\draw[color=black] (8.931666666666667,-1.7033333333333274) node {$C$};
+\draw [fill=black] (-3.9980188870669684,4.827456150909049) circle (1.pt);
+\draw [fill=black] (4.661446593065524,-7.911643952542564) circle (1.pt);
+\draw [fill=black] (12.571517704455092,7.434090396204657) circle (1.pt);
+\draw [fill=black] (3.24470263161417,1.0941423224029345) circle (1.pt);
+\draw[color=black] (3.666666666666663,1.7616666666666685) node {$I$};
+\draw [fill=black] (3.1643499428687836,-1.20308365404996) circle (1.pt);
+\draw [fill=black] (0.5869226729370871,8.341149682874779) circle (1.pt);
+\draw [fill=black] (12.25827928146155,-1.5211723754498359) circle (1.pt);
+\draw [fill=black] (-1.605841381044761,-5.681870629380531) circle (1.pt);
+\draw [fill=black] (9.94141066039625,-3.8653163495414415) circle (1.pt);
+\draw [fill=black] (-4.199945948128214,-0.9454942912168329) circle (1.pt);
+\draw [fill=black] (4.129174803881926,10.43770421428485) circle (1.pt);
+\draw [fill=black] (1.4442812374372613,2.891196689976321) circle (1.pt);
+\draw [fill=black] (5.459148236859981,1.9834894958046612) circle (1.pt);
+\draw [fill=black] (5.069185096473359,2.4923438375286686) circle (1.pt);
+\draw [fill=black] (1.0790520684912361,1.864636566329447) circle (1.pt);
+\draw [fill=black] (4.893983236790102,-1.2635830072414624) circle (1.pt);
+\end{tikzpicture}
+
+\begin{ejercicio}
+Si $P$ y $Q$ son los puntos de tangencia del ex-círculo con las prolongaciones de $AB$ y $AC$, muestra que $AP=AQ=s$, donde $s$ es el semi-perímetro de $ABC$.
+\end{ejercicio}
+\newpage
+
+\section{Problemas}
+
+\begin{problema}
+% [OMM '00]
+Mostrar que $PQRS$ es un cuadrilátero cíclico.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (-0.8725925925925934,1.3844444444444421) circle (0.9261629326299876cm);
+\draw [line width=1.pt] (-0.8725925925925934,1.3844444444444421)-- (1.3140740740740748,3.6111111111111067);
+\draw [line width=1.pt] (1.3140740740740748,3.6111111111111067)-- (4.1807407407407435,1.1977777777777756);
+\draw [line width=1.pt] (4.1807407407407435,1.1977777777777756)-- (1.1674074074074081,-0.8155555555555558);
+\draw [line width=1.pt] (1.1674074074074081,-0.8155555555555558)-- (-0.8725925925925934,1.3844444444444421);
+\draw [line width=1.pt] (1.3140740740740748,3.6111111111111067) circle (2.194663168830257cm);
+\draw [line width=1.pt] (4.1807407407407435,1.1977777777777756) circle (1.5525965707068303cm);
+\draw [line width=1.pt] (1.1674074074074081,-0.8155555555555558) circle (2.071446598032874cm);
+\draw [line width=1.pt] (-0.24285777234504735,0.7053186579029721)-- (-0.22365876967415543,2.0452490080260213);
+\draw [line width=1.pt] (-0.22365876967415543,2.0452490080260213)-- (2.9929989919992828,2.1976905988112825);
+\draw [line width=1.pt] (2.9929989919992828,2.1976905988112825)-- (2.889781780845985,0.3352344019188893);
+\draw [line width=1.pt] (2.889781780845985,0.3352344019188893)-- (-0.24285777234504735,0.7053186579029721);
+\draw[color=black] (-1.2259259259259272,1.4744444444444427) node {$A$};
+\draw[color=black] (1.254074074074075,4.0944444444444414) node {$B$};
+\draw[color=black] (4.474074074074078,1.1944444444444429) node {$C$};
+\draw[color=black] (1.1140740740740749,-1.065555555555556) node {$D$};
+\draw[color=black] (-0.18592592592592627,2.454444444444442) node {$P$};
+\draw[color=black] (2.8940740740740765,2.674444444444442) node {$Q$};
+\draw[color=black] (3.0340740740740766,0.6744444444444431) node {$R$};
+\draw[color=black] (-0.24592592592592633,0.37444444444444325) node {$S$};
+\end{tikzpicture}
+\end{problema}
+%Sug: Angulitos.
+
+
+\begin{problema}
+%[Shariguin]
+Sea $ABC$ isósceles con base $BC$. Se considera el círculo que es tangente interiormente al circuncírculo de $ABC$ y al lado $BC$. Calcular el radio del círculo pequeño en términos de $\angle BAC=\alpha$ y $BC$.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.5cm,y=2.5cm]
+\draw [line width=1.pt] (2.,0.34788560533031926) circle (2.5*1.0587843946696809cm);
+\draw [line width=1.pt] (2.,-0.35544939466968073) circle (2.5*0.35544939466968073cm);
+\draw [line width=1.pt] (1.,0.)-- (3.,0.);
+\draw [line width=1.pt] (2.,1.40667)-- (3.,0.);
+\draw [line width=1.pt] (2.,1.40667)-- (1.,0.);
+\draw[color=black] (1.9933333333333334,1.53) node {$A$};
+\draw[color=black] (0.78,-0.02666666666666516) node {$B$};
+\draw[color=black] (3.18,-0.02666666666666516) node {$C$};
+\end{tikzpicture}
+\end{problema}
+
+\newpage
+
+
+\begin{problema}
+%ref% 
+%[OMM '99]
+Sea ABCD un trapecio con $AB$ paralela a $CD$. Las bisectrices exteriores a los ángulos $B$ y $C$ se intersectan en $P$. Las bisectrices exteriores a los ángulos $A$ y $D$ se intersectan en $Q$. Mostrar que $|PQ|$ es igual a la mitad del perímetro de $ABCD$.  
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw [line width=1.pt] (0.3,0.)-- (2.4,0.);
+\draw [line width=1.pt] (2.4,0.)-- (2.22,1.12);
+\draw [line width=1.pt] (2.22,1.12)-- (0.86,1.12);
+\draw [line width=1.pt] (0.86,1.12)-- (0.3,0.);
+\draw [line width=1.pt] (-0.5133333333333334,0.)-- (0.3,0.);
+\draw [line width=1.pt] (0.3,0.)-- (-0.046099033699941165,0.56);
+\draw [line width=1.pt] (-0.046099033699941165,0.56)-- (0.86,1.12);
+\draw [line width=1.pt] (0.06,1.12)-- (0.86,1.12);
+\draw [line width=1.pt] (2.22,1.12)-- (3.1533333333333333,1.12);
+\draw [line width=1.pt] (2.22,1.12)-- (2.8771860364994892,0.56);
+\draw [line width=1.pt] (2.8771860364994892,0.56)-- (2.4,0.);
+\draw [line width=1.pt] (2.4,0.)-- (3.18,0.);
+\draw [line width=1.pt] (-0.046099033699941165,0.56)-- (2.8771860364994892,0.56);
+\draw[color=black] (0.2066666666666667,-0.14666666666666517) node {$A$};
+\draw[color=black] (2.4733333333333336,-0.16) node {$B$};
+\draw[color=black] (2.2866666666666666,1.36) node {$C$};
+\draw[color=black] (0.8066666666666668,1.3866666666666685) node {$D$};
+\draw[color=black] (-0.24666666666666667,0.653333333333335) node {$P$};
+\draw[color=black] (3.086666666666667,0.6666666666666684) node {$Q$};
+\end{tikzpicture}
+%Sug: excírculos.
+\end{problema}
+
+
+\begin{problema}
+%[OMM '05]
+Sea $O$ el circuncentro del triángulo acutángulo $ABC$, y sea $P$ cualquier punto en el segmento $BC$. Supón que el circuncírculo de $BPO$ intersecta al segmento $AB$ en el punto $R$ y que el circuncírculo de $COP$ intersecta a $CA$ en el punto $Q$.
+
+(i) Considera el triángulo $PQR$, muestra que es semejante al triángulo $ABC$ y que $O$ es su ortocentro.
+
+(ii) Muestra que los circuncírculos de los triángulos $BPO$, $COP$, $PQR$ tienen el mismo radio.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.5*3.0cm,y=.5*3.0cm]
+\draw [line width=1.pt] (1.9133333333333329,0.6512599681020734) circle (.5*6.392355364859109cm);
+\draw [line width=1.pt] (3.066415326319379,0.7527761833316287) circle (.5*3.4726261849684987cm);
+\draw [line width=1.pt] (1.507839302308568,1.7354546993687834) circle (.5*3.472626184968496cm);
+\draw [line width=1.pt] (-0.11333333333333334,-0.006666666666665152)-- (3.94,-0.006666666666665152);
+\draw [line width=1.pt] (3.94,-0.006666666666665152)-- (2.006666666666667,2.78);
+\draw [line width=1.pt] (2.006666666666667,2.78)-- (-0.11333333333333334,-0.006666666666665152);
+\draw [line width=1.pt] (0.634254628627948,0.9760118493704902)-- (2.660921295294614,1.8369709145983386);
+\draw [line width=1.pt] (0.634254628627948,0.9760118493704902)-- (2.1928306526387566,-0.006666666666665151);
+\draw [line width=1.pt] (2.1928306526387566,-0.006666666666665151)-- (2.660921295294614,1.8369709145983386);
+\draw[color=black] (-0.31333333333333335,-0.04) node {$A$};
+\draw[color=black] (4.153333333333333,-0.08) node {$B$};
+\draw[color=black] (2.033333333333333,3.0533333333333355) node {$C$};
+\draw [fill=black] (1.9133333333333329,0.6512599681020734) circle (1.0pt);
+\draw[color=black] (2.06,0.96) node {$O$};
+\draw[color=black] (2.7533333333333334,2.08) node {$P$};
+\draw[color=black] (0.4066666666666667,1.0266666666666684) node {$Q$};
+\draw[color=black] (2.14,-0.1866666666666652) node {$R$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.5*3.0cm,y=.5*3.0cm]
+\draw [line width=1.pt] (-0.11333333333333334,-0.006666666666665152)-- (3.94,-0.006666666666665152);
+\draw [line width=1.pt] (3.94,-0.006666666666665152)-- (2.006666666666667,2.78);
+\draw [line width=1.pt] (2.006666666666667,2.78)-- (-0.11333333333333334,-0.006666666666665152);
+\draw [line width=1.pt] (0.634254628627948,0.9760118493704902)-- (2.660921295294614,1.8369709145983386);
+\draw [line width=1.pt] (0.634254628627948,0.9760118493704902)-- (2.1928306526387566,-0.006666666666665151);
+\draw [line width=1.pt] (2.1928306526387566,-0.006666666666665151)-- (2.660921295294614,1.8369709145983386);
+\draw[color=black] (-0.31333333333333335,-0.04) node {$A$};
+\draw[color=black] (4.153333333333333,-0.08) node {$B$};
+\draw[color=black] (2.033333333333333,3.0533333333333355) node {$C$};
+\draw [fill=black] (1.9133333333333329,0.6512599681020734) circle (1.0pt);
+\draw[color=black] (2.06,0.96) node {$O$};
+\draw[color=black] (2.7533333333333334,2.08) node {$P$};
+\draw[color=black] (0.4066666666666667,1.0266666666666684) node {$Q$};
+\draw[color=black] (2.14,-0.1866666666666652) node {$R$};
+\end{tikzpicture}
+%Sug: cíclicos, isóceles.
+\end{problema}
+\newpage
+
+\begin{problema}
+En la figura se muestra un cuadril\'atero $ABCD$. Si $BC=AD$, ?`cu\'anto mide el \'angulo $ADC$?
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (1.76,-3.14)-- (-2.68,-0.4);
+\draw [line width=1.pt] (1.76,-3.14)-- (1.78,0.66);
+\draw [line width=1.pt] (1.78,0.66)-- (-2.58,1.48);
+\draw [line width=1.pt] (-2.58,1.48)-- (-2.68,-0.4);
+\draw [line width=1.pt] (-2.68,-0.4)-- (1.78,0.66);
+\draw[color=black] (-3.18,-0.59) node {$A$};
+\draw[color=black] (-1.95,-0.50) node {$50^{\circ}$};
+\draw[color=black] (-2.84,1.85) node {$B$};
+\draw[color=black] (-2.14,1.15) node {$75^{\circ}$};
+\draw[color=black] (1.92,1.03) node {$C$};
+\draw[color=black] (0.72,0.67) node {$30^{\circ}$};
+\draw[color=black] (1.9,-3.27) node {$D$};
+\end{tikzpicture}
+
+% Demostraci\'on. Por suma de \'angulos en $ABC$ se tiene $\angle BAC=180-(75+30)=75$, y entonces $ABC$ es is\'osceles y $AC=BC=AD$, por lo que $ACD$ tambi\'en es is\'osceles y $\angle ADC=\angle ACD=(180-50)/2=65$.
+
+%(P23 Nivel Ol\'impico MatPreolimpicasMLPS)
+\end{problema}
+
+\begin{problema}
+En la figura $ABCD$ es un cuadrado y $OBC$ es un tri\'angulo equil\'atero. ?`Cu\'anto
+mide el \'angulo $\angle OAC$?
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=4.0cm,y=4.0cm]
+\draw [line width=1.pt] (0.,1.)-- (0.,0.);
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (1.,1.);
+\draw [line width=1.pt] (1.,1.)-- (0.,1.);
+\draw [line width=1.pt] (0.49753086419753084,0.8155555555555556)-- (0.,0.);
+\draw [line width=1.pt] (0.49753086419753084,0.8155555555555556)-- (1.,0.);
+\draw [line width=1.pt] (0.49753086419753084,0.8155555555555556)-- (0.,1.);
+\draw [line width=1.pt] (0.,1.)-- (1.,0.);
+\draw[color=black] (-0.027407407407407193,1.074320987654321) node {$A$};
+\draw[color=black] (-0.027407407407407193,-0.0548148148148148) node {$B$};
+\draw[color=black] (1.0269135802469138,-0.0548148148148148) node {$C$};
+\draw[color=black] (1.0269135802469138,1.074320987654321) node {$D$};
+\draw[color=black] (0.5251851851851852,0.8886419753086421) node {$O$};
+\end{tikzpicture}
+
+%(P53 Nivel Ol\'impico MatPreolimpicasMLPS)
+\end{problema}
+
+
+
+\begin{problema}
+En la figura, $ABCD$ es un cuadrado y $CED$ es un tri\'angulo equil\'atero. ?`Cu\'anto
+mide el \'angulo $\alpha$?
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,1.)-- (0.,0.);
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (1.,1.);
+\draw [line width=1.pt] (1.,1.)-- (0.,1.);
+\draw [line width=1.pt] (0.,1.)-- (0.5014814814814815,1.7735802469135802);
+\draw [line width=1.pt] (1.,1.)-- (0.5014814814814815,1.7735802469135802);
+\draw [line width=1.pt] (0.,0.)-- (0.5014814814814815,1.7735802469135802);
+\draw [line width=1.pt] (1.,0.)-- (0.5014814814814815,1.7735802469135802);
+\draw[color=black] (-0.08518518518518559,1.0713580246913583) node {$D$};
+\draw[color=black] (-0.08518518518518559,-0.06049382716049337) node {$A$};
+\draw[color=black] (1.052592592592593,-0.05456790123456745) node {$B$};
+\draw[color=black] (1.0703703703703709,1.0713580246913583) node {$C$};
+\draw[color=black] (0.5014814814814815,1.9365432098765434) node {$E$};
+\draw[color=black] (0.5014814814814815,1.5365432098765434) node {$\alpha$};
+\end{tikzpicture}
+
+%(P11 Nivel Estudiante MatPreolimpicasMLPS)
+\end{problema}
+
+\begin{problema}
+Los \'angulos en las esquinas de la estrella son los marcados. ?`Cu\'anto
+vale $x?$
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.5cm,y=3.5cm]
+\draw [line width=1.pt] (0.9044444444444447,0.03135802469135847)-- (-0.008148148148148491,0.8491358024691361);
+\draw [line width=1.pt] (0.9044444444444447,0.03135802469135847)-- (0.5962962962962963,1.1869135802469137);
+\draw [line width=1.pt] (0.07481481481481453,0.1558024691358029)-- (0.5962962962962963,1.1869135802469137);
+\draw [line width=1.pt] (0.07481481481481453,0.1558024691358029)-- (1.2837037037037042,0.8728395061728398);
+\draw [line width=1.pt] (1.2837037037037042,0.8728395061728398)-- (-0.008148148148148491,0.8491358024691361);
+\draw[color=black] (0.751851851851852,0.30172839506172877) node {$25^{\circ}$};
+\draw[color=black] (0.2018518518518516,0.7987654320987657) node {$60^{\circ}$};
+\draw[color=black] (1.0040740740740746,0.8020987654320991) node {$45^{\circ}$};
+\draw[color=black] (0.5725925925925927,1.0013580246913583) node {$x$};
+\draw[color=black] (0.22925925925925905,0.32469135802469173) node {$15^{\circ}$};
+\end{tikzpicture}
+
+(P41 Nivel Estudiante MatPreolimpicasMLPS)
+\end{problema}
+
+
+\begin{problema}
+En la figura, los puntos $A,P,Q$ y $R$ est\'an sobre la circunferencia con centro
+$C$; $ABCD$ es un cuadrado; la recta $PR$ pasa por $B$ y $D$; la recta $QR$ pasa por $C$.
+Determinar el \'angulo $\angle PQR$.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (0.,0.)-- (-0.13542605358503557,0.6940171352426272);
+\draw [line width=1.pt] (-0.13542605358503557,0.6940171352426272)-- (-0.8294431888276628,0.5585910816575916);
+\draw [line width=1.pt] (-0.8294431888276628,0.5585910816575916)-- (-0.6940171352426272,-0.13542605358503557);
+\draw [line width=1.pt] (0.,0.)-- (-0.6940171352426272,-0.13542605358503557);
+\draw [line width=1.pt] (-0.8984756614567335,-0.43902333169193314)-- (0.8984756614567335,0.43902333169193314);
+\draw [line width=1.pt] (0.8984756614567335,0.43902333169193314)-- (0.06903247262907086,0.9976144133495249);
+\draw [line width=1.pt] (-0.8984756614567335,-0.43902333169193314)-- (0.06903247262907086,0.9976144133495249);
+\draw[color=black] (0.057037037037036734,-0.07827160493827115) node {$C$};
+\draw[color=black] (-0.9148148148148156,0.6683950617283954) node {$A$};
+\draw[color=black] (-0.808148148148149,-0.07827160493827115) node {$D$};
+\draw[color=black] (-0.18,0.8165432098765434) node {$B$};
+\draw[color=black] (0.08666666666666636,1.1483950617283951) node {$P$};
+\draw[color=black] (0.9992592592592594,0.4609876543209879) node {$Q$};
+\draw[color=black] (-0.974074074074075,-0.46938271604938214) node {$R$};
+\end{tikzpicture}
+
+%(P29 Nivel Semifinal MatPreolimpicasMLPS)
+\end{problema}
+
+\begin{problema}
+En el hex\'agono regular de la figura, cada lado mide $\sqrt{3}$ y se dibujaron
+dos cuadrados sobre los lados, como se muestra.
+
+
+Probar que el tri\'angulo $ABC$ es equil\'atero.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.2886751345948127,0.6547005383792519)-- (0.5773502691896257,1.1547005383792521);
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (1.5,0.8660254037844387);
+\draw [line width=1.pt] (1.5,0.8660254037844387)-- (1.,1.7320508075688776);
+\draw [line width=1.pt] (0.,1.7320508075688779)-- (-0.5,0.8660254037844395);
+\draw [line width=1.pt] (-0.5,0.8660254037844395)-- (0.,0.);
+\draw [line width=1.pt] (1.,1.7320508075688776)-- (0.,1.7320508075688779);
+\draw [line width=1.pt] (0.,1.7320508075688779)-- (0.,1.1547005383792521);
+\draw [line width=1.pt] (-0.5,0.8660254037844395)-- (0.,1.1547005383792521);
+\draw [line width=1.pt] (0.,1.1547005383792521)-- (0.5773502691896257,1.1547005383792521);
+\draw [line width=1.pt] (0.5773502691896257,1.1547005383792521)-- (0.577350269189626,1.7320508075688776);
+\draw [line width=1.pt] (-0.21132486540518738,0.36602540378443954)-- (0.2886751345948127,0.6547005383792519);
+\draw [line width=1.pt] (0.2886751345948127,0.6547005383792519)-- (0.,1.1547005383792521);
+\draw[color=black] (-0.132592592592593,1.24320987654321) node {$A$};
+\draw[color=black] (0.35333333333333317,0.5854320987654323) node {$B$};
+\draw[color=black] (0.6792592592592592,1.2254320987654321) node {$C$};
+\end{tikzpicture}
+
+%(P31 Nivel Semifinal MatPreolimpicasMLPS)
+\end{problema}
+
+\begin{problema}
+Sobre cada lado de un paralelogramo se dibuja un cuadrado (hacia el exterior del
+paralelogramo y de manera que el lado del cuadrado sea el lado respectivo del paralelogramo).
+Probar que los centros de los cuatro cuadrados son los v\'ertices de otro cuadrado.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw [line width=1.pt] (0.18740740740740716,-0.06938271604938225)-- (1.0051851851851854,-0.07530864197530816);
+\draw [line width=1.pt] (0.18740740740740716,-0.06938271604938225)-- (0.6081481481481481,0.9380246913580248);
+\draw [line width=1.pt] (-0.10592592592592581,0.6446913580246917)-- (1.02,1.343950617283951);
+\draw [line width=1.pt] (1.02,1.343950617283951)-- (1.7192592592592595,0.21802469135802485);
+\draw [line width=1.pt] (1.7192592592592595,0.21802469135802485)-- (0.5933333333333334,-0.4812345679012343);
+\draw [line width=1.pt] (0.5933333333333334,-0.4812345679012343)-- (-0.10592592592592581,0.6446913580246917);
+\draw [line width=1.pt] (0.6081481481481481,0.9380246913580248)-- (1.4259259259259265,0.9320987654320989);
+\draw [line width=1.pt] (1.4259259259259265,0.9320987654320989)-- (1.0051851851851854,-0.07530864197530816);
+\draw [line width=1.pt] (1.0051851851851854,-0.07530864197530816)-- (2.012592592592592,-0.49604938271604926);
+\draw [line width=1.pt] (2.012592592592592,-0.49604938271604926)-- (2.433333333333333,0.5113580246913575);
+\draw [line width=1.pt] (2.433333333333333,0.5113580246913575)-- (1.4259259259259265,0.9320987654320989);
+\draw [line width=1.pt] (1.4259259259259265,0.9320987654320989)-- (1.431851851851852,1.7498765432098773);
+\draw [line width=1.pt] (1.431851851851852,1.7498765432098773)-- (0.6140740740740738,1.755802469135803);
+\draw [line width=1.pt] (0.6140740740740738,1.755802469135803)-- (0.6081481481481481,0.9380246913580248);
+\draw [line width=1.pt] (-0.3992592592592587,1.3587654320987657)-- (0.6081481481481481,0.9380246913580248);
+\draw [line width=1.pt] (-0.3992592592592587,1.3587654320987657)-- (-0.82,0.3513580246913588);
+\draw [line width=1.pt] (-0.82,0.3513580246913588)-- (0.18740740740740716,-0.06938271604938225);
+\draw [line width=1.pt] (0.18740740740740716,-0.06938271604938225)-- (0.1814814814814813,-0.8871604938271604);
+\draw [line width=1.pt] (0.1814814814814813,-0.8871604938271604)-- (0.9992592592592595,-0.8930864197530863);
+\draw [line width=1.pt] (0.9992592592592595,-0.8930864197530863)-- (1.0051851851851854,-0.07530864197530816);
+\end{tikzpicture}
+
+%(P8 Nivel Final MatPreolimpicasMLPS)
+\end{problema}
+
+
+\begin{problema}
+Demostrar que la bisectriz del \'angulo recto de un tri\'angulo rect\'angulo divide
+por la mitad el \'angulo entre la mediana y la altura bajadas sobre la hipotenusa.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=4.0cm,y=4.0cm]
+\draw [line width=1.pt] (-1.,0.)-- (1.,0.);
+\draw [line width=1.pt] (-1.,0.)-- (-0.7289686274214113,0.6845471059286888);
+\draw [line width=1.pt] (-0.7289686274214113,0.6845471059286888)-- (1.,0.);
+\draw [line width=1.pt] (-0.7289686274214113,0.6845471059286888)-- (0.,0.);
+\draw [line width=1.pt] (-0.7289686274214113,0.6845471059286888)-- (-0.7289686274214113,0.);
+\draw [line width=1.pt] (-0.7289686274214113,0.6845471059286888)-- (-0.4327386422474257,0.);
+\end{tikzpicture}
+
+%(SHARIGUIN I.35)
+\end{problema}
+
+\begin{problema}
+Se da una circunferencia y un punto $A$ fuera de \'esta. $AB$ y $AC$ son
+tangentes a la circunferencia ($B$ y $C$ son los puntos de tangencia). Demostrar
+que el centro de la circunferencia inscrita en el tri\'angulo $ABC$ se halla
+en la circunferencia dada.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.5cm,y=2.5cm]
+\draw [line width=1.pt] (0.,0.) circle (2.5cm);
+\draw [line width=1.pt] (1.9414814814814823,1.1395061728395062)-- (-0.0703992984840427,0.9975188914366258);
+\draw [line width=1.pt] (-0.0703992984840427,0.9975188914366258)-- (0.8365984515330039,-0.5478166033378141);
+\draw [line width=1.pt] (0.8365984515330039,-0.5478166033378141)-- (1.9414814814814823,1.1395061728395062);
+\draw [line width=1.pt] (1.9414814814814823,1.1395061728395062)-- (-1.1801528483527446,0.9191986991358906);
+\draw [line width=1.pt] (1.9414814814814823,1.1395061728395062)-- (0.32084571431010445,-1.3354487026674366);
+
+\draw[color=black] (2.036296296296297,1.231358024691358) node {$A$};
+\draw[color=black] (-0.132592592592593,1.1483950617283951) node {$B$};
+\draw[color=black] (0.8985185185185186,-0.6412345679012339) node {$C$};
+\draw [fill=black] (0.8624272336757908,0.5061810610980253) circle (1.5pt);
+\draw[color=black] (0.9044444444444446,0.6032098765432101) node {$I$};
+
+%Sug
+%\draw [line width=1.pt] (1.9414814814814823,1.1395061728395062)-- (0.8624272336757908,0.5061810610980253);
+%\draw [line width=1.pt] (0.8624272336757908,0.5061810610980253)-- (-0.0703992984840427,0.9975188914366258);
+\end{tikzpicture}
+
+%(SHARIGUIN I.56)
+\end{problema}
+
+\begin{problema}
+Los \'angulos del cuadril\'atero inscrito $ABCD$ son $\angle DAB=\alpha$, 
+$\angle ABC=\beta$, $\angle BKC=\gamma$, donde $K$ es el punto de intersecci\'on
+de las diagonales. Hallar $\angle ACD$.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw [line width=1.pt] (0.,0.) circle (3.cm);
+\draw [line width=1.pt] (0.6210731195021287,0.783752626937795)-- (-0.7276875317562231,0.6859087811994651);
+\draw [line width=1.pt] (-0.7276875317562231,0.6859087811994651)-- (-0.984429099196579,-0.17578210561661872);
+\draw [line width=1.pt] (-0.984429099196579,-0.17578210561661872)-- (0.5327825335555444,-0.8462521916888223);
+\draw [line width=1.pt] (0.5327825335555444,-0.8462521916888223)-- (0.6210731195021287,0.783752626937795);
+\draw [line width=1.pt] (-0.7276875317562231,0.6859087811994651)-- (0.5327825335555444,-0.8462521916888223);
+\draw [line width=1.pt] (-0.984429099196579,-0.17578210561661872)-- (0.6210731195021287,0.783752626937795);
+\draw[color=black] (0.7207407407407408,0.8639506172839508) node {$A$};
+\draw[color=black] (-0.7844444444444452,0.8165432098765434) node {$B$};
+\draw[color=black] (-1.1162962962962972,-0.18493827160493778) node {$C$};
+\draw[color=black] (0.6377777777777778,-0.943456790123456) node {$D$};
+\draw[color=black] (-0.298518518518519,0.3069135802469139) node {$K$};
+\end{tikzpicture}
+
+%(SHARIGUIN I.79)
+\end{problema}
+
+\begin{problema}
+Supongamos que $M$ y $N$ son los puntos de tangencia de una circunferencia inscrita
+con los lados $BC$ y $BA$ del tri\'angulo $ABC$; $K$, el punto de intersecci\'on de la
+bisectriz del \'angulo $A$ con la recta $MN$. Demostrar que $\angle AKC=90^\circ$.
+
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=5.0cm,y=5.0cm]
+\draw [line width=1.pt] (-0.3992592592592598,-0.36567901234567846)-- (-0.10888888888888928,0.529135802469136);
+\draw [line width=1.pt] (-0.10888888888888928,0.529135802469136)-- (1.1829629629629632,-0.3597530864197525);
+\draw [line width=1.pt] (1.1829629629629632,-0.3597530864197525)-- (-0.3992592592592598,-0.36567901234567846);
+\draw [line width=1.pt] (0.07687326819735947,-0.018246935369252804) circle (5*0.34564638483012994cm);
+\draw [line width=1.pt] (-0.3992592592592598,-0.36567901234567846)-- (0.6360369217846424,0.3897726355122104);
+\draw [line width=1.pt] (-0.25189618744067716,0.08843984162587176)-- (0.6360369217846424,0.3897726355122104);
+\draw [line width=1.pt] (0.6360369217846424,0.3897726355122104)-- (1.1829629629629632,-0.3597530864197525);
+\draw[color=black] (-0.49407407407407467,-0.398271604938271) node {$A$};
+\draw[color=black] (1.2837037037037042,-0.3923456790123451) node {$C$};
+\draw[color=black] (-0.1562962962962967,0.6683950617283954) node {$B$};
+\draw[color=black] (-0.34,0.16469135802469176) node {$M$};
+\draw[color=black] (0.26444444444444426,0.3839506172839509) node {$N$};
+\draw[color=black] (0.6555555555555556,0.4965432098765435) node {$K$};
+\end{tikzpicture}
+
+%(SHARIGUIN I.255)
+\end{problema}
+
+\begin{problema}
+En el tri\'angulo is\'osceles $ABC$ se tiene que $\angle C>90$. Sean $O$ el circuncentro del tri\'angulo,
+$I$ el incentro y $D$ el punto sobre $BC$ de tal manera que las l\'ineas $OD$ y $BI$ son perpendiculares.
+Prueba que $ID$ y $AC$ son paralelas.
+
+
+%(PRE 1999)
+\end{problema}
+
+
+\begin{problema}
+Sea $ABC$ un tri\'angulo rect\'angulo con \'angulo recto en $A$, tal que $AB<AC$.
+Sea $M$ el punto medio de $BC$ y $D$ la intersecci\'on de $AC$ con la perpendicular a $BC$ que pasa
+por $M$. Sea $E$ la intersecci\'on de la paralela a $AC$ que pasa por $M$ con la perpendicular a
+$BD$ que pasa por $B$. Demuestra que los tri\'angulos $AEM$ y $MCA$ son semejantes si y s\'olo si
+$\angle ABC=60^\circ$.
+
+%(20a. OMM P2) 
+\end{problema}
+
+
+\begin{problema}
+En el tri\'angulo $ABC$, cuyo $\angle B=60^\circ$, la bisectriz del \'angulo $A$
+corta $BC$ en el punto $M$. En el lado $AC$ se toma un punto $K$ de modo que
+$\angle AMK=30^\circ$. Hallar $\angle OKC$, donde $O$ es el centro de la circunferencia
+circunscrita alrededor del tri\'angulo $AMC$.
+
+
+%(SHARIGUIN I.250) 
+\end{problema}
+
+\begin{problema}
+Demostrar que si en el tri\'angulo un \'angulo es igual a $120^\circ$, el
+tri\'angulo formado por los pies de sus bisectrices es rect\'angulo.
+
+
+%(SHARIGUIN I.258)
+\end{problema}
+
+
+%Herón, Brahmagupta, inradio.
+\newpage 
+
+\begin{problema}
+%[IMO '04]
+Let $ABC$ be an acute-angled triangle with $AB\neq AC$. The circle with diameter $BC$ intersects the sides $AB$ and $AC$ at $M$ and $N$ respectively. Denote by $O$ the midpoint of the side $BC$. The bisectors of the angles $\angle BAC$ and $\angle MON$ intersect at $R$. Prove that the circumcircles of the triangles $BMR$ and $CNR$ have a common point lying on the side $BC$.
+\end{problema}
+
+
+Ejes radicales:
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=6*1.0cm,y=6*1.0cm]
+\clip(-0.8209327846364884,-1.1866666666666712) rectangle (2.1420301783264746,1.1125925925925877);
+\draw [line width=1.pt] (0.,0.) circle (6*0.14828532235939648cm);
+\draw [line width=1.pt] (1.,0.) circle (6*0.5103703703703697cm);
+\draw [line width=1.pt] (-0.4095317472344304,0.)-- (0.8152025199410664,-0.4757392209139965);
+\draw [line width=1.pt] (-0.4095317472344304,0.)-- (0.8152025199410664,0.4757392209139965);
+\draw [line width=1.pt] (0.38075531093762083,0.3069813260147082)-- (0.38075531093762083,-0.3069813260147082);
+\draw [line width=1.pt] (-0.4095317472344304,0.)-- (1.6354732510288061,0.);
+\draw [line width=1.pt] (-0.4095317472344304,0.)-- (1.559947488368141,0.7650300495900147);
+\draw [line width=1.pt] (-0.4095317472344304,0.)-- (1.5592174193449682,-0.7647464595267607);
+\draw [line width=1.pt] (0.09766897172028498,0.11157647059453128)-- (0.6638416501549568,-0.38402536215912336);
+\draw [line width=1.pt] (0.09766897172028498,-0.11157647059453128)-- (0.6638416501549568,0.38402536215912336);
+\draw [fill=black] (0.,0.) circle (1pt);
+\draw[color=black] (-0.022908093278463774,-0.031111111111115815) node {$O_1$};
+\draw [fill=black] (1.,0.) circle (1pt);
+\draw[color=black] (1.020054869684499,-0.03506172839506643) node {$O_2$};
+\draw[color=black] (-0.46537722908093293,0.01234567901234096) node {$P_2$};
+\draw [fill=black] (0.8152025199410664,0.4757392209139965) circle (1.5pt);
+\draw [fill=black] (-0.053691898065824716,0.13822343111541988) circle (1.5pt);
+\draw [fill=black] (-0.053691898065824716,-0.13822343111541985) circle (1.5pt);
+\draw [fill=black] (0.8152025199410664,-0.4757392209139965) circle (1.5pt);
+\draw[color=black] (0.2220301783264745,-0.04691358024691828) node {$P_1$};
+\draw [fill=black] (0.09766897172028498,0.11157647059453128) circle (1.5pt);
+\draw [fill=black] (0.09766897172028498,-0.11157647059453128) circle (1.5pt);
+\draw [fill=black] (0.6638416501549568,0.38402536215912336) circle (1.5pt);
+\draw [fill=black] (0.6638416501549568,-0.38402536215912336) circle (1.5pt);
+\end{tikzpicture}

@@ -1,0 +1,1298 @@
+\setcounter{chapter}{9}
+
+\chapter{Recursiones, Matrices y Gráficas}
+
+Consideremos la sucesión de Fibonacci $F_0=0$, $F_1=1$, $F_{n+1}=F_{n}+F_{n-1}$, y las siguientes preguntas:
+
+\begin{teorema}\label{Teo:Fibo}
+Si $\phi_+:=\frac{1+\sqrt{5}}{2}$ y $\phi_-:=\frac{1-\sqrt{5}}{2}$, entonces 
+\begin{equation}\label{eq:FibonacciGeneral}
+F_n=\frac{(\phi_+)^n-(\phi_-)^n}{\sqrt{5}}
+\end{equation}
+\end{teorema}
+
+\begin{itemize}
+    \item P1. ¿De donde viene la fórmula \ref{eq:FibonacciGeneral}?
+\end{itemize}
+
+\begin{ejercicio}
+Muestra que $\phi_+$ y $\phi_-$ son las dos raíces del polinomio $x^2-x-1$.
+
+Muestra que $$\phi_+^2=1+\phi_+,\quad \phi_-^2=1+\phi_-,\quad \phi_+\phi_-=-1.$$
+\end{ejercicio}
+
+Supongamos que se cambian las condiciones iniciales de los números de Fibonacci:
+$$\hat F_0=x,\quad  \hat F_1=y,\quad  \hat F_n=\hat F_{n-1}+\hat F_{n-2} \quad (n\geq 1).$$
+
+\begin{itemize}
+    \item P2. ¿Cómo cambian los primeros números de la recursión si cambiamos las condiciones iniciales  $(x,y)$?
+
+    \item P3. ¿Cómo cambia la fórmula del teorema \ref{Teo:Fibo} al cambiarse las condiciones iniciales  $(x,y)$?
+\end{itemize}
+
+En esta sesión de ejercicios responderemos a las preguntas anteriores. Comenzamos con la segunda y la tercera pregunta, que tienen respuestas más o menos intuitivas.
+
+\begin{ejercicio} Completa la siguiente tabla sobre números de Fibonacci con distintas condiciones iniciales
+
+  \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{llll}
+      \hline
+      $(x,y)$ & Primeros ocho términos $\hat F_0$ a $\hat F_7$ & Fórmula General \\
+      \hline
+      $(0,0)$ &  &  \\
+      \hline
+      $(1,0)$ &  &  \\
+            \hline
+      $(1,1)$ &  &  \\
+            \hline
+      $(0,-1)$ &  &  \\
+            \hline
+      $(3,5)$ &  &  \\
+            \hline
+      $(4,4)$ &  &  \\
+            \hline
+      $(7,8)$ &  &  \\
+                  \hline
+      $(2022,2202)$ &  &  \\
+                  \hline
+      $(\pi,2022)$ &  &  \\
+                  \hline
+    \end{tabular}
+  \end{center}
+\end{ejercicio}
+
+A priori, la fórmula general del Teorema \ref{Teo:Fibo} nos resulta bastante misteriosa. Al involucrar raíces de cinco y la razón dorada $\phi$, ni siquiera es obvio que la fórmula arroja un número entero, en contraste con la fórmula recursiva. Si ya se conoce la fórmula, verificarla es un buen ejercicio de inducción.
+
+\begin{ejercicio}
+Demuestra el Teorema \ref{Teo:Fibo} usando inducción matemática.
+\end{ejercicio}
+
+Es un poco artificial suponer que a alguno de nosotros se nos ocurriría dicha fórmula de la nada. Sin embargo, la fórmula se deriva de una manera bastante natural y estándar si se ataca con con algunas herramientas básicas del álgebra superior (matrices y vectores de dimensión pequeña) 
+
+\section{Multiplicación de matrices}
+
+Una {\bf matriz} es un arreglo rectangular de números (reales o complejos), por ejemplo:
+$$
+\left(\begin{array}{ccc}
+a_{11}&a_{12} \\
+a_{21}&a_{22} 
+\end{array}\right)
+, \quad
+\left(\begin{array}{ccc}
+a_{11}&a_{12}&a_{13} \\
+a_{21}&a_{22}&a_{23} \\
+a_{31}&a_{32}&a_{33}  
+\end{array}\right),\quad 
+\left(\begin{array}{cc}
+a_{11}&a_{12} \\
+a_{21}&a_{22} \\
+a_{31}&a_{32}  
+\end{array}\right)
+$$
+
+Dos matrices cuadradas del mismo tamaño se pueden sumar y multiplicar de acuerdo a las siguientes reglas: Si
+
+$$A=\left(\begin{array}{cc}
+a_{11}&a_{12} \\
+a_{21}&a_{22} 
+\end{array}\right),\quad 
+B=\left(\begin{array}{cc}
+b_{11}&b_{12} \\
+b_{21}&b_{22} 
+\end{array}\right),$$
+entonces $$A+B=\left(\begin{array}{cc}
+a_{11}&a_{12} \\
+a_{21}&a_{22} 
+\end{array}\right)
++
+\left(\begin{array}{ccc}
+b_{11}&b_{12} \\
+b_{21}&b_{22}
+\end{array}\right)=
+\left(\begin{array}{ccc}
+a_{11}+b_{11}&a_{12}+b_{12} \\
+a_{21}+b_{21}&a_{22}+b_{22}
+\end{array}\right),$$
+y
+$$A\cdot B=\left(\begin{array}{cc}
+a_{11}&a_{12} \\
+a_{21}&a_{22} 
+\end{array}\right)
+\cdot
+\left(\begin{array}{ccc}
+b_{11}&b_{12} \\
+b_{21}&b_{22}
+\end{array}\right)=
+\left(\begin{array}{ccc}
+a_{11}b_{11}+a_{12}b_{21}&a_{11}b_{12}+a_{12}b_{22} \\
+a_{21}b_{11}+a_{22}b_{21}&a_{21}b_{12}+a_{22}b_{22}
+\end{array}\right)$$
+
+
+Para matrices de $3\times 3$ y $n\times n$ la regla es similar:
+$$C=\left(\begin{array}{ccc}
+c_{11}&c_{12}&c_{13} \\
+c_{21}&c_{22}&c_{23} \\
+c_{31}&c_{32}&c_{33}  
+\end{array}\right),
+\quad 
+D=\left(\begin{array}{ccc}
+d_{11}&d_{12}&d_{13} \\
+d_{21}&d_{22}&d_{23} \\
+d_{31}&d_{32}&d_{33}  
+\end{array}\right),$$
+entonces 
+$$C+D=\left(\begin{array}{ccc}
+c_{11}&c_{12}&c_{13} \\
+c_{21}&c_{22}&c_{23} \\
+c_{31}&c_{32}&c_{33}  
+\end{array}\right)
++
+\left(\begin{array}{ccc}
+d_{11}&d_{12}&d_{13} \\
+d_{21}&d_{22}&d_{23} \\
+d_{31}&d_{32}&d_{33}  
+\end{array}\right)= 
+\left(\begin{array}{ccc}
+c_{11}+d_{11}&c_{12}+d_{12}&c_{13}+d_{13} \\
+c_{21}+d_{21}&c_{22}+d_{22}&c_{23}+d_{23} \\
+c_{31}+d_{31}&c_{32}+d_{32}&c_{33}+d_{33}  
+\end{array}\right)
+,$$
+La entrada $(i,j)$ del producto se obtiene apareando las entradas del i-ésimo renglón de $C$, $(c_{i1},c_{i2},c_{i3})$ con las entradas de la $j$-ésima columna de $D$, $(d_{1j},d_{2j}, d_{3j})$. Por ejemplo, la entrada $(2,3)$ da $c_{21}d_{13}+c_{22}d_{23}+c_{23}d_{33}$ y similarmente 
+$$C\cdot 
+D=\left(\begin{array}{ccc}
+c_{11}&c_{12}&c_{13} \\
+c_{21}&c_{22}&c_{23} \\
+c_{31}&c_{32}&c_{33}  
+\end{array}\right)\cdot
+\left(\begin{array}{ccc}
+d_{11}&d_{12}&d_{13} \\
+d_{21}&d_{22}&d_{23} \\
+d_{31}&d_{32}&d_{33}  
+\end{array}\right)$$
+$$
+=\left(\begin{array}{ccc}
+c_{11}d_{11}+c_{12}d_{21}+c_{13}d_{31}  &  c_{11}d_{12}+c_{12}d_{22}+c_{13}d_{32}  &  c_{11}d_{13}+c_{12}d_{23}+c_{13}d_{33} \\
+c_{21}d_{11}+c_{22}d_{21}+c_{23}d_{31}  &  c_{21}d_{12}+c_{22}d_{22}+c_{23}d_{32}  &  c_{21}d_{13}+c_{22}d_{23}+c_{23}d_{33}   \\
+c_{31}d_{11}+c_{32}d_{21}+c_{33}d_{31}  &  c_{31}d_{12}+c_{32}d_{22}+c_{33}d_{32}  &  c_{31}d_{13}+c_{32}d_{23}+c_{33}d_{33}  
+\end{array}\right)
+$$
+
+De manera análoga se definen las sumas y los productos de matrices para $n\geq 3$. La entrada $(i,j)$ del producto $A\cdot B$ de dos matrices involucra únicamente apareamientos de las entradas del $i$-ésimo renglón de $A$ y las entradas de la $j$-ésima columna de $B$.
+
+Como ocurre con variables en álgebra, se conviene que dos matrices escritas una detrás de la otra se están multiplicando y normalmente se omite el puntito, entendiendo que $AB=A\cdot B$ y $A^n=A\cdot A\cdot A\cdot \cdots A$.
+
+El elemento neutro multiplicativo en las matrices de $n\times n$ es la matriz identidad $I_n$ que consiste de unos en la diagonal y ceros en el resto de las entradas, por ejemplo: 
+$$ I_2=
+\left(\begin{array}{cc}
+1&0  \\
+0&1
+\end{array}\right),
+\quad 
+I_3=
+\left(\begin{array}{ccc}
+1&0&0  \\
+0&1&0  \\
+0&0&1
+\end{array}\right),
+\quad 
+I_4=
+\left(\begin{array}{cccc}
+1&0&0&0  \\
+0&1&0&0  \\
+0&0&1&0  \\
+0&0&0&1
+\end{array}\right)
+$$
+
+\begin{ejercicio}
+Verifica que $I_n^k=I_n$ y calcula los siguientes productos de matrices
+
+\begin{enumerate}
+    \item     $$\left(\begin{array}{cc}
+1&0 \\
+0&1 
+\end{array}\right)
+\left(\begin{array}{cc}
+a_{11}&a_{12} \\
+a_{21}&a_{22} 
+\end{array}\right),
+\quad
+\left(\begin{array}{cc}
+a_{11}&a_{12} \\
+a_{21}&a_{22} 
+\end{array}\right)
+\left(\begin{array}{cc}
+1&0 \\
+0&1 
+\end{array}\right)
+$$
+    \item $$\left(\begin{array}{ccc}
+1&0&0  \\
+0&1&0  \\
+0&0&1
+\end{array}\right)
+\left(\begin{array}{ccc}
+a_{11}& a_{12}& a_{13} \\
+a_{21}& a_{22}& a_{23} \\
+a_{31}& a_{32}& a_{33}  
+\end{array}\right),
+\quad
+\left(\begin{array}{ccc}
+a_{11}& a_{12}& a_{13} \\
+a_{21}& a_{22}& a_{23} \\
+a_{31}& a_{32}& a_{33}  
+\end{array}\right)
+\left(\begin{array}{ccc}
+1&0&0  \\
+0&1&0  \\
+0&0&1
+\end{array}\right)
+$$
+\end{enumerate}
+       
+\end{ejercicio}
+
+El objetivo principal de esta sesion de ejercicios es entender las potencias de la matriz de Fibonacci:
+$$\mathbb F:=\left(\begin{array}{cc}
+0&1 \\
+1&1 
+\end{array}\right)$$
+\begin{ejercicio}
+Muestra que las potencias de la matriz de Fibonacci estan dadas por la fórmula
+
+$$\mathbb F^n=\left(\begin{array}{cc}
+0&1 \\
+1&1 
+\end{array}\right)^n
+=
+\left(\begin{array}{cc}
+F_n&F_{n+1} \\
+F_{n+1}&F_{n+2} 
+\end{array}\right),
+\quad
+n\geq 0
+$$
+Donde $F_n$, $n\geq 0$ son los números de Fibonacci.
+
+Sug: Inducción.
+\end{ejercicio}
+
+Las matrices diagonales son fáciles de multiplicar.
+
+\begin{ejercicio}
+Calcula los siguientes productos de matrices
+
+$$\left(\begin{array}{cc}
+a&0 \\
+0&b 
+\end{array}\right)
+\left(\begin{array}{cc}
+c&0 \\
+0&d 
+\end{array}\right)
+,\quad
+\left(\begin{array}{cc}
+\lambda_1&0 \\
+0&\lambda_2 
+\end{array}\right)^n$$
+\end{ejercicio}
+
+Recuerda que la suma y la multiplicación de dos números complejos $z=a+b\mathrm i$ y $w=c+d\mathrm i$ se define como $$z+w=(a+c)+(b+d)\mathrm i, \quad z w=(ac-bd)+(ad+bc)\mathrm i$$
+
+El siguiente ejercicio muestra que el campo de números complejos está escondido dentro del anillo de matrices reales de $2\times 2$.
+\begin{ejercicio}
+Calcula los siguientes productos y sumas de matrices.
+$$\left(\begin{array}{cc}
+0&1 \\
+-1&0 
+\end{array}\right)
+\left(\begin{array}{cc}
+0&1 \\
+-1&0 
+\end{array}\right) 
+,\quad
+\left(\begin{array}{cc}
+a&b \\
+-b&a 
+\end{array}\right)
++
+\left(\begin{array}{cc}
+c&d \\
+-d&c 
+\end{array}\right)
+,\quad
+\left(\begin{array}{cc}
+a&b \\
+-b&a 
+\end{array}\right)
+\left(\begin{array}{cc}
+c&d \\
+-d&c 
+\end{array}\right)$$
+\end{ejercicio}
+
+
+\begin{ejercicio}
+En particular, los complejos de norma $1$ del ejercicio anterior corresponden a {\bf matrices de rotación} reales. Calcula:
+$$\left(\begin{array}{cc}
+\cos\alpha&\sen\alpha \\
+-\sen\alpha&\cos\alpha 
+\end{array}\right)
+\left(\begin{array}{cc}
+\cos\beta&\sen\beta \\
+-\sen\beta&\cos\beta 
+\end{array}\right).
+$$
+
+\end{ejercicio}
+
+
+
+\begin{ejercicio}
+La suma y la multiplicación de complejos son conmutativas. Por el contrario la multiplicación de matrices no es conmutativa en general. Verifica lo anterior calculando:
+$$\left(\begin{array}{cc}
+1&2 \\
+3&4 
+\end{array}\right)
+\left(\begin{array}{cc}
+5&6 \\
+7&8 
+\end{array}\right),
+\quad
+\left(\begin{array}{cc}
+5&6 \\
+7&8 
+\end{array}\right)
+\left(\begin{array}{cc}
+1&2 \\
+3&4 
+\end{array}\right)
+.
+$$
+\end{ejercicio}
+
+\begin{ejercicio}
+¿Cuántas matrices distintas de $n\times n$ existen con exactamente $n$ unos y $n^2-n$ ceros, de tal forma que haya exactamente un uno en cada columna y en cada fila?
+\end{ejercicio}
+
+A las matrices como las del ejercicio anterior se les llama {\bf matrices de permutación} (más adelante, cuando apliquemos matrices a vectores veremos por qué se les llama así).
+
+\begin{ejercicio}
+Calcula las potencias de las siguientes matrices de permutación:
+
+$$\left(\begin{array}{ccc}
+0&1&0 \\
+1&0&0 \\
+0&0&1
+\end{array}\right)
+,\quad 
+\left(\begin{array}{ccc}
+0&1&0 \\
+0&0&1 \\
+1&0&0  
+\end{array}\right)
+,\quad 
+\left(\begin{array}{ccccc}
+0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 &  0 & 1 \\
+1 & 0 & 0 & 0 & 0
+\end{array}\right)
+,\quad 
+\left(\begin{array}{ccccc}
+0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0
+\end{array}\right)
+$$
+\end{ejercicio}
+
+\begin{ejercicio}
+Para las matrices de permutación del ejercicio anterior. ¿Puedes encontrar los inversos multiplicativos?
+\end{ejercicio}
+
+
+Para verificar productos de matrices de forma rápida, se pueden ingresar las matrices en GeoGebra renglón por renglón, separados por comas.
+
+Por ejemplo, para ingresar las matrices 
+$$A=\left(\begin{array}{cc}
+a& b \\
+c& d 
+\end{array}\right),
+\quad 
+B=\left(\begin{array}{ccc}
+a& b& c \\
+d& e& f \\
+g& h& i  
+\end{array}\right),$$
+en GeoGebra se escribiría $\{\{a,b\},\{c,d\}\}$ para la matriz $A$ y  $\{\{a,b,c\},\{d,e,f\},\{g,h,i\}\}$ para la matriz $B$.
+
+\begin{ejercicio}
+Utiliza Geogebra para calcular la veinteava potencia de la matriz de Fibonacci .
+\end{ejercicio}
+%geogebra:e8q8rtrr
+Antes de continuar con el problema de entender mejor la matriz de Fibonacci, revisaremos otro tipo de matrices que describen la estructura de una gráfica.
+\newpage
+
+\section{Matrices de adyacencia}
+
+
+\begin{definicion}
+La {\bf matriz de adyacencia} de una gráfica $G=(V,A)$ es la matriz de unos y ceros que tiene ceros en la diagonal y un $1$ en las entradas $(i,j)$ y $(j,i)$ si y solo si la arista $v_iv_j\in A$. 
+\end{definicion}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.7*1.0cm,y=.7*1.0cm]
+\draw [line width=1.pt] (4.16,1.18)-- (3.16,-0.78);
+\draw [line width=1.pt] (4.16,1.18)-- (2.62,2.92);
+\draw [line width=1.pt] (4.16,1.18)-- (-0.32,0.08);
+\draw [line width=1.pt] (-1.92,3.)-- (0.54,3.82);
+\draw [line width=1.pt] (0.54,3.82)-- (-0.32,0.08);
+\draw [line width=1.pt] (-0.32,0.08)-- (2.62,2.92);
+\draw [line width=1.pt] (0.54,3.82)-- (2.62,2.92);
+\draw [fill=black] (0.54,3.82) circle (1.5pt);
+\draw[color=black] (0.56,4.27) node {$v_2$};
+\draw [fill=black] (-0.32,0.08) circle (1.5pt);
+\draw[color=black] (-0.6,-0.13) node {$v_3$};
+\draw [fill=black] (3.16,-0.78) circle (1.5pt);
+\draw[color=black] (3.08,-1.27) node {$v_6$};
+\draw [fill=black] (4.16,1.18) circle (1.5pt);
+\draw[color=black] (4.42,1.47) node {$v_5$};
+\draw [fill=black] (2.62,2.92) circle (1.5pt);
+\draw[color=black] (2.98,3.21) node {$v_4$};
+\draw [fill=black] (-1.92,3.) circle (1.5pt);
+\draw[color=black] (-2.3,3.17) node {$v_1$};
+\draw[color=black] (.5,-3.5) node 
+{$A_{G_1}=\left(\begin{array}{cccccc}
+0 & 1 & 0 & 0 & 0 & 0 \\
+1 & 0 & 1 & 1 & 0 & 0\\
+0 & 1 & 0 & 1 & 1 & 0\\
+0 & 1 & 1 & 0 & 1 & 0\\
+0 & 0 & 1 & 1 & 0 & 1\\
+0 & 0 & 0 & 0 & 1 & 0
+\end{array}\right)
+$};
+\end{tikzpicture}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (-1.5,2.52)-- (1.88,0.3);
+\draw [line width=1.pt] (1.88,0.3)-- (-0.24,3.66);
+\draw [line width=1.pt] (-0.24,3.66)-- (-0.8,0.22);
+\draw [line width=1.pt] (-0.8,0.22)-- (2.24,2.7);
+\draw [line width=1.pt] (2.24,2.7)-- (-1.5,2.52);
+\draw [fill=black] (-1.5,2.52) circle (1.5pt);
+\draw[color=black] (-1.82,2.69) node {$v_1$};
+\draw [fill=black] (-0.24,3.66) circle (1.5pt);
+\draw[color=black] (-0.2,4.11) node {$v_2$};
+\draw [fill=black] (2.24,2.7) circle (1.5pt);
+\draw[color=black] (2.52,2.87) node {$v_3$};
+\draw [fill=black] (1.88,0.3) circle (1.5pt);
+\draw[color=black] (2.16,0.15) node {$v_4$};
+\draw [fill=black] (-0.8,0.22) circle (1.5pt);
+\draw[color=black] (-0.96,-0.01) node {$v_5$};
+\draw[color=black] (.5,-1.5) node {$A_{G_2}=\left(\begin{array}{ccccc}
+0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 0 & 1 & 1 \\
+1 & 0 & 0 & 0 & 1 \\
+1 & 1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 0 & 0
+\end{array}\right)
+$};
+\end{tikzpicture}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (0.,0.)-- (3.22,1.14);
+\draw [line width=1.pt] (0.02,1.58)-- (3.16,2.52);
+\draw [line width=1.pt] (0.02,1.58)-- (3.28,-0.34);
+\draw [line width=1.pt] (0.,0.)-- (3.16,2.52);
+\draw [fill=black] (0.,0.) circle (1.5pt);
+\draw[color=black] (-0.3,0.03) node {$v_1$};
+\draw [fill=black] (0.02,1.58) circle (1.5pt);
+\draw[color=black] (-0.28,1.67) node {$v_2$};
+\draw [fill=black] (3.16,2.52) circle (1.5pt);
+\draw[color=black] (3.44,2.63) node {$v_3$};
+\draw [fill=black] (3.22,1.14) circle (1.5pt);
+\draw[color=black] (3.48,1.23) node {$v_4$};
+\draw [fill=black] (3.28,-0.34) circle (1.5pt);
+\draw[color=black] (3.54,-0.27) node {$v_5$};
+\draw[color=black] (1.5,-2.1) node {$A_{G_3}=\left(\begin{array}{ccccc}
+0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 0 & 1 \\
+1 & 1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0
+\end{array}\right)
+$};
+\end{tikzpicture}
+
+\begin{ejercicio} 
+Utiliza GeoGebra para calcular las primeras cuatro potencias de las matrices de adyacencia anteriores.
+\end{ejercicio}
+
+\begin{ejercicio} 
+Demuestra que las entradas de la diagonal de la matriz $(A_G)^2$ son los grados de los vértices.
+\end{ejercicio}
+
+\begin{ejercicio}
+Demuestra que la entrada $(i,j)$ de $A_G^k$ cuenta el número de caminos de tamaño $k$ en $G$ que van desde el vértice $v_i$ al vértice $v_j$.
+
+En particular las entradas de la diagonal $(i,i)$ cuentan el número de ciclos de tamaño $k$ desde $v_i$ 
+\end{ejercicio}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.7*1.0cm,y=.7*1.0cm]
+\draw [line width=1.pt] (4.16,1.18)-- (3.16,-0.78);
+\draw [line width=1.pt] (4.16,1.18)-- (2.62,2.92);
+\draw [line width=1.pt] (4.16,1.18)-- (-0.32,0.08);
+\draw [line width=1.pt] (-1.92,3.)-- (0.54,3.82);
+\draw [line width=1.pt] (0.54,3.82)-- (-0.32,0.08);
+\draw [line width=1.pt] (-0.32,0.08)-- (2.62,2.92);
+\draw [line width=1.pt] (0.54,3.82)-- (2.62,2.92);
+\draw [fill=black] (0.54,3.82) circle (1.5pt);
+\draw[color=black] (0.56,4.27) node {$v_2$};
+\draw [fill=black] (-0.32,0.08) circle (1.5pt);
+\draw[color=black] (-0.6,-0.13) node {$v_3$};
+\draw [fill=black] (3.16,-0.78) circle (1.5pt);
+\draw[color=black] (3.08,-1.27) node {$v_6$};
+\draw [fill=black] (4.16,1.18) circle (1.5pt);
+\draw[color=black] (4.42,1.47) node {$v_5$};
+\draw [fill=black] (2.62,2.92) circle (1.5pt);
+\draw[color=black] (2.98,3.21) node {$v_4$};
+\draw [fill=black] (-1.92,3.) circle (1.5pt);
+\draw[color=black] (-2.3,3.17) node {$v_1$};
+\draw[color=black] (.5,-3.5) node 
+{$(A_{G_1})^2=\left(\begin{array}{cccccc}
+1 & 0 & 1 & 1 & 0 & 0 \\
+0 & 3 & 1 & 1 & 2 & 0\\
+1 & 1 & 3 & 2 & 1 & 1\\
+1 & 1 & 2 & 3 & 1 & 1\\
+0 & 2 & 1 & 1 & 3 & 0\\
+0 & 0 & 1 & 1 & 0 & 1
+\end{array}\right)
+$};
+\end{tikzpicture}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (-1.5,2.52)-- (1.88,0.3);
+\draw [line width=1.pt] (1.88,0.3)-- (-0.24,3.66);
+\draw [line width=1.pt] (-0.24,3.66)-- (-0.8,0.22);
+\draw [line width=1.pt] (-0.8,0.22)-- (2.24,2.7);
+\draw [line width=1.pt] (2.24,2.7)-- (-1.5,2.52);
+\draw [fill=black] (-1.5,2.52) circle (1.5pt);
+\draw[color=black] (-1.82,2.69) node {$v_1$};
+\draw [fill=black] (-0.24,3.66) circle (1.5pt);
+\draw[color=black] (-0.2,4.11) node {$v_2$};
+\draw [fill=black] (2.24,2.7) circle (1.5pt);
+\draw[color=black] (2.52,2.87) node {$v_3$};
+\draw [fill=black] (1.88,0.3) circle (1.5pt);
+\draw[color=black] (2.16,0.15) node {$v_4$};
+\draw [fill=black] (-0.8,0.22) circle (1.5pt);
+\draw[color=black] (-0.96,-0.01) node {$v_5$};
+\draw[color=black] (.5,-1.5) node {$(A_{G_2})^2=\left(\begin{array}{ccccc}
+2 & 1 & 0 & 0 & 1 \\
+1 & 2 & 1 & 0 & 0 \\
+0 & 1 & 2 & 1 & 0 \\
+0 & 0 & 1 & 2 & 1 \\
+1 & 0 & 0 & 1 & 2
+\end{array}\right)
+$};
+\end{tikzpicture}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (0.,0.)-- (3.22,1.14);
+\draw [line width=1.pt] (0.02,1.58)-- (3.16,2.52);
+\draw [line width=1.pt] (0.02,1.58)-- (3.28,-0.34);
+\draw [line width=1.pt] (0.,0.)-- (3.16,2.52);
+\draw [fill=black] (0.,0.) circle (1.5pt);
+\draw[color=black] (-0.3,0.03) node {$v_1$};
+\draw [fill=black] (0.02,1.58) circle (1.5pt);
+\draw[color=black] (-0.28,1.67) node {$v_2$};
+\draw [fill=black] (3.16,2.52) circle (1.5pt);
+\draw[color=black] (3.44,2.63) node {$v_3$};
+\draw [fill=black] (3.22,1.14) circle (1.5pt);
+\draw[color=black] (3.48,1.23) node {$v_4$};
+\draw [fill=black] (3.28,-0.34) circle (1.5pt);
+\draw[color=black] (3.54,-0.27) node {$v_5$};
+\draw[color=black] (1.5,-2.1) node {$(A_{G_3})^2=\left(\begin{array}{ccccc}
+2 & 1 & 0 & 0 & 0 \\
+1 & 2 & 0 & 0 & 0 \\
+0 & 0 & 2 & 1 & 1 \\
+0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 0 & 1
+\end{array}\right)
+$};
+\end{tikzpicture}
+
+%%%cubos
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.7*1.0cm,y=.7*1.0cm]
+\draw [line width=1.pt] (4.16,1.18)-- (3.16,-0.78);
+\draw [line width=1.pt] (4.16,1.18)-- (2.62,2.92);
+\draw [line width=1.pt] (4.16,1.18)-- (-0.32,0.08);
+\draw [line width=1.pt] (-1.92,3.)-- (0.54,3.82);
+\draw [line width=1.pt] (0.54,3.82)-- (-0.32,0.08);
+\draw [line width=1.pt] (-0.32,0.08)-- (2.62,2.92);
+\draw [line width=1.pt] (0.54,3.82)-- (2.62,2.92);
+\draw [fill=black] (0.54,3.82) circle (1.5pt);
+\draw[color=black] (0.56,4.27) node {$v_2$};
+\draw [fill=black] (-0.32,0.08) circle (1.5pt);
+\draw[color=black] (-0.6,-0.13) node {$v_3$};
+\draw [fill=black] (3.16,-0.78) circle (1.5pt);
+\draw[color=black] (3.08,-1.27) node {$v_6$};
+\draw [fill=black] (4.16,1.18) circle (1.5pt);
+\draw[color=black] (4.42,1.47) node {$v_5$};
+\draw [fill=black] (2.62,2.92) circle (1.5pt);
+\draw[color=black] (2.98,3.21) node {$v_4$};
+\draw [fill=black] (-1.92,3.) circle (1.5pt);
+\draw[color=black] (-2.3,3.17) node {$v_1$};
+\draw[color=black] (.5,-3.5) node 
+{$(A_{G_1})^3=\left(\begin{array}{cccccc}
+0 & 3 & 1 & 1 & 2 & 0 \\
+3 & 2 & 6 & 6 & 2 & 2\\
+1 & 6 & 4 & 5 & 6 & 1\\
+1 & 6 & 5 & 4 & 6 & 1\\
+2 & 2 & 6 & 6 & 2 & 3\\
+0 & 2 & 1 & 1 & 3 & 0
+\end{array}\right)
+$};
+\end{tikzpicture}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (-1.5,2.52)-- (1.88,0.3);
+\draw [line width=1.pt] (1.88,0.3)-- (-0.24,3.66);
+\draw [line width=1.pt] (-0.24,3.66)-- (-0.8,0.22);
+\draw [line width=1.pt] (-0.8,0.22)-- (2.24,2.7);
+\draw [line width=1.pt] (2.24,2.7)-- (-1.5,2.52);
+\draw [fill=black] (-1.5,2.52) circle (1.5pt);
+\draw[color=black] (-1.82,2.69) node {$v_1$};
+\draw [fill=black] (-0.24,3.66) circle (1.5pt);
+\draw[color=black] (-0.2,4.11) node {$v_2$};
+\draw [fill=black] (2.24,2.7) circle (1.5pt);
+\draw[color=black] (2.52,2.87) node {$v_3$};
+\draw [fill=black] (1.88,0.3) circle (1.5pt);
+\draw[color=black] (2.16,0.15) node {$v_4$};
+\draw [fill=black] (-0.8,0.22) circle (1.5pt);
+\draw[color=black] (-0.96,-0.01) node {$v_5$};
+\draw[color=black] (.5,-1.5) node {$(A_{G_2})^3=\left(\begin{array}{ccccc}
+0 & 1 & 3 & 3 & 1 \\
+1 & 0 & 1 & 3 & 3 \\
+3 & 1 & 0 & 1 & 3 \\
+3 & 3 & 1 & 0 & 1 \\
+1 & 3 & 3 & 1 & 0
+\end{array}\right)
+$};
+\end{tikzpicture}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (0.,0.)-- (3.22,1.14);
+\draw [line width=1.pt] (0.02,1.58)-- (3.16,2.52);
+\draw [line width=1.pt] (0.02,1.58)-- (3.28,-0.34);
+\draw [line width=1.pt] (0.,0.)-- (3.16,2.52);
+\draw [fill=black] (0.,0.) circle (1.5pt);
+\draw[color=black] (-0.3,0.03) node {$v_1$};
+\draw [fill=black] (0.02,1.58) circle (1.5pt);
+\draw[color=black] (-0.28,1.67) node {$v_2$};
+\draw [fill=black] (3.16,2.52) circle (1.5pt);
+\draw[color=black] (3.44,2.63) node {$v_3$};
+\draw [fill=black] (3.22,1.14) circle (1.5pt);
+\draw[color=black] (3.48,1.23) node {$v_4$};
+\draw [fill=black] (3.28,-0.34) circle (1.5pt);
+\draw[color=black] (3.54,-0.27) node {$v_5$};
+\draw[color=black] (1.5,-2.1) node {$(A_{G_3})^3=\left(\begin{array}{ccccc}
+0 & 0 & 3 & 2 & 1 \\
+0 & 0 & 3 & 1 & 2 \\
+3 & 3 & 0 & 0 & 0 \\
+2 & 1 & 0 & 0 & 0 \\
+1 & 2 & 0 & 0 & 0
+\end{array}\right)
+$};
+\end{tikzpicture}
+
+Sug: Inducción.
+
+Una gráfica se llama {\bf bipartita} si se puede elegir una partición del conjunto de vértices en dos conjuntos (disjuntos) $V=V_1\cup V_2$, donde no hay aristas entre vértices de $V_1$ ni aristas entre vértices de $V_2$. Las únicas posibles aristas unen un elemento de cada conjunto de vértices.
+
+\begin{ejercicio} 
+Demuestra que una gráfica es bipartita si y solo si no tiene ciclos impares.
+\end{ejercicio}
+
+\newpage
+
+\section{Matrices y vectores propios}
+
+Se pueden multiplicar matrices rectangulares $A$ de $(n\times m)$ y $B$ $(p\times q)$ siempre y cuando $m=p$ (es decir, cuando el número de columnas de $A$ coincide con el número de filas de $B$). 
+
+El resultado $AB$ es una matriz de $n\times q$ ($n$ filas y $q$ columnas).
+
+Por ejemplo: 
+
+$$\left(\begin{array}{ccc}
+a_{11}&a_{12}&a_{13} \\
+a_{21}&a_{22}&a_{23} 
+\end{array}\right)
+\left(\begin{array}{cccc}
+b_{11}&b_{12}&b_{13}&b_{14} \\
+b_{21}&b_{22}&b_{23}&b_{24} \\
+b_{31}&b_{32}&b_{33}&b_{34}
+\end{array}\right)$$ 
+$$=
+\left(\begin{array}{cccc}
+a_{11}b_{11}+a_{12}b_{21}+a_{13}b_{31} & a_{11}b_{12}+a_{12}b_{22}+a_{13}b_{32} & a_{11}b_{13}+a_{12}b_{23}+a_{13}b_{33} & a_{11}b_{14}+a_{12}b_{24}+a_{13}b_{34} \\
+a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32} & a_{21}b_{13}+a_{22}b_{23}+a_{23}b_{33} & a_{21}b_{14}+a_{22}b_{24}+a_{23}b_{34}
+\end{array}\right)$$
+En esta sesión nos interesa principalmente el comportamiento de las potencias de una matriz, por lo que esto solamente tiene sentido con matrices cuadradas.
+
+Sin embargo, un caso particular que sí que nos interesa es cuando $A$ es de $n\times n$ y $B$ es de $n\times 1$. En este caso decimos que $B$ es un {\bf vector}, y escribimos $$v=\left(\begin{array}{c}
+    x_{1}\\
+    x_{2}\\
+    \vdots \\
+    x_{n}
+\end{array} \right)\quad \text{en lugar de } B=\left(\begin{array}{c}
+    b_{11}\\
+    b_{21}\\
+    \vdots \\
+    b_{n1}
+\end{array} \right).$$
+
+Una matriz aplicada a un vector es nuevamente un vector. La regla es la siguiente:
+
+$$ \left(\begin{array}{cccc}
+    a_{11}& a_{12} & \dots & a_{1n} \\
+    a_{21}& a_{22} & \dots &  a_{2n}\\
+
+    \vdots& \vdots &\ddots &  \\
+    a_{n1}& a_{n2} & & a_{nn}
+\end{array} \right)
+\left(\begin{array}{c}
+    x_{1}\\
+    x_{2}\\
+    \vdots \\
+    x_{n}
+\end{array} \right) 
+=
+\left(\begin{array}{c}
+    a_{11}x_1+ a_{12}x_2 + \dots + a_{1n}x_n\\
+    a_{21}x_1+ a_{22}x_2 + \dots + a_{2n}x_n\\
+    \vdots \\
+    a_{n1}x_1+ a_{n2}x_2 + \dots + a_{nn}x_n
+\end{array} \right)
+$$
+
+Un vector se puede estirar/encoger multiplicando todas las entradas por un mismo factor, por ejemplo. 
+$$
+\lambda
+\left(\begin{array}{c}
+x \\
+y
+\end{array}\right)
+=
+\left(\begin{array}{c}
+\lambda x \\
+\lambda y
+\end{array}\right),
+\quad 
+\lambda
+\left(\begin{array}{c}
+x \\
+y \\
+z
+\end{array}\right)
+=
+\left(\begin{array}{c}
+\lambda x \\
+\lambda y \\
+\lambda z
+\end{array}\right)
+$$
+
+\begin{ejercicio}
+Las matrices son {\bf transformaciones lineales}: Demuestra que $A(\alpha v+\beta w)=\alpha A(v)+\beta A(w)$. 
+\end{ejercicio}
+
+\begin{ejercicio}
+Muestra que las potencias de la matriz de Fibonacci aplicadas al vector columna $(x,y)$ arrojan los números de Fibonacci con condiciones iniciales $\hat F_0=x$, $\hat F_1=y$, $\hat F_{n+1}=\hat F_n+\hat F_{n-1}$:
+$$
+\left(\begin{array}{cc}
+0&1 \\
+1&1
+\end{array}\right)^n
+\left(\begin{array}{c}
+x \\
+y
+\end{array}\right)
+=
+\left(\begin{array}{c}
+\hat F_n \\
+\hat F_{n+1}
+\end{array}\right)
+$$
+\end{ejercicio}
+
+A veces una matriz solo estira o contrae algunos vectores. A este tipo de vectores se les llama {\bf vectores propios} o {\bf eigenvectores} (de la matriz):  $$Av=\lambda v$$. Al factor $\lambda$ (que puede ser negativo) con el que una matriz $A$ estira a uno de sus vector propios se le denomina el {\bf valor propio}  $\lambda$ o {\bf eigenvalor} (del vector propio/eigenvector $v$).
+
+\begin{ejercicio}
+Sea $A$ una matriz y $v$ un vector propio de $A$ con valor propio $\lambda$. Muestra que para cualquier número real $\alpha\neq 0$, el vector $\alpha v$ es nuevamente un vector propio con el mismo valor propio.   
+\end{ejercicio}
+
+El siguiente ejercicio es un botón de muestra de la utilidad de los vectores propios.
+
+\begin{ejercicio}
+Sea $A$ una matriz y $v$ un vector. 
+
+Supón que $v_1$ y $v_2$ son vectores tales que $$v=\alpha v_1+\beta v_2,\quad Av_1=\lambda_1 v_1,\quad Av=\lambda_2 v_2.$$ Calcula $A^n(v)$. 
+\end{ejercicio}
+
+
+Nuestro objetivo es encontrar vectores propios para la matriz de Fibonacci. Pero antes revisemos qué sucede con matrices más sencillas.
+
+\begin{ejercicio} Matrices diagonales
+$$
+\left(\begin{array}{cc}
+\lambda_1&0 \\
+0&\lambda_2
+\end{array}\right)^n
+\left(\begin{array}{c}
+x \\
+0
+\end{array}\right),
+\quad
+\left(\begin{array}{cc}
+\lambda_1&0 \\
+0&\lambda_2
+\end{array}\right)^n
+\left(\begin{array}{c}
+0 \\
+y
+\end{array}\right),
+\quad
+\left(\begin{array}{cc}
+\lambda_1&0 \\
+0&\lambda_2
+\end{array}\right)^n
+\left(\begin{array}{c}
+x \\
+y
+\end{array}\right)
+$$
+
+$$\left(\begin{array}{ccc}
+\lambda_1&0&0 \\
+0&\lambda_2&0 \\
+0&0&\lambda_3
+\end{array}\right)
+\left(\begin{array}{c}
+x \\
+0 \\
+0
+\end{array}\right),
+\quad 
+\left(\begin{array}{ccc}
+\lambda_1&0&0 \\
+0&\lambda_2&0 \\
+0&0&\lambda_3
+\end{array}\right)
+\left(\begin{array}{c}
+x \\
+y \\
+z
+\end{array}\right)
+$$
+
+\end{ejercicio}
+
+\begin{ejercicio}
+Matrices de Permutación.
+$$
+\left(\begin{array}{cc}
+0&1 \\
+1&0 
+\end{array}\right)
+\left(\begin{array}{c}
+x \\
+y
+\end{array}\right) 
+,\quad
+\left(\begin{array}{cc}
+0&\pi \\
+\pi&0 
+\end{array}\right)
+\left(\begin{array}{c}
+1 \\
+1
+\end{array}\right)
+,\quad
+\left(\begin{array}{cc}
+0&2 \\
+2&0 
+\end{array}\right)
+\left(\begin{array}{c}
+1 \\
+-1
+\end{array}\right) 
+$$
+
+$$\left(\begin{array}{ccc}
+0&1&0 \\
+1&0&0 \\
+0&0&1
+\end{array}\right)
+\left(\begin{array}{c}
+x \\
+y \\
+z
+\end{array}\right),
+\quad
+\left(\begin{array}{ccc}
+0&1&0 \\
+1&0&0 \\
+0&0&1
+\end{array}\right)
+\left(\begin{array}{c}
+0 \\
+0 \\
+1
+\end{array}\right),
+$$
+
+$$
+\left(\begin{array}{ccc}
+0&1&0 \\
+0&0&1 \\
+1&0&0  
+\end{array}\right)
+\left(\begin{array}{c}
+x \\
+y \\
+z
+\end{array}\right)
+,\quad
+\left(\begin{array}{ccc}
+0&1&0 \\
+0&0&1 \\
+1&0&0  
+\end{array}\right)
+\left(\begin{array}{c}
+1 \\
+1 \\
+1
+\end{array}\right)
+,\quad
+\left(\begin{array}{ccc}
+0&1&0 \\
+0&0&1 \\
+1&0&0  
+\end{array}\right)
+\left(\begin{array}{c}
+\omega \\
+\omega^2 \\
+\omega^3
+\end{array}\right),
+$$
+donde $\omega=-\frac{1}{2}+\frac{\sqrt{3}}{2}\mathrm{i}$ es una raíz cúbica de $1$.
+$$
+\left(\begin{array}{ccccc}
+0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 &  0 & 1 \\
+1 & 0 & 0 & 0 & 0
+\end{array}\right)
+\left(\begin{array}{c}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4 \\
+x_5 
+\end{array}\right)
+$$
+
+$$\left(\begin{array}{ccccc}
+0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0
+\end{array}\right)
+\left(\begin{array}{c}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4 \\
+x_5 
+\end{array}\right)
+$$
+\end{ejercicio}
+
+Para encontrar los distintos valores y vectores propios de una matriz real simétrica $A$ de $n\times n$ se tienen que calcular las raíces del polinomio característico de la matriz: 
+$$\mathrm{det}(A-xI_n)$$
+
+Más adelante revisaremos la definición general del determinante y el polinomio característico.
+\newpage
+
+Por lo pronto utilizaremos que en el caso de matrices simétricas de $(2\times 2)$, tanto el determinante como el polinomio característico son muy simples: $$\mathrm{det}
+\left(\begin{array}{cc}
+a&b \\
+c&d 
+\end{array}\right)=ad-bc,
+\quad
+\mathrm{det}
+\left(\begin{array}{cc}
+p-x&q \\
+q&r-x 
+\end{array}\right)
+=
+(p-x)(r-x)-q^2
+=x^2-(p+r)x-q^2+pr.
+$$
+
+\begin{ejercicio}
+Muestra que los valores propios de una matriz simétrica 
+$$
+\left(\begin{array}{cc}
+p&q \\
+q&r 
+\end{array}\right)
+$$
+estan dados por la fórmula $$\frac{1}{2}((r+p)\pm \sqrt{(r-p)^2+4q^2})$$
+\end{ejercicio}
+
+\begin{ejercicio}
+Calcula los valores propios de la siguiente matriz y un vector propio para cada valor propio.
+$$
+\left(\begin{array}{cc}
+-1&4 \\
+4&5 
+\end{array}\right)
+$$
+\end{ejercicio}
+\vspace{2cm}
+
+\begin{ejercicio}
+Usando el ejercicio anterior, calcula
+$$
+\left(\begin{array}{cc}
+-1&4 \\
+4&5 
+\end{array}\right)^n
+\left(\begin{array}{c}
+7 \\
+1 
+\end{array}\right)
+$$
+\end{ejercicio}
+
+Finalmente terminaremos con nuestro objetivo:
+
+\begin{ejercicio}
+Encuentra un vector propio con valor propio $\phi_+=\frac{1+\sqrt{5}}{2}$ y un vector propio con valor propio $\phi_-=\frac{1-\sqrt{5}}{2}$ Recuerda que $\phi_+^2=1+\phi_+$ y $\phi_-^2=1+\phi_-$ y que $\phi_+\phi_-=-1$.
+
+$$
+\left(\begin{array}{cc}
+0&1 \\
+1&1
+\end{array}\right)^n
+\left(\begin{array}{c}
+x \\
+y
+\end{array}\right)
+= \phi_+
+\left(\begin{array}{c}
+x \\
+y
+\end{array}\right)
+,\quad
+\left(\begin{array}{cc}
+0&1 \\
+1&1
+\end{array}\right)^n
+\left(\begin{array}{c}
+x \\
+y
+\end{array}\right)
+= \phi_-
+\left(\begin{array}{c}
+x \\
+y
+\end{array}\right)
+$$
+\end{ejercicio}
+
+\begin{ejercicio}
+Expresa el vector inicial $(0,1)$ como combinación lineal de los vectores propios del ejercicio anterior para mostrar la fórmula del Teorema \ref{Teo:Fibo}: 
+\begin{equation}
+F_n=\frac{(\phi_+)^n-(\phi_-)^n}{\sqrt{5}}
+\end{equation}
+\end{ejercicio}
+
+\newpage
+
+\section{Productos interiores y magnitudes}
+
+La {\bf transpuesta $A^t$} y la {\bf adjunta} $A^*$ de una matriz $A$ de $(n\times m)$ son matrices de $(m\times n)$ que se definen como sigue:
+$$A=
+\left(\begin{array}{cccc}
+    a_{11}& a_{12} & \dots & a_{1m} \\
+    a_{21}& a_{22} & \dots &  a_{2m}\\
+    \vdots& \vdots &\ddots &  \\
+    a_{n1}& a_{n2} & & a_{nm}
+\end{array} \right),
+\quad
+A^t:=
+\left(\begin{array}{cccc}
+    a_{11}& a_{21} & \dots & a_{n1} \\
+    a_{12}& a_{22} & \dots &  a_{n2}\\
+    \vdots& \vdots &\ddots &  \\
+    a_{1m}& a_{2m} & & a_{nm}
+\end{array} \right),
+\quad 
+A^*:=
+\left(\begin{array}{cccc}
+    \bar a_{11}& \bar a_{21} & \dots & \bar a_{n1} \\
+    \bar a_{12}& \bar a_{22} & \dots &  \bar a_{n2}\\
+    \vdots& \vdots &\ddots &  \\
+    \bar a_{1n}& \bar a_{2n} & & \bar a_{nn}
+\end{array} \right)
+$$
+
+Te recordamos que $\bar z=a-b\mathrm{i}$ denota el conjugado de un número complejo $z=a+b\mathrm{i}$. La matriz adjunta es una especie de generalización del conjugado para matrices.
+
+\begin{ejercicio}
+Muestra que $(A^t)^t=A=(A^*)^*$
+\end{ejercicio}
+\begin{ejercicio}
+Muestra que $(AA^*)$ y $(A^*A)$ es una matriz real simétrica (¿de qué dimensión?). 
+\end{ejercicio}
+
+Cuando multiplicamos un complejo $z=a+b\mathrm{i}$ por su adjunto, obtenemos su norma al cuadrado: $$z\bar z=a^2+b^2,$$ que no solo es un número real, sino positivo. De manera análoga, la matriz $(AA^*)$ no solo es real simétrica, sino positiva: Una {\bf matriz positiva} es aquella todos sus valores propios son números reales positivos. Esto no lo discutiremos aquí.
+
+Si las entradas son reales $A^*=A^t$ es simplemente la matriz transpuesta.
+
+En particular, la matriz transpuesta/adjunta de un vector columna son {\bf vectores fila}: 
+$$
+v=
+\left(\begin{array}{c}
+    x_{1}\\
+    x_{2}\\
+    \vdots \\
+    x_{n}
+\end{array} \right)
+,\quad
+v^t=(x_{1}, x_{2}, \dots, x_{n})
+,\quad
+v^*=(\bar x_{1},\bar x_{2}, \dots, \bar x_{n})
+$$
+
+Consideremos ahora dos vectores columna de la misma dimensión:
+$$
+v=
+\left(\begin{array}{c}
+    x_{1}\\
+    x_{2}\\
+    \vdots \\
+    x_{n}
+\end{array} \right)
+,\quad
+w=
+\left(\begin{array}{c}
+    y_{1}\\
+    y_{2}\\
+    \vdots \\
+    y_{n}
+\end{array} \right)
+$$
+Como matrices rectangulares con dimensiones compatibles, se pueden considerar las multiplicaciones de vectores con vectores adjuntos en cualquier orden: $v^*w, w^*v, vw^*,wv^*$. Si se multiplica un vector renglón con un vector columna, se obtiene una matriz de $1\times 1$, es decir, un número (real o complejo, según sea el caso):
+$$v^*w=x_{1}\bar y_{1}+x_{2}\bar y_{2}+\dots +x_{n}\bar y_{n}$$
+
+$$w^*v=y_{1}\bar x_{1}+y_{2}\bar x_{2}+\dots +y_{n}\bar x_{n},$$
+
+\begin{ejercicio}
+Sean $z$ y $w$ números complejos, muestra que $\overline {z+w}=\bar z+ \bar w$
+\end{ejercicio}
+
+\begin{ejercicio}
+Sean $z$ y $w$ números complejos, muestra que $\overline {z+w}=\bar z+ \bar w$
+\end{ejercicio}
+
+\begin{ejercicio}
+Sean $z$ y $w$ números complejos, entonces $z\bar w=\overline{\bar z w}$
+\end{ejercicio}
+
+\begin{ejercicio}
+Muestra que $v^*w$ es el conjugado de $w^*v$.
+\end{ejercicio}
+
+A $v^*w$ se le denomina el {\bf producto interior} de los vectores $v,w$ y a veces se le denota por $\langle v,w\rangle:=v^*w$. Para el caso $v=w$ (ya sean vectores reales o complejos), obtenemos la magnitud del vector al cuadrado:
+$$\langle v,v\rangle=z_1\bar z_1+z_2\bar z_2+ \dots +z_n\bar z_n, \quad \langle v,v\rangle=x_1^2+x_2^2+ \dots+ x_n^2, $$
+
+\begin{definicion}
+Si $\langle v,w\rangle=0$ decimos que los vectores $v$ y $w$ son {\bf ortogonales}.
+
+Si $\langle v,v\rangle=1$ decimos que el vector $v$ es {\bf unitario}.
+\end{definicion}
+
+Si multiplicamos los vectores en el orden inverso $vw^*, vw^*$, obtenemos matrices de $n\times n$. Estas son matrices de rango $1$ y aparecerán al final cuando diagonalicemos una matriz.
+
+\section{Volúmenes y Determinantes}
+
+Una matriz de $n\times n$ se puede pensar como un arreglo de $n$ vectores columna cada uno de dimensión $n$. Equivalentemente se puede pensar como un arreglo de $n$ vectores renglón.
+
+\begin{definicion}
+El determinante de una matriz de $2\times 2$ se define como
+\vspace{2cm}
+
+El determinante de una matriz de $3\times 3$ se define como
+\vspace{3cm}
+\end{definicion}
+
+Interpretación: Volúmen del sólido determinado por los vectores de la matriz es igual al valor absoluto del determinante.
+%GeoGebra: bmxfaxvq (2x2)
+%GeoGebra: jjfxxtsq (3x3)
+
+\begin{definicion}
+El determinante de una matriz de $n\times n$ se define como
+\vspace{4cm}
+\end{definicion}
+
+Propiedades del determinante
+\vspace{4cm}
+
+\newpage
+
+\begin{definicion}
+Polinomio característico.
+\end{definicion}
+
+El polinomio característico es la herramienta principal para encontrar los valores propios de una matriz.
+
+
+\section{Lectura: Diagonalización de matrices normales}
+
+Una matriz se llama {\bf normal}, si conmuta con su matriz adjunta:
+
+Ejemplos de matrices normales.
+\begin{enumerate}
+    \item Matrices unitarias ($UU^*=I_n=U^*U$). 
+    \item Entre ellas se encuentran las matrices de permutación.
+    \item Matrices autoadjuntas. Son las matrices que cumplen $A=A^*$.
+    \item Entre ellas las matrices simétricas reales.
+\end{enumerate}
+
+En general una matriz al azar no es normal.
+
+Matrices normales y su descomposición singular.
+
+\begin{teorema}[Descomposición singular de matrices normales]
+Para toda matriz normal $A$, existen $D$ matriz diagonal y $U$ matriz unitaria tales que $U$ {\bf diagonaliza} simultáneamente a $A$ y a su adjunta $A^*$. 
+
+Es decir: $A=UDU^*\quad A^*=UD^*U^*$, 
+\end{teorema}
+
+\begin{corolario}[Diagonalización de matrices reales simétricas]
+Toda matriz real simétrica se puede escribir como $A=UDU^*$, donde $D$ es una matriz diagonal y $U$ es una matriz unitaria.
+\end{corolario}
+
+La diagonalización de una matriz simétrica es muy útil porque nos permite calcular potencias fácilmente: Si $A=UDU^*$ donde $U$ es unitaria y $D$ es diagonal, tenemos que
+$$A^n=(UDU^*)^n=UDU^*UDU^*\dots UDU^*UDU^*=UD^nU^*.$$
+
+\newpage
+
+\section{Problemas}
+

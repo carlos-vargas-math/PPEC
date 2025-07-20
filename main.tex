@@ -1,0 +1,94 @@
+\documentclass{book}
+\usepackage{fullpage}
+\usepackage{ifthen}
+\usepackage{xparse}
+\usepackage{etoolbox}
+\usepackage[utf8]{inputenc}
+% \usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{paratype}
+
+
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}
+\usepackage{epigraph}
+\setlength\epigraphwidth{.8\textwidth}
+\usepackage{fdsymbol}
+\usepackage{mathrsfs}
+\usepackage{pgfplots}
+\usepackage{pstricks-add}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{babel}
+\usepackage{multicol}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pdfpages}
+%\usepackage[1-17]{pagesel}
+\usepackage{wrapfig}
+
+\newcommand{\ZZ}{\mathbb{Z}}
+\DeclareMathOperator{\mcd}{mcd}
+
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newcommand{\sen}{\mathrm{sen}}
+\newtheorem*{comentario}{Comentario}
+\newtheorem{definicion}{Definici\'on}[chapter]
+\newtheorem{teorema}{Teorema}[chapter]
+\newtheorem{corolario}{Corolario}[chapter]
+\newtheorem{problema*}{Problema}
+\newtheorem{ejemplo}{Ejemplo}[chapter]
+\newtheorem{problema}{Problema}[chapter]
+\newtheorem{proposicion}{Proposici\'on}[chapter]
+\newtheorem{observacion}{Observaci\'on}[chapter]
+% \newtheorem{ejercicio}{Ejercicio}[chapter]
+\newtheorem{exercise}{Exercise}[chapter]
+\newenvironment{solucion}{\begin{proof}[Solución]\small}{\end{proof}}
+
+\newboolean{tutorialmode}
+\setboolean{tutorialmode}{false}  % Set to false for print/final version
+
+\newcommand{\tutpagebreak}{\ifthenelse{\boolean{tutorialmode}}{\newpage}{}}
+
+\usepackage{ifthen}
+\newboolean{showhints}
+\setboolean{showhints}{false} % or false to hide all suggestions
+
+\newcommand{\hint}[1]{%
+  \ifthenelse{\boolean{showhints}}{%
+    \par\smallskip\textit{Hint:} #1%
+  }{}%
+}
+
+\begin{document}
+
+%\tableofcontents
+\pagenumbering{arabic}
+
+
+% \input{Capitulos/1Notacion}
+% \input{Capitulos/2Conteo}
+% \input{Capitulos/3Geometria}
+% \input{Capitulos/4Divisibilidad}
+% \input{Capitulos/5Funciones}
+% \input{Capitulos/6EPyE}
+% \input{Capitulos/7GeoTrigo}
+% \input{Capitulos/8CuatroPrincipios}
+% \input{Capitulos/9Graficas}
+% \input{Capitulos/10Fibomatrix}
+% \input{Biblio}
+
+
+\input{Capitulos/2ConteoEN}
+
+
+\end{document}
+

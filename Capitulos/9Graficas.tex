@@ -1,0 +1,907 @@
+\setcounter{chapter}{8}
+
+\chapter{Gráficas}
+
+\section{Definiciones}
+
+Las gráficas son de suma importancia en las matemáticas, ciencias de la computación y, más recientemente, en ciencias de datos. Su estudio moderno sistemático comenzó con König en los 30's.
+
+No raramente aparecen problemas en las olimpiadas nacionales o internacionales de matemáticas que tienen directamente que ver con gráficas o que tienen una solución directa, o un atajo, usando herramientas de gráficas.
+
+Además de la importancia intrínseca de la teoría de gráficas, aprovecharemos su riqueza para repasar algunos problemas de conteo (en particular el principio de inclusión y exclusión).
+
+Comenzamos con las principales definiciones.
+
+
+\begin{definicion}
+\begin{enumerate}
+ 
+\item Una {\bf gráfica} es un par $G=(V,A)$ que consta de un conjunto de {\bf vértices} $V$ y un conjunto de {\bf aristas} $A$. 
+
+\item El {\bf grado} de un vértice $v$ es el número de aristas $d(v)$ que son incidentes al vértice $v$. Por ejemplo:
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (1.8,3.26)-- (3.5,2.34);
+\draw [line width=1.pt] (3.5,2.34)-- (3.98,0.54);
+\draw [line width=1.pt] (3.98,0.54)-- (5.82,1.8);
+\draw [line width=1.pt] (5.82,1.8)-- (3.5,2.34);
+\draw (7.18,3.12) node[anchor=north west] {$V=\{v_1,v_2,v_3,v_4\}$};
+\draw (7.18,2.28) node[anchor=north west] {$A=\{v_1v_2, v_2v_3,v_3v_4,v_2v_4\}$};
+
+\draw (7.02,1.1) node[anchor=north west] {$d(v_1)=1,\quad d(v_2)=3,\quad  d(v_3)=2=d(v_4)$};
+\draw [fill=green] (1.8,3.26) circle (1.8pt);
+\draw[color=black] (1.48,3.43) node {$v_1$};
+\draw [fill=green] (3.5,2.34) circle (1.8pt);
+\draw[color=black] (3.56,2.77) node {$v_2$};
+\draw [fill=green] (5.82,1.8) circle (1.8pt);
+\draw[color=black] (6.1,1.95) node {$v_3$};
+\draw [fill=green] (3.98,0.54) circle (1.8pt);
+\draw[color=black] (3.88,0.33) node {$v_4$};
+\end{tikzpicture}
+
+\item Una gráfica se llama $d$-{\bf regular} si todos sus vértices tienen el mismo grado $d$. A las gráficas $1$-regulares también se le llama {\bf emparejamientos}.
+
+\item Ejemplos de gráficas regulares son las {\bf gráficas completas} de $n$ vértices. Éstas son $(n-1)$-regulares y se denotan por $K_n$.
+
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
+\draw [line width=1.pt] (0,1)-- (0,-1);
+\draw [fill=green] (0,-1) circle (1.8pt);
+\draw [fill=green] (0,1) circle (1.8pt);
+\draw[color=black] (0,-1.5) node {$K_2$};
+\end{tikzpicture}
+\hspace{.5cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
+\draw [line width=1.pt] (1.,0.)-- (-0.5,0.8660254037844387);
+\draw [line width=1.pt] (-0.5,0.8660254037844387)-- (-0.5,-0.8660254037844385);
+\draw [line width=1.pt] (-0.5,-0.8660254037844385)-- (1.,0.);
+\draw [fill=green] (-0.5,0.8660254037844387) circle (1.8pt);
+\draw [fill=green] (-0.5,-0.8660254037844385) circle (1.8pt);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (0,-1.5) node {$K_3$};
+\end{tikzpicture}
+\hspace{.5cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
+\draw [line width=1.pt] (0.,-1.)-- (0.,1.);
+\draw [line width=1.pt] (0.,1.)-- (-1.,0.);
+\draw [line width=1.pt] (-1.,0.)-- (0.,-1.);
+\draw [line width=1.pt] (0.,-1.)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.,1.);
+\draw [line width=1.pt] (1.,0.)-- (-1.,0.);
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (0,-1.5) node {$K_4$};
+\end{tikzpicture}
+\hspace{.5cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
+\draw [line width=1.pt] (-0.8090169943749475,-0.587785252292473)-- (0.30901699437494745,0.9510565162951535);
+\draw [line width=1.pt] (0.30901699437494745,0.9510565162951535)-- (-0.8090169943749473,0.5877852522924732);
+\draw [line width=1.pt] (-0.8090169943749473,0.5877852522924732)-- (-0.8090169943749475,-0.587785252292473);
+\draw [line width=1.pt] (-0.8090169943749475,-0.587785252292473)-- (0.30901699437494723,-0.9510565162951536);
+\draw [line width=1.pt] (0.30901699437494723,-0.9510565162951536)-- (0.30901699437494745,0.9510565162951535);
+\draw [line width=1.pt] (0.30901699437494723,-0.9510565162951536)-- (-0.8090169943749473,0.5877852522924732);
+\draw [line width=1.pt] (0.30901699437494745,0.9510565162951535)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (-0.8090169943749473,0.5877852522924732);
+\draw [line width=1.pt] (1.,0.)-- (-0.8090169943749475,-0.587785252292473);
+\draw [line width=1.pt] (1.,0.)-- (0.30901699437494723,-0.9510565162951536);
+\draw [fill=green] (0.30901699437494745,0.9510565162951535) circle (1.8pt);
+\draw [fill=green] (-0.8090169943749473,0.5877852522924732) circle (1.8pt);
+\draw [fill=green] (-0.8090169943749475,-0.587785252292473) circle (1.8pt);
+\draw [fill=green] (-0.8090169943749475,-0.587785252292473) circle (1.8pt);
+\draw [fill=green] (0.30901699437494745,0.9510565162951535) circle (1.8pt);
+\draw [fill=green] (-0.8090169943749473,0.5877852522924732) circle (1.8pt);
+\draw [fill=green] (0.30901699437494723,-0.9510565162951536) circle (1.8pt);
+\draw [fill=green] (0.30901699437494723,-0.9510565162951536) circle (1.8pt);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (0,-1.5) node {$K_5$};
+\end{tikzpicture}
+\hspace{.5cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
+\draw [line width=1.pt] (-1.,0.)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.5,0.8660254037844386)-- (-0.5,0.8660254037844387);
+\draw [line width=1.pt] (-0.5,0.8660254037844387)-- (-1.,0.);
+\draw [line width=1.pt] (-1.,0.)-- (-0.5,-0.8660254037844385);
+\draw [line width=1.pt] (-0.5,-0.8660254037844385)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (-0.5,-0.8660254037844385)-- (-0.5,0.8660254037844387);
+\draw [line width=1.pt] (0.5,0.8660254037844386)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (-0.5,0.8660254037844387);
+\draw [line width=1.pt] (1.,0.)-- (-1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (-0.5,-0.8660254037844385);
+\draw [line width=1.pt] (0.5,-0.866025403784439)-- (-1.,0.);
+\draw [line width=1.pt] (0.5,-0.866025403784439)-- (-0.5,0.8660254037844387);
+\draw [line width=1.pt] (0.5,-0.866025403784439)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.5,-0.866025403784439)-- (-0.5,-0.8660254037844385);
+\draw [line width=1.pt] (0.5,-0.866025403784439)-- (1.,0.);
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw [fill=green] (-0.5,0.8660254037844387) circle (1.8pt);
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw [fill=green] (-0.5,0.8660254037844387) circle (1.8pt);
+\draw [fill=green] (-0.5,-0.8660254037844385) circle (1.8pt);
+\draw [fill=green] (-0.5,-0.8660254037844385) circle (1.8pt);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw [fill=green] (0.5,-0.866025403784439) circle (1.8pt);
+\draw [fill=green] (0.5,-0.866025403784439) circle (1.8pt);
+\draw[color=black] (0,-1.5) node {$K_6$};
+\end{tikzpicture}
+
+Ejemplo: Varias gráficas regulares de doce vértices. Por conveniencia arreglamos los doce vértices en el círculo (el punto medio del círculo donde a veces se cruzan las aristas NO es un vértice): 
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (0.9103703703703715,0.5348148148148145)-- (0.5653414267719156,0.9531632159498997);
+\draw [line width=1.pt] (0.5653414267719156,0.9531632159498997)-- (0.057363396007201695,1.1429490871662584);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (-0.4774514188076126,1.05331945753663);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (-0.895799819942698,0.7082905139381741);
+\draw [line width=1.pt] (-0.895799819942698,0.7082905139381741)-- (-1.0855856911590567,0.20031248317346018);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (-0.9959560615294283,-0.3345023316413541);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (-0.6509271179309726,-0.7528507327764395);
+\draw [line width=1.pt] (-0.6509271179309726,-0.7528507327764395)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.14294908716625856,-0.9426366039927982)-- (0.39186572764855543,-0.8530069743631701);
+\draw [line width=1.pt] (0.39186572764855543,-0.8530069743631701)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (0.8102141287836412,-0.5079780307647142)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (1.,0.)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (0.8102141287836412,-0.5079780307647142)-- (0.39186572764855543,-0.8530069743631701);
+\draw [line width=1.pt] (0.39186572764855543,-0.8530069743631701)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.14294908716625856,-0.9426366039927982)-- (-0.6509271179309726,-0.7528507327764395);
+\draw [line width=1.pt] (-0.6509271179309726,-0.7528507327764395)-- (-0.9959560615294283,-0.3345023316413541);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (-1.0855856911590567,0.20031248317346018);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (-0.895799819942698,0.7082905139381741);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (0.057363396007201695,1.1429490871662584);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (0.5653414267719156,0.9531632159498997);
+\draw [line width=1.pt] (0.5653414267719156,0.9531632159498997)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (0.39186572764855543,-0.8530069743631701);
+\draw [line width=1.pt] (-0.895799819942698,0.7082905139381741)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (1.,0.);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (-0.6509271179309726,-0.7528507327764395)-- (0.5653414267719156,0.9531632159498997);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw [fill=green] (0.9103703703703715,0.5348148148148145) circle (1.8pt);
+\draw [fill=green] (0.5653414267719156,0.9531632159498997) circle (1.8pt);
+\draw [fill=green] (0.057363396007201695,1.1429490871662584) circle (1.8pt);
+\draw [fill=green] (-0.4774514188076126,1.05331945753663) circle (1.8pt);
+\draw [fill=green] (-0.895799819942698,0.7082905139381741) circle (1.8pt);
+\draw [fill=green] (-1.0855856911590567,0.20031248317346018) circle (1.8pt);
+\draw [fill=green] (-0.9959560615294283,-0.3345023316413541) circle (1.8pt);
+\draw [fill=green] (-0.6509271179309726,-0.7528507327764395) circle (1.8pt);
+\draw [fill=green] (-0.14294908716625856,-0.9426366039927982) circle (1.8pt);
+\draw [fill=green] (0.39186572764855543,-0.8530069743631701) circle (1.8pt);
+\draw [fill=green] (0.8102141287836412,-0.5079780307647142) circle (1.8pt);
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (1.,0.)-- (0.5653414267719156,0.9531632159498997);
+\draw [line width=1.pt] (0.5653414267719156,0.9531632159498997)-- (-0.4774514188076126,1.05331945753663);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (-1.0855856911590567,0.20031248317346018);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (-0.6509271179309726,-0.7528507327764395);
+\draw [line width=1.pt] (-0.6509271179309726,-0.7528507327764395)-- (0.39186572764855543,-0.8530069743631701);
+\draw [line width=1.pt] (0.39186572764855543,-0.8530069743631701)-- (1.,0.);
+\draw [line width=1.pt] (0.8102141287836412,-0.5079780307647142)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (0.9103703703703715,0.5348148148148145)-- (0.057363396007201695,1.1429490871662584);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (-0.895799819942698,0.7082905139381741);
+\draw [line width=1.pt] (-0.895799819942698,0.7082905139381741)-- (-0.9959560615294283,-0.3345023316413541);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.14294908716625856,-0.9426366039927982)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (1.,0.);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.895799819942698,0.7082905139381741)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (0.5653414267719156,0.9531632159498997)-- (-0.6509271179309726,-0.7528507327764395);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (0.39186572764855543,-0.8530069743631701);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw [fill=green] (0.9103703703703715,0.5348148148148145) circle (1.8pt);
+\draw [fill=green] (0.5653414267719156,0.9531632159498997) circle (1.8pt);
+\draw [fill=green] (0.057363396007201695,1.1429490871662584) circle (1.8pt);
+\draw [fill=green] (-0.4774514188076126,1.05331945753663) circle (1.8pt);
+\draw [fill=green] (-0.895799819942698,0.7082905139381741) circle (1.8pt);
+\draw [fill=green] (-1.0855856911590567,0.20031248317346018) circle (1.8pt);
+\draw [fill=green] (-0.9959560615294283,-0.3345023316413541) circle (1.8pt);
+\draw [fill=green] (-0.6509271179309726,-0.7528507327764395) circle (1.8pt);
+\draw [fill=green] (-0.14294908716625856,-0.9426366039927982) circle (1.8pt);
+\draw [fill=green] (0.39186572764855543,-0.8530069743631701) circle (1.8pt);
+\draw [fill=green] (0.8102141287836412,-0.5079780307647142) circle (1.8pt);
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (-0.8660254037844386,-0.5)-- (-0.5,0.8660254037844386);
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (0.5,-0.8660254037844388)-- (1.,0.);
+\draw [line width=1.pt] (0.8660254037844384,-0.5)-- (-0.5,-0.8660254037844384);
+\draw [line width=1.pt] (-0.5,-0.8660254037844384)-- (0.,-1.);
+\draw [line width=1.pt] (0.,-1.)-- (-0.8660254037844383,0.5);
+\draw [line width=1.pt] (-0.8660254037844383,0.5)-- (0.8660254037844384,-0.5);
+\draw [line width=1.pt] (0.,1.)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.5,0.8660254037844386)-- (0.8660254037844387,0.5);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (-1.,0.);
+\draw [line width=1.pt] (-1.,0.)-- (0.,1.);
+\draw [line width=1.pt] (-0.5,-0.8660254037844384)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (-1.,0.)-- (0.,-1.);
+\draw [line width=1.pt] (0.5,-0.8660254037844388)-- (0.8660254037844384,-0.5);
+\draw [line width=1.pt] (1.,0.)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (-0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.,1.)-- (-0.8660254037844383,0.5);
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\end{tikzpicture}
+
+i). Dos gráficas $3$-regulares simétricas (notar que la segunda no es conexa) y una gráfica $3$-regular aleatoria (ver ejercicio ?).
+  
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (0.9103703703703715,0.5348148148148145)-- (0.5653414267719156,0.9531632159498997);
+\draw [line width=1.pt] (0.5653414267719156,0.9531632159498997)-- (0.057363396007201695,1.1429490871662584);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (-0.4774514188076126,1.05331945753663);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (-0.895799819942698,0.7082905139381741);
+\draw [line width=1.pt] (-0.895799819942698,0.7082905139381741)-- (-1.0855856911590567,0.20031248317346018);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (-0.9959560615294283,-0.3345023316413541);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (-0.6509271179309726,-0.7528507327764395);
+\draw [line width=1.pt] (-0.6509271179309726,-0.7528507327764395)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.14294908716625856,-0.9426366039927982)-- (0.39186572764855543,-0.8530069743631701);
+\draw [line width=1.pt] (0.39186572764855543,-0.8530069743631701)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (0.8102141287836412,-0.5079780307647142)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (1.,0.)-- (0.5653414267719156,0.9531632159498997);
+\draw [line width=1.pt] (1.,0.)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (0.8102141287836412,-0.5079780307647142)-- (0.39186572764855543,-0.8530069743631701);
+\draw [line width=1.pt] (0.39186572764855543,-0.8530069743631701)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.14294908716625856,-0.9426366039927982)-- (-0.6509271179309726,-0.7528507327764395);
+\draw [line width=1.pt] (-0.6509271179309726,-0.7528507327764395)-- (-0.9959560615294283,-0.3345023316413541);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (-1.0855856911590567,0.20031248317346018);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (-0.895799819942698,0.7082905139381741);
+\draw [line width=1.pt] (-0.895799819942698,0.7082905139381741)-- (-0.4774514188076126,1.05331945753663);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (0.057363396007201695,1.1429490871662584);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (0.5653414267719156,0.9531632159498997);
+\draw [line width=1.pt] (0.5653414267719156,0.9531632159498997)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (0.5653414267719156,0.9531632159498997);
+\draw [line width=1.pt] (-0.895799819942698,0.7082905139381741)-- (0.057363396007201695,1.1429490871662584);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (-0.4774514188076126,1.05331945753663);
+\draw [line width=1.pt] (-0.895799819942698,0.7082905139381741)-- (-0.9959560615294283,-0.3345023316413541);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (-0.6509271179309726,-0.7528507327764395);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.6509271179309726,-0.7528507327764395)-- (0.39186572764855543,-0.8530069743631701);
+\draw [line width=1.pt] (-0.14294908716625856,-0.9426366039927982)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (0.39186572764855543,-0.8530069743631701)-- (1.,0.);
+\draw [line width=1.pt] (0.8102141287836412,-0.5079780307647142)-- (0.9103703703703715,0.5348148148148145);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw [fill=green] (0.9103703703703715,0.5348148148148145) circle (1.8pt);
+\draw [fill=green] (0.5653414267719156,0.9531632159498997) circle (1.8pt);
+\draw [fill=green] (0.057363396007201695,1.1429490871662584) circle (1.8pt);
+\draw [fill=green] (-0.4774514188076126,1.05331945753663) circle (1.8pt);
+\draw [fill=green] (-0.895799819942698,0.7082905139381741) circle (1.8pt);
+\draw [fill=green] (-1.0855856911590567,0.20031248317346018) circle (1.8pt);
+\draw [fill=green] (-0.9959560615294283,-0.3345023316413541) circle (1.8pt);
+\draw [fill=green] (-0.6509271179309726,-0.7528507327764395) circle (1.8pt);
+\draw [fill=green] (-0.14294908716625856,-0.9426366039927982) circle (1.8pt);
+\draw [fill=green] (0.39186572764855543,-0.8530069743631701) circle (1.8pt);
+\draw [fill=green] (0.8102141287836412,-0.5079780307647142) circle (1.8pt);
+\end{tikzpicture}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (0.9103703703703715,0.5348148148148145)-- (0.5653414267719156,0.9531632159498997);
+\draw [line width=1.pt] (0.5653414267719156,0.9531632159498997)-- (0.057363396007201695,1.1429490871662584);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (-0.4774514188076126,1.05331945753663);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (-0.895799819942698,0.7082905139381741);
+\draw [line width=1.pt] (-0.895799819942698,0.7082905139381741)-- (-1.0855856911590567,0.20031248317346018);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (-0.9959560615294283,-0.3345023316413541);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (-0.6509271179309726,-0.7528507327764395);
+\draw [line width=1.pt] (-0.6509271179309726,-0.7528507327764395)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.14294908716625856,-0.9426366039927982)-- (0.39186572764855543,-0.8530069743631701);
+\draw [line width=1.pt] (0.39186572764855543,-0.8530069743631701)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (0.8102141287836412,-0.5079780307647142)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (1.,0.)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (0.8102141287836412,-0.5079780307647142)-- (0.39186572764855543,-0.8530069743631701);
+\draw [line width=1.pt] (0.39186572764855543,-0.8530069743631701)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.14294908716625856,-0.9426366039927982)-- (-0.6509271179309726,-0.7528507327764395);
+\draw [line width=1.pt] (-0.6509271179309726,-0.7528507327764395)-- (-0.9959560615294283,-0.3345023316413541);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (-1.0855856911590567,0.20031248317346018);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (-0.895799819942698,0.7082905139381741);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (0.057363396007201695,1.1429490871662584);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (0.5653414267719156,0.9531632159498997);
+\draw [line width=1.pt] (0.5653414267719156,0.9531632159498997)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (-0.9959560615294283,-0.3345023316413541);
+\draw [line width=1.pt] (0.057363396007201695,1.1429490871662584)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (-0.9959560615294283,-0.3345023316413541)-- (0.8102141287836412,-0.5079780307647142);
+\draw [line width=1.pt] (-1.0855856911590567,0.20031248317346018)-- (0.5653414267719156,0.9531632159498997);
+\draw [line width=1.pt] (0.5653414267719156,0.9531632159498997)-- (0.39186572764855543,-0.8530069743631701);
+\draw [line width=1.pt] (0.39186572764855543,-0.8530069743631701)-- (-1.0855856911590567,0.20031248317346018);
+\draw [line width=1.pt] (-0.895799819942698,0.7082905139381741)-- (0.9103703703703715,0.5348148148148145);
+\draw [line width=1.pt] (0.9103703703703715,0.5348148148148145)-- (-0.14294908716625856,-0.9426366039927982);
+\draw [line width=1.pt] (-0.14294908716625856,-0.9426366039927982)-- (-0.895799819942698,0.7082905139381741);
+\draw [line width=1.pt] (-0.4774514188076126,1.05331945753663)-- (1.,0.);
+\draw [line width=1.pt] (1.,0.)-- (-0.6509271179309726,-0.7528507327764395);
+\draw [line width=1.pt] (-0.6509271179309726,-0.7528507327764395)-- (-0.4774514188076126,1.05331945753663);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw [fill=green] (0.9103703703703715,0.5348148148148145) circle (1.8pt);
+\draw [fill=green] (0.5653414267719156,0.9531632159498997) circle (1.8pt);
+\draw [fill=green] (0.057363396007201695,1.1429490871662584) circle (1.8pt);
+\draw [fill=green] (-0.4774514188076126,1.05331945753663) circle (1.8pt);
+\draw [fill=green] (-0.895799819942698,0.7082905139381741) circle (1.8pt);
+\draw [fill=green] (-1.0855856911590567,0.20031248317346018) circle (1.8pt);
+\draw [fill=green] (-0.9959560615294283,-0.3345023316413541) circle (1.8pt);
+\draw [fill=green] (-0.6509271179309726,-0.7528507327764395) circle (1.8pt);
+\draw [fill=green] (-0.14294908716625856,-0.9426366039927982) circle (1.8pt);
+\draw [fill=green] (0.39186572764855543,-0.8530069743631701) circle (1.8pt);
+\draw [fill=green] (0.8102141287836412,-0.5079780307647142) circle (1.8pt);
+\end{tikzpicture}
+
+ii). Dos gráficas $4$-regulares simétricas.
+
+
+
+\item Una gráfica se llama {\bf bipartita} si se puede elegir una partición del conjunto de vértices en dos conjuntos (disjuntos) $V=V_1\cup V_2$, donde no hay aristas entre vértices de $V_1$ ni aristas entre vértices de $V_2$. Las únicas posibles aristas unen un elemento de cada conjunto de vértices.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [line width=1.pt] (0.,0.)-- (3.22,1.14);
+\draw [line width=1.pt] (0.02,1.58)-- (3.16,2.52);
+\draw [line width=1.pt] (0.02,1.58)-- (3.28,-0.34);
+\draw [line width=1.pt] (0.,0.)-- (3.16,2.52);
+\draw [fill=green] (0.,0.) circle (1.8pt);
+\draw [fill=green] (0.02,1.58) circle (1.8pt);
+\draw [fill=green] (3.16,2.52) circle (1.8pt);
+\draw [fill=green] (3.22,1.14) circle (1.8pt);
+\draw [fill=green] (3.28,-0.34) circle (1.8pt);
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=4.0cm,y=4.0cm]
+\draw [line width=1.pt] (0.,0.4)-- (1.,0.2);
+\draw [line width=1.pt] (0.,0.4)-- (1.,0.);
+\draw [line width=1.pt] (0.,0.2)-- (1.,-0.2);
+\draw [line width=1.pt] (0.,-0.4)-- (1.,-0.2);
+\draw [line width=1.pt] (0.,-0.2)-- (1.,0.);
+\draw [line width=1.pt] (0.,0.)-- (1.,0.2);
+\draw [line width=1.pt] (0.,0.4)-- (1.,-0.2);
+\draw [line width=1.pt] (0.,-0.4)-- (1.,0.);
+\draw [line width=1.pt] (0.,-0.2)-- (1.,0.2);
+\draw [line width=1.pt] (0.,0.2)-- (1.,0.2);
+\draw [line width=1.pt] (0.,0.)-- (1.,0.);
+\draw [line width=1.pt] (0.,0.2)-- (1.,0.);
+\draw [line width=1.pt] (0.,-0.2)-- (1.,-0.2);
+\draw [line width=1.pt] (0.,-0.4)-- (1.,0.2);
+\draw [line width=1.pt] (0.,0.)-- (1.,-0.2);
+\draw [fill=green] (0.,0.) circle (1.8pt);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw [fill=green] (0.,0.2) circle (1.8pt);
+\draw [fill=green] (0.,0.4) circle (1.8pt);
+\draw [fill=green] (0.,-0.2) circle (1.8pt);
+\draw [fill=green] (0.,-0.4) circle (1.8pt);
+\draw [fill=green] (1.,-0.2) circle (1.8pt);
+\draw [fill=green] (1.,0.2) circle (1.8pt);
+\end{tikzpicture}
+
+Ejemplo: Una gráfica bipartita, una gráfica bipartita completa $K_{5,3}$ y una gráfica bipartita aleatoria. 
+
+\item Un {\bf camino} de longitud $n$ en una gráfica $G=(V,A)$ es una sucesión de $n$ aristas adyacentes. Otra forma de caracterizar a un camino es como una sucesión de $(n+1)$ vértices $(v_0,v_1,v_2,\dots ,v_n)$, de tal forma que $v_i$ es adyacente a $v_{i+1}$, $i=0,1,2,\dots, n$.
+
+\item Un {\bf ciclo} es un camino cerrado (es decir, $v_0=v_n$).
+
+\item Una {\bf trayectoria} es un camino que no repite vértices. Un {\bf paseo} es un camino que no repite aristas. Un paseo puede pasar varias veces por el mismo vértice.
+
+Figura: Gráfica, caminos, trayectorias, ciclos.
+
+\item Una gráfica es {\bf conexa} si para todo par de vértices $v_i,v_j\in V$ existe un camino de $v_i$ a $v_j$.
+
+\item A una gráfica conexa sin ciclos se le llama {\bf árbol}. A los vértices de grado $1$ de un árbol se les llama {\bf hojas}.
+
+\item Un {\bf paseo Euleriano} es un paseo que pasa por todas las aristas de una gráfica. Un {\bf ciclo Euleriano} es un paseo Euleriano que además es un ciclo. Una {\bf gráfica Euleriana} es toda aquella que contiene un ciclo Euleriano. 
+\end{enumerate}
+\end{definicion}
+
+\newpage
+
+\section{Ejercicios}
+
+\begin{ejercicio}
+Muestra que la suma de los grados de los vértices es igual al doble del número de aristas.
+\end{ejercicio}
+
+\begin{ejercicio}
+Muestra que en una gráfica con un número impar de vértices siempre hay un vértice con grado par.
+\end{ejercicio}
+
+\begin{ejercicio}[Lema de los saludos]
+Muestra que en una fiesta de $n$ invitados en todo momento hay dos invitados que han saludado a la misma cantidad de personas.
+\end{ejercicio}
+
+\begin{ejercicio}
+Una gráfica regular tiene $26$ aristas. ¿Cuántos vértices puede tener? Para cada posible $n=|V|$ incluye o describe un ejemplo de una gráfica que cumpla las condiciones.
+\end{ejercicio}
+\vspace{3cm}
+
+\begin{ejercicio}
+¿Puede haber una gráfica $5$-regular de $23$ vértices? Dibuja una o muestra que no se puede.
+\end{ejercicio}
+\vspace{3cm}
+
+\begin{ejercicio}
+Muestra que existe una gráfica $4$-regular de $n$ vértices para todo $n=5,6,7,\dots$ 
+\end{ejercicio}
+
+
+\begin{ejercicio}
+Muestra que una gráfica $2$-regular es necesariamente la unión de ciclos disjuntos.
+\end{ejercicio}
+
+\begin{ejercicio}
+¿Cuántas gráficas $1$-regulares (emparejamientos) de $12$ vértices hay? 
+\end{ejercicio}
+\vspace{3cm}
+
+%La respuesta en general es cero si $n$ es impar y  $(2k-1)(2k-3)\cdots 3\cdot 1$ si $n=2k$.
+
+% (3-5) ejercicios más (Toñus o Malú)
+
+\begin{ejercicio}
+¿Cuántas gráficas $2$-regulares de $7$ vértices hay? 
+\end{ejercicio}
+\vspace{5cm}
+
+%Sug: Hay una correspondencia (suprayectiva pero no inductuva) entre permutaciones sin ciclos de tamaño uno o dos y gráficas $2$-regulares simples.
+
+Pregunta: ¿Cómo se ve una gráfica $d$-regular?
+
+\newpage 
+
+
+Figuras: Emparejamientos aleatorios: Todos los emparejamientos son gráficas isomorfas
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.6784*2.0cm,y=0.6784*2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (-0.8660254037844383,0.5);
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.,1.)-- (0.8660254037844387,0.5);
+\draw [line width=1.pt] (-1.,0.)-- (0.8660254037844384,-0.5);
+\draw [line width=1.pt] (-0.8660254037844386,-0.5)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (-0.5,-0.8660254037844384)-- (0.,-1.);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (1.11037037037037,0.057777777777778094) node {$1$};
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw[color=black] (0.9681481481481479,0.5970370370370371) node {$2$};
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (0.5770370370370369,1.017777777777778) node {$3$};
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw[color=black] (0.014074074074074072,1.1481481481481481) node {$4$};
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (-0.5785185185185183,1.005925925925926) node {$5$};
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,0.5851851851851853) node {$6$};
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw[color=black] (-1.1,0.045925925925926245) node {$7$};
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,-0.5051851851851847) node {$8$};
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw[color=black] (-0.6140740740740738,-0.8251851851851846) node {$9$};
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw[color=black] (0.0022222222222222227,-1.13) node {$10$};
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw[color=black] (0.61,-0.8962962962962957) node {$11$};
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\draw[color=black] (0.98,-0.49) node {$12$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.6784*2.0cm,y=0.6784*2.0cm]
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (-0.5,-0.8660254037844384)-- (0.8660254037844384,-0.5);
+\draw [line width=1.pt] (-1.,0.)-- (0.8660254037844387,0.5);
+\draw [line width=1.pt] (1.,0.)-- (0.,1.);
+\draw [line width=1.pt] (-0.8660254037844383,0.5)-- (0.,-1.);
+\draw [line width=1.pt] (-0.8660254037844386,-0.5)-- (0.5,-0.8660254037844388);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (1.11037037037037,0.057777777777778094) node {$1$};
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw[color=black] (0.9681481481481479,0.5970370370370371) node {$2$};
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (0.5770370370370369,1.017777777777778) node {$3$};
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw[color=black] (0.014074074074074072,1.1481481481481481) node {$4$};
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (-0.5785185185185183,1.005925925925926) node {$5$};
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,0.5851851851851853) node {$6$};
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw[color=black] (-1.1,0.045925925925926245) node {$7$};
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,-0.5051851851851847) node {$8$};
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw[color=black] (-0.6140740740740738,-0.8251851851851846) node {$9$};
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw[color=black] (0.0022222222222222227,-1.13) node {$10$};
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw[color=black] (0.61,-0.8962962962962957) node {$11$};
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\draw[color=black] (0.98,-0.49) node {$12$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.6784*2.0cm,y=0.6784*2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (0.,1.)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.8660254037844384,-0.5)-- (-0.8660254037844383,0.5);
+\draw [line width=1.pt] (0.,-1.)-- (-0.5,-0.8660254037844384);
+\draw [line width=1.pt] (-0.8660254037844386,-0.5)-- (-0.5,0.8660254037844386);
+\draw [line width=1.pt] (-1.,0.)-- (0.8660254037844387,0.5);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (1.11037037037037,0.057777777777778094) node {$1$};
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw[color=black] (0.9681481481481479,0.5970370370370371) node {$2$};
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (0.5770370370370369,1.017777777777778) node {$3$};
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw[color=black] (0.014074074074074072,1.1481481481481481) node {$4$};
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (-0.5785185185185183,1.005925925925926) node {$5$};
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,0.5851851851851853) node {$6$};
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw[color=black] (-1.1,0.045925925925926245) node {$7$};
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,-0.5051851851851847) node {$8$};
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw[color=black] (-0.6140740740740738,-0.8251851851851846) node {$9$};
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw[color=black] (0.0022222222222222227,-1.13) node {$10$};
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw[color=black] (0.61,-0.8962962962962957) node {$11$};
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\draw[color=black] (0.98,-0.49) node {$12$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.6784*2.0cm,y=0.6784*2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.,1.)-- (-1.,0.);
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (-0.8660254037844383,0.5)-- (0.,-1.);
+\draw [line width=1.pt] (0.8660254037844384,-0.5)-- (-0.5,-0.8660254037844384);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (1.11037037037037,0.057777777777778094) node {$1$};
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw[color=black] (0.9681481481481479,0.5970370370370371) node {$2$};
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (0.5770370370370369,1.017777777777778) node {$3$};
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw[color=black] (0.014074074074074072,1.1481481481481481) node {$4$};
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (-0.5785185185185183,1.005925925925926) node {$5$};
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,0.5851851851851853) node {$6$};
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw[color=black] (-1.1,0.045925925925926245) node {$7$};
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,-0.5051851851851847) node {$8$};
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw[color=black] (-0.6140740740740738,-0.8251851851851846) node {$9$};
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw[color=black] (0.0022222222222222227,-1.13) node {$10$};
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw[color=black] (0.61,-0.8962962962962957) node {$11$};
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\draw[color=black] (0.98,-0.49) node {$12$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.6784*2.0cm,y=0.6784*2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (-1.,0.);
+\draw [line width=1.pt] (-0.8660254037844383,0.5)-- (-0.5,-0.8660254037844384);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (0.,1.);
+\draw [line width=1.pt] (0.5,0.8660254037844386)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (0.,-1.)-- (0.8660254037844384,-0.5);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (1.11037037037037,0.057777777777778094) node {$1$};
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw[color=black] (0.9681481481481479,0.5970370370370371) node {$2$};
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (0.5770370370370369,1.017777777777778) node {$3$};
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw[color=black] (0.014074074074074072,1.1481481481481481) node {$4$};
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (-0.5785185185185183,1.005925925925926) node {$5$};
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,0.5851851851851853) node {$6$};
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw[color=black] (-1.1,0.045925925925926245) node {$7$};
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,-0.5051851851851847) node {$8$};
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw[color=black] (-0.6140740740740738,-0.8251851851851846) node {$9$};
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw[color=black] (0.0022222222222222227,-1.13) node {$10$};
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw[color=black] (0.61,-0.8962962962962957) node {$11$};
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\draw[color=black] (0.98,-0.49) node {$12$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.6784*2.0cm,y=0.6784*2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (0.,1.);
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (-0.5,-0.8660254037844384)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (0.,-1.);
+\draw [line width=1.pt] (-0.8660254037844383,0.5)-- (0.8660254037844384,-0.5);
+\draw [line width=1.pt] (-1.,0.)-- (0.5,-0.8660254037844388);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (1.11037037037037,0.057777777777778094) node {$1$};
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw[color=black] (0.9681481481481479,0.5970370370370371) node {$2$};
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (0.5770370370370369,1.017777777777778) node {$3$};
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw[color=black] (0.014074074074074072,1.1481481481481481) node {$4$};
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (-0.5785185185185183,1.005925925925926) node {$5$};
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,0.5851851851851853) node {$6$};
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw[color=black] (-1.1,0.045925925925926245) node {$7$};
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,-0.5051851851851847) node {$8$};
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw[color=black] (-0.6140740740740738,-0.8251851851851846) node {$9$};
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw[color=black] (0.0022222222222222227,-1.13) node {$10$};
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw[color=black] (0.61,-0.8962962962962957) node {$11$};
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\draw[color=black] (0.98,-0.49) node {$12$};
+\end{tikzpicture}
+
+Seis emparejamientos aleatorios.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+%G3
+\draw [line width=1.pt] (1.,0.)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (0.,1.)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.8660254037844384,-0.5)-- (-0.8660254037844383,0.5);
+\draw [line width=1.pt] (0.,-1.)-- (-0.5,-0.8660254037844384);
+\draw [line width=1.pt] (-0.8660254037844386,-0.5)-- (-0.5,0.8660254037844386);
+\draw [line width=1.pt] (-1.,0.)-- (0.8660254037844387,0.5);
+%G5
+\draw [line width=1.pt] (1.,0.)-- (-1.,0.);
+\draw [line width=1.pt] (-0.8660254037844383,0.5)-- (-0.5,-0.8660254037844384);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (0.,1.);
+\draw [line width=1.pt] (0.5,0.8660254037844386)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (0.,-1.)-- (0.8660254037844384,-0.5);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (1.11037037037037,0.057777777777778094) node {$1$};
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw[color=black] (0.9681481481481479,0.5970370370370371) node {$2$};
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (0.5770370370370369,1.017777777777778) node {$3$};
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw[color=black] (0.014074074074074072,1.1481481481481481) node {$4$};
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (-0.5785185185185183,1.005925925925926) node {$5$};
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,0.5851851851851853) node {$6$};
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw[color=black] (-1.1,0.045925925925926245) node {$7$};
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,-0.5051851851851847) node {$8$};
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw[color=black] (-0.6140740740740738,-0.8251851851851846) node {$9$};
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw[color=black] (0.0022222222222222227,-1.13) node {$10$};
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw[color=black] (0.61,-0.8962962962962957) node {$11$};
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\draw[color=black] (0.98,-0.49) node {$12$};
+\end{tikzpicture}
+%G3+G5
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+%G4
+\draw [line width=1.pt] (1.,0.)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.,1.)-- (-1.,0.);
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (-0.8660254037844383,0.5)-- (0.,-1.);
+\draw [line width=1.pt] (0.8660254037844384,-0.5)-- (-0.5,-0.8660254037844384);
+%G6
+\draw [line width=1.pt] (1.,0.)-- (0.,1.);
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (-0.5,-0.8660254037844384)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (0.,-1.);
+\draw [line width=1.pt] (-0.8660254037844383,0.5)-- (0.8660254037844384,-0.5);
+\draw [line width=1.pt] (-1.,0.)-- (0.5,-0.8660254037844388);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (1.11037037037037,0.057777777777778094) node {$1$};
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw[color=black] (0.9681481481481479,0.5970370370370371) node {$2$};
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (0.5770370370370369,1.017777777777778) node {$3$};
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw[color=black] (0.014074074074074072,1.1481481481481481) node {$4$};
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (-0.5785185185185183,1.005925925925926) node {$5$};
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,0.5851851851851853) node {$6$};
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw[color=black] (-1.1,0.045925925925926245) node {$7$};
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,-0.5051851851851847) node {$8$};
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw[color=black] (-0.6140740740740738,-0.8251851851851846) node {$9$};
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw[color=black] (0.0022222222222222227,-1.13) node {$10$};
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw[color=black] (0.61,-0.8962962962962957) node {$11$};
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\draw[color=black] (0.98,-0.49) node {$12$};
+\end{tikzpicture}
+%G4+G6
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+%G3
+\draw [line width=1.pt] (1.,0.)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (0.,1.)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.8660254037844384,-0.5)-- (-0.8660254037844383,0.5);
+\draw [line width=1.pt] (0.,-1.)-- (-0.5,-0.8660254037844384);
+\draw [line width=1.pt] (-0.8660254037844386,-0.5)-- (-0.5,0.8660254037844386);
+\draw [line width=1.pt] (-1.,0.)-- (0.8660254037844387,0.5);
+%G4
+\draw [line width=1.pt] (1.,0.)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.,1.)-- (-1.,0.);
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (-0.8660254037844383,0.5)-- (0.,-1.);
+\draw [line width=1.pt] (0.8660254037844384,-0.5)-- (-0.5,-0.8660254037844384);
+\draw [fill=green] (1.,0.) circle (1.8pt);
+\draw[color=black] (1.11037037037037,0.057777777777778094) node {$1$};
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw[color=black] (0.9681481481481479,0.5970370370370371) node {$2$};
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (0.5770370370370369,1.017777777777778) node {$3$};
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw[color=black] (0.014074074074074072,1.1481481481481481) node {$4$};
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (-0.5785185185185183,1.005925925925926) node {$5$};
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,0.5851851851851853) node {$6$};
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw[color=black] (-1.1,0.045925925925926245) node {$7$};
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,-0.5051851851851847) node {$8$};
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw[color=black] (-0.6140740740740738,-0.8251851851851846) node {$9$};
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw[color=black] (0.0022222222222222227,-1.13) node {$10$};
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw[color=black] (0.61,-0.8962962962962957) node {$11$};
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\draw[color=black] (0.98,-0.49) node {$12$};
+\end{tikzpicture}
+%G3+G4
+
+Uniones de dos emparejamientos aleatorios sin aristas repetidas:
+
+\hspace{1cm}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw [line width=1.pt] (1.,0.)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (-0.8660254037844386,-0.5)-- (-0.5,0.8660254037844386);
+\draw [line width=1.pt] (-0.5,0.8660254037844386)-- (0.5,-0.8660254037844388);
+\draw [line width=1.pt] (0.5,-0.8660254037844388)-- (1.,0.);
+\draw [line width=1.pt] (0.8660254037844384,-0.5)-- (-0.5,-0.8660254037844384);
+\draw [line width=1.pt] (-0.5,-0.8660254037844384)-- (0.,-1.);
+\draw [line width=1.pt] (0.,-1.)-- (-0.8660254037844383,0.5);
+\draw [line width=1.pt] (-0.8660254037844383,0.5)-- (0.8660254037844384,-0.5);
+\draw [line width=1.pt] (0.,1.)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.5,0.8660254037844386)-- (0.8660254037844387,0.5);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (-1.,0.);
+\draw [line width=1.pt] (-1.,0.)-- (0.,1.);
+\draw [line width=1.pt] (-0.5,-0.8660254037844384)-- (-0.8660254037844386,-0.5);
+\draw [line width=1.pt] (-1.,0.)-- (0.,-1.);
+\draw [line width=1.pt] (0.5,-0.8660254037844388)-- (0.8660254037844384,-0.5);
+\draw [line width=1.pt] (1.,0.)-- (0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.8660254037844387,0.5)-- (-0.5,0.8660254037844386);
+\draw [line width=1.pt] (0.,1.)-- (-0.8660254037844383,0.5);
+\draw[color=black] (1.11037037037037,0.057777777777778094) node {$1$};
+\draw [fill=green] (0.8660254037844387,0.5) circle (1.8pt);
+\draw[color=black] (0.9681481481481479,0.5970370370370371) node {$2$};
+\draw [fill=green] (0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (0.5770370370370369,1.017777777777778) node {$3$};
+\draw [fill=green] (0.,1.) circle (1.8pt);
+\draw[color=black] (0.014074074074074072,1.1481481481481481) node {$4$};
+\draw [fill=green] (-0.5,0.8660254037844386) circle (1.8pt);
+\draw[color=black] (-0.5785185185185183,1.005925925925926) node {$5$};
+\draw [fill=green] (-0.8660254037844383,0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,0.5851851851851853) node {$6$};
+\draw [fill=green] (-1.,0.) circle (1.8pt);
+\draw[color=black] (-1.1,0.045925925925926245) node {$7$};
+\draw [fill=green] (-0.8660254037844386,-0.5) circle (1.8pt);
+\draw[color=black] (-0.987407407407407,-0.5051851851851847) node {$8$};
+\draw [fill=green] (-0.5,-0.8660254037844384) circle (1.8pt);
+\draw[color=black] (-0.6140740740740738,-0.8251851851851846) node {$9$};
+\draw [fill=green] (0.,-1.) circle (1.8pt);
+\draw[color=black] (0.0022222222222222227,-1.13) node {$10$};
+\draw [fill=green] (0.5,-0.8660254037844388) circle (1.8pt);
+\draw[color=black] (0.61,-0.8962962962962957) node {$11$};
+\draw [fill=green] (0.8660254037844384,-0.5) circle (1.8pt);
+\draw[color=black] (0.98,-0.49) node {$12$};
+\end{tikzpicture}
+
+Unión de tres emparejamientos sin aristas repetidas:
+%G4+G6+G11
+
+Tarea (Charli): Programar gráficas 4-regulares aleatorias.
+
+\newpage
+
+\newpage
+\section{Gráficas regulares aleatorias}
+
+\begin{problema}
+Se toman dos emparejamientos al azar de $6$ vértices (uniformemente). ¿Cuál es la probabilidad de que ninguna arista se repita?
+\end{problema}
+\vspace{3cm}
+
+%2 formas: Verificar primera con Inc-Exc.
+
+\begin{problema}
+Se toman dos emparejamientos al azar de $8$ vértices. ¿Cuál es la probabilidad de que ninguna arista se repita?
+\end{problema}
+\vspace{3cm}
+
+%2 formas: verificar Inc-Exc
+
+%\begin{problema} ¿Cuántas gráficas $2$-regulares de $n$ vértices hay?  \end{problema}
+
+\newpage
+
+\section{Problemas de gráficas}
+
+\begin{problema}
+En una gráfica de $n$ vértices todos los vértices tienen grado mayor o igual a $\frac{n}{2}$. Muestra que la gráfica es conexa.
+\end{problema}
+
+\begin{problema}
+Al final de un torneo de fútbol en el que cada dos equipos se encontraron una vez, donde no hubo empates, se observó que para cada tres equipos $A, B$ y $C$, si $A$ venció a $B$ y $B$ venció a  $C$, entonces $A$ venció a $C$. 
+
+Cada equipo calculó la diferencia (positiva) entre el número de juegos que ganó y perdió. La suma de todas estas diferencias da $5000$. ¿Cuántos equipos jugaron en el torneo? Encuentra todas las posibles respuestas.
+%Sug: Conjunto totalmente ordenado, n=50.
+\end{problema}
+
+\begin{problema}
+Muestra que una gráfica conexa es Euleriana si y solo si todos sus vértices tienen grado par.
+\end{problema}
+
+
+\begin{problema}
+En una mesa redonda se sientan $2n$ peruanos, $2n$ bolivanos y $2n$ ecuatorianos. Si se pide que se pongan de pie a todos los que estén sentados junto a dos personas de la misma nacionalidad. ¿Cuál es la máxima cantidad de personas que se pueden parar? 
+
+%Sug: Gráfica de 2-distancia 
+\end{problema}
+
+\begin{problema}
+En una fiesta con $n$ invitados se cumple que para cualesquiera cuatro personas, hay un subconjunto de tres personas que, o se conocen todas entre sí o ninguna se conoce.
+
+Mostrar que los $n$ invitados se pueden separar en dos cuartos, de tal manera que en un cuarto todos se conocen y en el otro ninguno se conoce.
+\end{problema}
+
+\begin{problema}
+Muestra que la matriz de adyacencia de una gráfica regular de grado $d$ tiene un valor propio igual a $d$.
+\end{problema}
+
+

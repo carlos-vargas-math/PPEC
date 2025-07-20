@@ -1,0 +1,270 @@
+
+\chapter{Elementos de probabilidad y estadística}
+
+La 
+
+\section{Introducción}
+
+\section{Problemas básicos de combinatoria y probabilidad}
+
+\begin{ejercicio}
+Considera una baraja inglesa de $52$, cartas, trece de cada figura $\{\clubsuit
+,\vardiamondsuit,\spadesuit,\varheartsuit\}$. 
+Te dan cinco cartas al azar. 
+\vspace{.3cm}
+
+
+¿Cuál es la probabilidad de obtener:
+
+\begin{itemize}
+\item dos pares? (es decir: dos pares distintos de números y otro número distinto. )
+\item un full? (dos pares y una tercia)
+\item una escalera? (cinco cartas con números consecutivos)
+\item una flor? (cinco cartas con la misma figura)
+\item un pokar? (cuatro números iguales)
+\item una flor escalera?
+\end{itemize}
+\end{ejercicio}
+
+
+\begin{ejercicio}
+Una caja grande contiene diez pares distintos de zapatos. Se extraen de la caja, al azar, $r\leq 20$ zapatos. 
+
+¿Cuál es la probabilidad de que no se haya extraído ningún par de zapatos?
+
+¿Cuál es la probabilidad de que se extraiga exactamente un par de zapatos?
+
+¿Cuál es la probabilidad de que se extraigan exactamente dos pares de zapatos?
+\end{ejercicio}
+
+
+\begin{ejercicio}
+A una fiesta asisten siete personas, cada una con su sombrero. De repente sonó una alarma, se apagó la luz y todos se salieron de la fiesta tomando un sombrero al azar. ¿Cuál es la probabilidad de que nadie se haya llevado su propio sombrero?
+\end{ejercicio}
+
+
+\section{Urnas}
+
+\begin{ejercicio}
+ejercicio de urnas sin reemplazo.
+\end{ejercicio}
+
+\begin{ejercicio}
+ejercicio de urnas con reemplazo.
+\end{ejercicio}
+%(se obtienen distribuciones binomiales o multinomiales)
+
+\begin{ejercicio}
+ejercicio de urnas con $c$-extra-reemplazo...
+\end{ejercicio}
+%(se obtienen distribuciones binomiales o multinomiales)
+
+\begin{ejercicio}
+Hay tres urnas A, B y C con canicas blancas y negras.
+
+La urna A tiene $10$ canicas negras y $20$ blancas.
+
+La urna B tiene $15$ canicas negras y $15$ blancas.
+
+La urna C tiene $40$ canicas negras y $10$ blancas.
+
+Si se elige una urna al azar y luego se elige una canica al azar, cuál es la probabilidad de que se obtenga una canica negra?.
+\end{ejercicio}
+
+\begin{ejercicio}
+% [IWYMICI '19]
+Hay tres urnas A, B y C, que contienen 100, 80 y 50 canicas (algunas negras y algunas blancas), del mismo tamaño.
+
+La urna A tiene 15 canicas negras.
+
+Seleccionamos una urna al azar, y después se extrae una canica al azar.
+
+Si la probabilidad de obtener una canica negra es exactamente $\frac{101}{600}$, ¿Cuál es el máximo número posible de canicas negras que puede tener la caja C?
+\end{ejercicio}
+
+¿Qué pasa cuando la probabilidad de elegir cada urna no es uniforme?
+
+\begin{ejercicio}
+
+Hay tres urnas A, B y C con canicas blancas y negras, como en el ejercicio anterior.
+
+Esta vez, para elegir una urna, primero arrojo un dado. 
+
+Si obtengo 1,2,o 3, elijo la urna 1. 
+
+Si obtengo 4 o 5 elijo la urna B, y 
+
+Si obtengo 6 elijo la urna C. 
+
+Ya que elegí la urna con el dado, tomo canica al azar de la urna ganadora.
+
+¿Cuál es la probabilidad de que obtenga una canica negra?.
+\end{ejercicio}
+
+\section{Variables aleatorias discretas y contínuas}
+
+Una variable aleatoria es una función especial que se define formalmente en el contexto de teoría de la medida. En esta introducción no vamos a entrar en este tipo de detalles técnicos.
+
+Por medio de variables aleatorias podemos expresar enunciados sobre probabilidades de fenómenos aleatorios de manera precisa y compacta, empleando los conceptos fundamentales asociados a dichas variables aleatorias, como lo son sus distribuciones, medias, varianzas, momentos, cumulantes, funciones características, que iremos introduciendo a lo largo de esta sección.
+
+Un primer aspecto sobre una variable aleatoria es que esta puede ser abstracta, puede tener valores en conjuntos bastante generales, o bien puede tener valores en conjuntos muy bien estructurados como los números naturales, los reales, los complejos, etc.
+
+Ejemplos básicos típicos de variables aleatorias son los resultados de lanzar dados o monedas. Un ejemplo que es mucho más útil para introducir de manera general el concepto de variable aleatoria discreta es el de una ruleta. 
+
+\subsection{Variables aleatorias discretas: ruletas}
+
+Pensemos en un disco cortado como pizza desde el centro en rebanadas de tamaños $p_1, p_2, p_3, \dots p_k$, donde $1=p_1+p_2+\cdots +p_k$. 
+
+Si giramos el disco con fuerza, como si fuera una ruleta con una aguja (sin que hayamos entrenado como girarla), la probabilidad de que la aguja caiga en la rebanada número $(1, 2, 3, \dots, k)$ serían exactamente $(p_1, p_2, p_3, \dots, p_k)$.
+
+¿Nos conviene o no girar la ruleta de la fortuna?
+
+La respuesta depende de los premios o castigos que se asignen a cada rebanada de la ruleta. Una variable aleatoria es un concepto muy genérico, y los premios o castigos, como en los concursos de la tele o las series de ficción, pueden tener valores en conjuntos completamente distintos (e.g. ganar o perder cierta cantidad de dinero, grande o pequeña, ganar un auto, un viaje a la playa, una cabra). 
+
+En ese sentido la conveniencia de un juego de azar es subjetiva puesto que depende del valor que cada jugador le asigne a los premios o castigos. Para que la conveniencia de un juego resulte un poco menos subjetiva, concentrémonos por el momento en una ruleta para la cual lo que se gana o se pierde siempre es dinero, en diversas cantidades, con distintas probabilidades.
+
+Hay ruletas especiales que representan a variables aleatorias especiales. Es importante irse familiarizando con los nombres de las variables aleatorias básicas y los fenómenos aleatorios que describen.
+
+\subsubsection*{Variables aleatorias constantes}
+
+Antes de discutir las variables \emph{verdaderamente aleatorias}, es importante mencionar que las variables contantes también entran como un caso especial, dentro del universo de las variables aleatorias, como aquellas que solo tienen un único posible resultado y este ocurre con probabilidad $1$.
+
+La forma en que uno modela una variable aleatoria constante $X = c$ es haciendo que esta tenga solo un único valor, completamente determinístico. Por ejemplo, si en los dos lados de una moneda ponemos cruz, la variable aleatoria $X$ asociada a lanzar esa moneda será la variable constante cruz: $\mathbb P(X=\text{cruz})=1$. Si en todas las caras de un dado pongo el número $4$, entonces el dado es la variable constante igual a 4, es decir $\mathbb P(X=4)=1$. 
+
+De la misma manera, si en todas las rebanadas de una ruleta ponemos auto, entonces el ejercicio de girar la ruleta es predecible, sé que siempre obtendré un auto. $\mathbb P(X=\text{auto})=1$
+
+Ya que dejamos en claro a lo que nos referimos con una variable aleatoria constante, pasemos a las variables aleatorias (verdaderamente aleatorias).
+
+\subsubsection*{Variables aleatorias con solo dos resultados}
+
+Las variables aleatorias no-constantes más sencillas son las que tienen dos posibles resultados: $a$ y $b$ con probabilidades respectivas $p$ y $1-p$, con $0 < p < 1$. En notación abreviada, $$\mathbb P (X=a)=p,\quad \mathbb P (X=b)=1-p.$$
+
+Existen algunos casos particulares notables, cada uno tiene sus ventajas.
+
+El juego aleatorio más sencillo es el lanzamiento de una moneda justa en donde los resultados son cara o cruz. Lo podemos representar con una variable aleatoria $X$ tal que
+$$\mathbb P (X=\text{cara})=\frac{1}{2},\quad \mathbb P (X=\text{cruz})=\frac{1}{2}.$$
+
+Una alternativa a escribir cara o cruz, es ponerle números a los lados de la moneda. Lo más simple es ponerles a las caras los valores $0$ y $1$, dando origen a la variable aleatoria Bernoulli positiva, o ponerles $-1$ y $1$, dando origen a la variable aleatoria Bernoulli simétrica.
+
+La ventaja de trabajar con la monedas con números en sus caras es que podemos realizar operaciones aritméticas para expresar de manera muy sencilla, fenomenos aleatorios más complicados que se construyan con estas monedas, como las variables aleatorias binomiales.
+
+La Bernoulli positiva
+
+Bernoulli simétrica:
+
+Binomial.
+
+Dado
+
+Suma de 2 dados
+
+Suma de 3 dados
+
+Multinomial.
+
+Poisson.
+
+Paradoja de St. Petersburgo
+
+
+Figs: Ruleta dado. Ruleta cara o cruz.  Ruleta Bernoulli simétrica. Ruleta Bernoulli positiva. Ruletas binomiales. Ruleta lotería. Ruleta infinita discreta. Ruleta contínua \vspace{4cm}
+
+
+
+
+
+
+
+
+
+Por ejemplo, consideremos que las variable aleatorias $X, Y, Z$ representadas por las siguientes ruletas: 
+
+Figura: Tres ruletas.
+
+La variable aleatoria $X$ es el resultado (aleatorio) de girar una ruleta con probabilidades $(0.1, 0.3, 0.6)$ y respectivos valores (pagos) $(35, -5, -3)$.
+
+¿Me conviene jugar esta ruleta?. Una respuesta parcial objetiva nos la otorgan la media $\mathbb E (X)$ y la varianza $\mathrm{Var}(X)$, de la variable aleatoria $X$. Para una variable aleatorias discreta, como nuestra ruleta, la esperanza, media o valor esperado se define como la suma de los posibles resultados, ponderados por la probabilidad de que ocurran. Por ejemplo, la ruleta anterior tenemos 
+$$\mathbb E (X)=p_1v_1+p_2v_2+p_3v_3=(.1)(35)+(.3)(-5)+(.6)(-3)=3.5-1.5-1.8=0.2.$$
+
+La varianza se define como la suma ponderada de los cuadrados de las desviaciones de la media.
+
+$$\mathbb E (X)=p_1v_1+p_2v_2+p_3v_3=(.1)(35)+(.3)(-5)+(.6)(-3)=3.5-1.5-1.8=0.2.$$
+
+La decisión de si me conviene o no desde algo sencillo como juego de azar simple, o algo más sofisticado, como la contratación de algún seguro, además de parámetros objetivos, como la media, dependen de mi situación personal.
+
+Por ejemplo. La media de la ruleta $X$ es positiva, lo que en principio me sugiere que es buena idea aceptar la apuesta porque la media me favorece a largo plazo. Sin embargo, la probabilidad de perder $()$ es muy alta en comparación a la probabilidad de ganar.  
+
+Sin embargo, los problemas probabilísticos, como los de la vida real, lamentablemente dependen del ancho de la cartera. Si se me presenta la ruleta $X$ pero yo solo tengo 
+
+Ejemplos de distribuciones discretas famosas básicas.
+
+
+
+\subsection{El juego de Cardano y la importancia de la media a largo plazo}
+
+Un ejemplo sobre un juego de azar que se jugaba en el siglo XVI era el siguiente.
+
+\begin{ejercicio}
+Se lanzan tres dados justos y se suman los valores de los tres dados. ¿Qué es mas probable: obtener como suma un $10$ o un $11$, o que la suma de $9$ o $12$?
+\end{ejercicio}
+%Sug: Hay la misma cantidad de configuraciones distintas (seis) para obtener 9 y 10, pero como estas configuraciones no ocurren con la misma frecuencia, resulta más probable obtener un 10 que un 9.
+
+\subsection{La variabilidad a largo plazo}
+
+
+\subsection{La variabilidad a largo plazo}
+
+
+ver Geogebra: rknp4m6s
+
+\definecolor{qqwuqq}{rgb}{0.,0.39215686274509803,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{axis}[
+x=1.0cm,y=1.0cm,
+axis lines=middle,
+xmin=-0.7600000000000002,
+xmax=4.820000000000001,
+ymin=-1.24,
+ymax=3.120000000000001,
+xtick={-0.5,0.0,...,4.5},
+ytick={-1.0,-0.5,...,3.0},]
+\clip(-0.76,-1.24) rectangle (4.82,3.12);
+\draw[line width=2.pt,color=qqwuqq] (-0.7600000000000002,0.0) -- (2.197399999999994,0.0);
+\draw[line width=2.pt,color=qqwuqq] (2.197399999999994,0.0) -- (2.2671499999999933,0.0034262426287961457);
+\draw[line width=2.pt,color=qqwuqq] (2.2671499999999933,0.0034262426287961457) -- (2.350849999999993,0.014546955347326071);
+\draw[line width=2.pt,color=qqwuqq] (2.350849999999993,0.014546955347326071) -- (2.4205999999999923,0.042458356499313135);
+\draw[line width=2.pt,color=qqwuqq] (2.4205999999999923,0.042458356499313135) -- (2.5042999999999918,0.1307578479219581);
+\draw[line width=2.pt,color=qqwuqq] (2.5042999999999918,0.1307578479219581) -- (2.587999999999991,0.3379940353694778);
+\draw[line width=2.pt,color=qqwuqq] (2.587999999999991,0.3379940353694778) -- (2.74144999999999,1.223201605605937);
+\draw[line width=2.pt,color=qqwuqq] (2.74144999999999,1.223201605605937) -- (2.8251499999999896,1.9249816558376494);
+\draw[line width=2.pt,color=qqwuqq] (2.8251499999999896,1.9249816558376494) -- (2.908849999999989,2.5426807510177);
+\draw[line width=2.pt,color=qqwuqq] (2.908849999999989,2.5426807510177) -- (2.9925499999999885,2.8189914757160928);
+\draw[line width=2.pt,color=qqwuqq] (2.903799999999991,2.512786934145086) -- (2.918699999999991,2.597246497716907);
+\draw[line width=2.pt,color=qqwuqq] (2.918699999999991,2.597246497716907) -- (2.933599999999991,2.6696862856811285);
+\draw[line width=2.pt,color=qqwuqq] (2.933599999999991,2.6696862856811285) -- (2.948499999999991,2.728957981318804);
+\draw[line width=2.pt,color=qqwuqq] (2.948499999999991,2.728957981318804) -- (2.9633999999999907,2.7741058235073144);
+\draw[line width=2.pt,color=qqwuqq] (2.9633999999999907,2.7741058235073144) -- (2.9782999999999906,2.8043922378766557);
+\draw[line width=2.pt,color=qqwuqq] (2.9782999999999906,2.8043922378766557) -- (2.9931999999999905,2.819317880968331);
+\draw[line width=2.pt,color=qqwuqq] (2.9931999999999905,2.819317880968331) -- (3.0080999999999904,2.818635336260315);
+\draw[line width=2.pt,color=qqwuqq] (3.0080999999999904,2.818635336260315) -- (3.0229999999999904,2.802355937113414);
+\draw[line width=2.pt,color=qqwuqq] (3.0229999999999904,2.802355937113414) -- (3.0378999999999903,2.7707494537073027);
+\draw[line width=2.pt,color=qqwuqq] (3.0378999999999903,2.7707494537073027) -- (3.05279999999999,2.724336656050884);
+\draw[line width=2.pt,color=qqwuqq] (3.05279999999999,2.724336656050884) -- (3.06769999999999,2.6638750395693704);
+\draw[line width=2.pt,color=qqwuqq] (3.06769999999999,2.6638750395693704) -- (3.076249999999988,2.623205880463206);
+\draw[line width=2.pt,color=qqwuqq] (3.076249999999988,2.623205880463206) -- (3.1599499999999874,2.0488382767690796);
+\draw[line width=2.pt,color=qqwuqq] (3.1599499999999874,2.0488382767690796) -- (3.243649999999987,1.3431350061101264);
+\draw[line width=2.pt,color=qqwuqq] (3.243649999999987,1.3431350061101264) -- (3.3273499999999863,0.7390406803304986);
+\draw[line width=2.pt,color=qqwuqq] (3.3273499999999863,0.7390406803304986) -- (3.4110499999999857,0.34131369027116126);
+\draw[line width=2.pt,color=qqwuqq] (3.4110499999999857,0.34131369027116126) -- (3.494749999999985,0.13230484837061976);
+\draw[line width=2.pt,color=qqwuqq] (3.494749999999985,0.13230484837061976) -- (3.5784499999999846,0.04304616813369);
+\draw[line width=2.pt,color=qqwuqq] (3.5784499999999846,0.04304616813369) -- (3.662149999999984,0.011755197312267002);
+\draw[line width=2.pt,color=qqwuqq] (3.662149999999984,0.011755197312267002) -- (3.7458499999999835,0.002694399790310957);
+\draw[line width=2.pt,color=qqwuqq] (3.7458499999999835,0.002694399790310957) -- (3.7597999999999834,0.0020722350280527164);
+\draw[line width=2.pt,color=qqwuqq] (3.7597999999999834,0.0020722350280527164) -- (3.7737499999999833,0.0015859997526303379);
+\draw[line width=2.pt,color=qqwuqq] (3.7737499999999833,0.0015859997526303379) -- (3.787699999999983,0.0012079649974740475);
+\draw[line width=2.pt,color=qqwuqq] (3.787699999999983,0.0012079649974740475) -- (3.801649999999983,0.0);
+\draw[line width=2.pt,color=qqwuqq] (3.801649999999983,0.0) -- (3.815599999999983,0.0);
+\draw[line width=2.pt,color=qqwuqq] (3.815599999999983,0.0) -- (4.806050000000002,0.0);
+\draw[color=qqwuqq] (-0.6519366197183101,0.08374717832957149) node {$f$};
+\end{axis}
+\end{tikzpicture}

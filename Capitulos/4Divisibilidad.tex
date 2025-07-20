@@ -1,0 +1,1995 @@
+\chapter{Divisibilidad y aritmética de residuos}
+\label{cap:divisibilidad}
+
+Un teorema fundamental que se debe tener en mente para muchos ejercicios y problemas en olimpiadas es el teorema fundamental de la aritmética. Lo presentamos al principio porque es el que más se usa:
+
+\begin{teorema}[Teorema Fundamental de la Aritmética]
+Todo número natural $n\geq 2$ se descompone de manera única (salvo por el orden de los factores) como producto de potencias de primos \[n=p_1^{\alpha_1}p_2^{\alpha_2}p_3^{\alpha_3}\dots p_k^{\alpha_k}\]
+\end{teorema}
+Por ejemplo: $$60=2^2\cdot 3\cdot 5,\quad  1000=2^3\cdot 5^3,\quad 1001=7\cdot 11 \cdot  13$$
+
+En este capítulo revisaremos problemas relacionados con divisibilidad y aritmética de residuos.
+
+A continuación presentamos ejercicios bastante representativos que aprenderemos a resolver a lo largo del capítulo.
+
+Un concepto clave en teoría de números es la \textbf{relación de divisibilidad}. Por ejemplo, el número
+$20$ es divisible entre $1, 2, 4, 5, 10, 20$.
+
+\begin{ejercicio}
+Muestra que si $n$ es impar entonces $8\mid n^2-1$, para todo número entero $n$.
+\end{ejercicio}
+
+\begin{ejercicio}
+Muestra que $5\mid n^5+4n$ para todo número natural $n$.
+\end{ejercicio}
+
+Algo un poco más general es el concepto de \textbf{división con residuo}. Por ejemplo: los residuos de $130$ y $86$ al dividirlos entre $7$ son $4$ y $2$, respectivamente pues \[130=18\cdot 7+4,\quad 86=12\cdot 7+2.\]
+
+\begin{ejercicio}
+Calcula los residuos al dividir entre siete de los siguientes números: 
+ \begin{enumerate}
+     \item $n=130, 260, 390, 520$.
+     \item $n=130, 130^2, 130^3, 130^4$.
+     \item $n=86^k$, $k=0,1,2,3,4,5,6,7,8,9,10$.
+     \item $n=2\cdot130+5\cdot86$.
+     \item $n=2\cdot130^5+5\cdot86^{15}$.
+ \end{enumerate}
+\end{ejercicio}
+
+Después veremos problemas del siguiente tipo, cuyas soluciones se conocían en China desde el siglo III.
+
+\begin{ejercicio}
+Considera un entero positivo $n$ tal que:  
+\begin{itemize}
+\item al dividir a $n$ entre $7$, sobra $6$,
+\item al dividir a $n$ entre $11$, sobra $10$,
+\item al dividir a $n$ entre $13$, sobra $12$.
+\end{itemize}
+
+Encuentra el mínimo valor posible de $n$.
+\end{ejercicio}
+
+¿Qué sucede si cambiamos el problema anterior con residuos más complicados? 
+
+\begin{ejercicio}
+Considera un entero positivo $n$ tal que:  
+\begin{itemize}
+\item al dividir a $n$ entre $25$, sobra $16$,
+\item al dividir a $n$ entre $16$, sobra $8$,
+\item al dividir a $n$ entre $9$, sobra $4$.
+\item al dividir a $n$ entre $11$, sobra $2$.
+\end{itemize}
+¿Tiene solución?
+Encuentra el mínimo valor posible de $n$.
+\end{ejercicio}
+
+Terminamos el capítulo demostrando el teorema de Wilson, el pequeño teorema de Fermat y el teorema (de la función $\varphi$) de Euler:
+
+Para varios de los problemas anteriores resulta muy útil usar el lenguaje de congruencias o residuos módulo $n$. 
+
+\section{Divisibilidad}
+\begin{definicion}
+$~$
+\begin{itemize}
+    \item   Para dos números enteros $a$ y $b$ se dice que
+  \textbf{$a$ es divisible entre $b$} si existe $c \in \ZZ$ tal que $a = bc$.
+    \item  En
+  este caso también se escribe «$b \mid a$» y se dice que
+  \textbf{$b$ divide a $a$}, o que $b$ es un \textbf{divisor} de $a$.
+    \item   Cuando $a$ no es divisible entre $b$ (es decir, $b$ no divide al número $a$),
+  vamos a escribir «$b \nmid a$».
+\end{itemize}
+\end{definicion}
+
+\begin{ejercicio}
+Un número natural $n$ cumple que $4\mid n$ y $3\mid n$. ¿Es cierto que $4\cdot 3=12\mid n$?
+\end{ejercicio}
+
+\begin{ejercicio}
+Un número natural $n$ cumple que $4\mid n$ y $6\mid n$. ¿Es cierto que $4\cdot 6=24\mid n$?
+\end{ejercicio}
+
+Dos números naturales $m,n$ se llaman {\bf primos relativos} o {\bf coprimos} si no tienen ningún divisor en común mayor que $1$. Es decir, el {\bf máximo común divisor} $(n,m)=1$. 
+
+\begin{ejercicio}
+Muestra que si $p\mid n$, $q\mid n$ y $(p,q)=1$, entonces $pq\mid n$.
+\end{ejercicio}
+
+\begin{ejercicio}
+¿Cuáles son los divisores positivos de $a=100$, $a=240$, $a=150$?
+\end{ejercicio}
+
+Para $a=60$, los diferentes divisores positivos son $$b = 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60.$$ Los mismos con el signo «$-$» son los divisores negativos de $a$. Esta propiedad del número $60$ de tener muchos divisores fue notada por los babilonios. Por esta razón la hora todavía se divide en $60$ minutos, el círculo en $360$ grados, etcétera. Por la misma razón algunos productos, como los huevos o las tortillas, se venden a veces por docena: los divisores positivos no triviales de $10$ son solamente $2$ y $5$, mientras que $12$ es divisible por $2$, $3$, $4$, $6$.
+
+\begin{ejercicio}
+  Sean $a$ y $b$ dos números enteros. Muestra que:
+
+  \begin{enumerate}
+  \item[1)] Si $b \mid a$, entonces $|b| \le |a|$.
+
+  \item[2)] Si $b \mid a$ y $a \mid b$, entonces $a = \pm b$.
+  \end{enumerate}
+\end{ejercicio}
+%Sug: Si $a = bc$, entonces $|a| = |b| \cdot |c|$.
+
+
+\begin{ejercicio}
+  Sean $a,b,c$ números enteros. Demuestra las siguientes propiedades de la relación de divisibilidad.
+
+  \begin{enumerate}
+  \item[1)] $1\mid a$, $a \mid a$, $a \mid 0$ para cualquier $a$,
+
+  \item[2)] $a\mid 1$ si y solamente si $a = \pm 1$,
+
+  \item[3)] $0\mid a$ si y solamente si $a = 0$,
+
+  \item[4)] si $c \mid a$ y $c \mid b$, entonces $c \mid (a + b)$,
+
+  \item[5)] si $c \mid b$ y $b \mid a$, entonces $c \mid a$,
+
+  \item[6)] si $c \ne 0$, entonces $ac \mid bc$ implica $a\mid b$,
+
+  \item[7)] $b \mid a$ si y solamente si $-b \mid a$.
+  \end{enumerate}
+\end{ejercicio}
+
+Para $a = 31$, los únicos divisores son $b = \pm 1, \pm 31$. En cierto
+sentido, el número $31$ no tiene divisores no triviales.  Es un {\bf número
+primo}. El estudio de los números primos es uno de los principales objetivos de la teoría de números. Es importante mencionar que el $1$ no se considera primo.
+
+\begin{ejercicio}
+Escribe todos los números primos menores o iguales que $n=50$.
+\end{ejercicio}
+
+\begin{ejercicio}
+Muestra que la cantidad de divisores positivos de un número $n=p_1^{\alpha_1}p_2^{\alpha_2}p_3^{\alpha_3}\dots p_k^{\alpha_k}$ esta dada por $(\alpha_1+1)(\alpha_2+1)(\alpha_3+1)\cdots (\alpha_k+1)$.
+\end{ejercicio}
+
+
+\begin{ejercicio}
+Muestra que un número $n$ tiene una cantidad impar de divisores si y solo si $n$ es un cuadrado perfecto.
+\end{ejercicio}
+
+\begin{ejercicio}
+Demuestra que \emph{no es posible} que haya una \emph{cantidad finita} de números primos $\{p_1,p_2,\dots,p_k\}$.
+\end{ejercicio}
+%Sug: ¿Qué pasaría con $n=p_1\cdot p_2\cdot \dots \cdot p_k+1$?
+
+La función $\varphi(n)$ de Euler cuenta el número de enteros positivos $k\leq n$ que son primos relativos. Por ejemplo $\varphi(6)=2$ porque solamente $k=1,5$ son primos relativos con $6$.
+
+\begin{ejercicio}
+Calcula $\varphi (40), \varphi (120), \varphi (330)$.
+\end{ejercicio}
+
+\begin{ejercicio}
+Calcula $\varphi (p^\alpha)$ para $p$ primo.
+\end{ejercicio}
+
+\begin{ejercicio}
+Demuestra que $\varphi (mn)=\varphi (m)\varphi (n)$ siempre que $(m,n)=1$.
+
+Deduce una fórmula general para $\varphi (n)$.
+\end{ejercicio}
+
+\section{División con residuo}
+
+Un concepto poco más general que la divisibilidad es la noción de \textbf{división con residuo}: aunque $20$
+no es divisible entre $7$, podemos escribir $\frac{20}{7} = 2+\frac{6}{7}$; es decir, $20 = 2\cdot 7 + 6$. Aquí el número $6$ es el \textbf{residuo}
+de la división de $20$ entre $7$.
+
+\begin{proposicion}[División con residuo]
+  Para dos números enteros $a$ y $b \ne 0$, existen $q$ (cociente) y $r$
+  (residuo) tales que
+  \[ a = qb + r,
+    \quad
+    0 \le r < |b|. \]
+  Además, estas propiedades definen a $q$ y $r$ de manera única.
+\end{proposicion}
+
+Algo que no es tan obvio a simple vista es que podemos calcular residuos de {\bf sumas, restas y productos} de maneras muy eficientes.  Por ejemplo: los residuos de $130$ y $86$ al dividirlos entre $7$ son $4$ y $2$, respectivamente pues \[130=18\cdot 7+4,\quad 86=12\cdot 7+2.\] 
+
+\begin{ejercicio}
+Calcula los residuos al dividir entre siete de los siguientes números: 
+ \begin{enumerate}
+     \item $n=130, 260, 390, 520$.
+     \item $n=130, 130^2, 130^3, 130^4$.
+     \item $n=86^k$, $k=0,1,2,3,4,5,6,7,8,9,10$
+     \item $n=2\cdot130+5\cdot86$.
+     \item $n=2\cdot130^5+5\cdot86^{15}$.
+ \end{enumerate}
+\end{ejercicio}
+
+En todas las operaciones anteriores, bastaba con ignorar siempre las partes que fueran múltiplos de $7$ (tanto de los sumandos como de los factores), para que todos los ejercicios se trataran sobre multiplicaciones o sumas de números pequeños, entre $0,1,2,3,4,5,6$ y no en tediosos productos o sumas de números más grandes.
+
+\begin{ejercicio}
+Muestra que $5\mid n^5+4n$ para todo número natural $n$.
+\end{ejercicio}
+
+\begin{ejercicio}
+Muestra que $3$ no divide a $n^2+1$ para ningún número natural $n$.
+\end{ejercicio}
+
+\begin{ejercicio}
+Muestra que $n^3+2$ no es divisible entre $9$ para ningún número natural $n$.
+\end{ejercicio}
+
+En los ejercicios anteriores, puede resultar conveniente partir el problema en distintos casos, de acuerdo a su residuo. Para hablar de estas operaciones de forma abreviada se utiliza la notación de {\bf congruencias o reducciones módulo} $n$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Reducción módulo $n$}
+
+Decimos que un número entero $a$ es {\bf congruente a} $r$ {\bf módulo} $n$, y escribimos $$a\equiv r~(\mathrm {mod} n),$$ si y solo si $n\mid a-r$.
+
+\begin{ejercicio}
+Demuestra que $a\equiv b~(\mathrm {mod} n)$ si y solo si $a$ y $b$ tienen el mismo residuo al dividirse entre $n$.
+\end{ejercicio}
+
+\begin{ejercicio} Demuestra que la relación <<$\equiv$>> es una {\bf relación de equivalencia}. Es decir, la relación es:
+\begin{itemize}
+\item Reflexiva: $x\equiv x~(\mathrm {mod} n)$ para todo $x\in \mathbb Z$.
+\item Simétrica: Si $x\equiv y ~(\mathrm {mod} n)$, entonces $y \equiv x ~(\mathrm {mod} n)$.
+\item Transitiva: Si $x\equiv y~(\mathrm {mod} n)$ y $y\equiv z~(\mathrm {mod} n)$, entonces $x \equiv z~(\mathrm {mod} n)$.
+\end{itemize}
+\end{ejercicio}
+
+\begin{ejercicio}
+Muestra que si $a\equiv b ~(\mathrm {mod} n)$  y $c\equiv d (\mathrm {mod} n)$, entonces
+\begin{itemize}
+    \item $a+ c\equiv b+ d ~(\mathrm {mod} n)$
+    \item $a- c\equiv b- d ~(\mathrm {mod} n)$
+    \item $ac\equiv bd ~(\mathrm {mod} n)$
+    \item $a^n\equiv b^n ~(\mathrm {mod} n)$
+\end{itemize}
+\end{ejercicio}
+
+\begin{ejercicio}
+Encuentra un contraejemplo donde $ac\equiv bc ~(\mathrm {mod} n)$ pero $a\nequiv b ~(\mathrm {mod} n)$ de la para el caso cuando $n$ y $c$ no son coprimos.
+\end{ejercicio}
+
+\begin{ejercicio}
+  Encuentra el residuo de $6^{100}$ al dividirlo entre $7$.
+\end{ejercicio}
+
+\begin{ejercicio}
+  Muestra que $1999^{1999}+2001^{2001}$ es divisible entre $125$.
+\end{ejercicio}
+
+\section{La identidad de Bezout} 
+
+\begin{ejercicio}
+En las siguientes expresiones se pueden substituir $x,y$ por cualquier entero (incluyendo enteros negativos). 
+  
+\begin{itemize}
+      \item $15x +120y$
+      \item $15x -33y$
+      \item $187x -34y$
+      \item $101x -34y$
+\end{itemize}
+  
+  ¿Cuál es el mínimo valor positivo para cada expresión? 
+  
+  ¿Es única la solución $(x,y)$ para la cuál se obtiene el mínimo?  
+\end{ejercicio}
+
+\begin{proposicion}[Identidad de Bezout]
+Sean $m,n$ enteros positivos y sea $d=(m,n)$ su máximo común divisor. Entonces existen enteros $x,y$ tales que $d=mx+ny$.
+
+Además, $d$ es el mínimo valor positivo posible de la expresión $mx+ny$.
+\end{proposicion}
+
+Una demostración constructiva se sigue de la versión extendida del algoritmo Euclidiano de la división, pero no la revisaremos por el momento. A menudo es sencillo encontrar los coeficientes de forma directa y por lo pronto lo que utilizaremos en varias ocasiones es que la solución de $(m,n)=xm+yn$ existe.
+
+La identidad de Bézout es de suma importancia. Por ejemplo, se puede utilizar para resolver el siguiente par de ejercicios. 
+
+\begin{ejercicio}[Lema de Euclides]
+Demuestra que si $n\mid ab$ y $n$ es coprimo con $a$, entonces $n\mid b$. 
+
+Nota: Aquí en principio no se vale usar el Teorema Fundamental de la Aritmética porque justamente se utiliza este lema en la demostración del TFA.  
+\end{ejercicio}
+Sug: Por la identidad de Bézout, existen $x,y$ tales que $ax+ny=1$.
+
+\begin{ejercicio}
+Sea $n$ un entero positivo. Muestra que un número $k$ tiene inverso multiplicativo módulo $n$ si y solo si $(n,k)=1$. 
+
+Es decir, muestra que existe un entero $j$ tal que $kj\equiv 1 ~(\mathrm {mod}~n)$ si y solo si $(n,k)=1$
+\end{ejercicio}
+Sug: Por la identidad de Bézout, existen $x,y$ tales que $kx+ny=1$.
+
+\begin{ejercicio}
+Demuestra que si $c$ y $n$ son primos relativos y $ac\equiv bc ~(\mathrm {mod} n)$, entonces se pueden <<cancelar>> las $c$'s para obtener $a\equiv b ~(\mathrm {mod} n)$
+\end{ejercicio}
+
+
+\section{Teorema chino del residuo}
+
+Desde el siglo III se conocen soluciones a sistemas de congruencias. Por ejemplo, en los manuscritos del matemático chino Sun-Tzu se encuentra la solución  del sistema de congruencias:
+
+$$n\equiv 2 ~(\mathrm {mod}~3), \quad n\equiv 3 ~(\mathrm {mod}~5), \quad n\equiv 2 ~(\mathrm {mod}~7),$$
+cuya solución está dada por $n=23+105k$.
+
+El teorema chino del residuo establece que cada una de las $105=3\cdot 5\cdot 7$ ternas de congruencias
+$$n\equiv x ~(\mathrm {mod}~3), \quad n\equiv y ~(\mathrm {mod}~5), \quad n\equiv z ~(\mathrm {mod}~7),$$
+tiene exactamente una solución para $0\leq n < 105=3\cdot 5\cdot 7$.
+
+En otras palabras, si consideramos todos los posibles  $0\leq n\leq 104$, recorreremos todas las posibles ternas de congruencias.
+
+A continuación se presenta una tabla con $n=0,1,2,\dots,14$, donde se muestra que se recorren todas las posibles parejas de congruencias, en modulo $3$ y $5$. 
+
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|} 
+ \hline
+  $n=$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $11$ & $12$ & $13$ & $14$ \\ 
+  \hline
+  \hline
+  $\mathrm {mod}~3$ & $0$ & $1$ & $2$ & $0$ & $1$ & $2$ & $0$ & $1$ & $2$ & $0$ & $1$ & $2$ & $0$ & $1$ & $2$ \\ 
+  \hline
+  $\mathrm {mod}~5$ & $0$ & $1$ & $2$ & $3$ & $4$ & $0$ & $1$ & $2$ & $3$ & $4$ & $0$ & $1$ & $2$ & $3$ & $4$ \\
+  \hline
+  \end{tabular}
+
+Para tres o más congruencias (de módulos coprimos) ocurre lo mismo. ¿Cómo se encuentra una solución en particular?
+
+La estrategia es muy sencilla: En lugar de resolver el sistema:
+$$n\equiv 2 ~(\mathrm {mod}~3), \quad n\equiv 3 ~(\mathrm {mod}~5), \quad n\equiv 2 ~(\mathrm {mod}~7),$$
+resolvemos los tres sistemas
+$$n_1\equiv 2 ~(\mathrm {mod}~3), \quad n_1\equiv 0 ~(\mathrm {mod}~5), \quad n_1\equiv 0 ~(\mathrm {mod}~7),$$
+$$n_2\equiv 0 ~(\mathrm {mod}~3), \quad n_2\equiv 3 ~(\mathrm {mod}~5), \quad n_2\equiv 0 ~(\mathrm {mod}~7),$$
+$$n_3\equiv 0 ~(\mathrm {mod}~3), \quad n_3\equiv 0 ~(\mathrm {mod}~5), \quad n_3\equiv 2 ~(\mathrm {mod}~7).$$
+
+La suma $n=n_1+n_2+n_3$ será una solución del sistema de congruencias, si esta suma es mayor a $105$ restamos un múltiplo de $105$ hasta que encontremos una solución dentro del intervalo $0,1,2,3 \dots  103,104$.
+
+Cada sistema simplificado es más sencillo porque sabemos que la solución tiene que ser un múltiplo del producto de los módulos con congruencia $0$. Para resolver estas congruencias de manera directa se puede usar la identidad de Bezout, que nos sirve para encontrar inversos multiplicativos.
+
+Por ejemplo, para resolver la primera congruencia $$n_1\equiv 2 ~(\mathrm {mod}~3), \quad n_1\equiv 0 ~(\mathrm {mod}~5), \quad n_1\equiv 0 ~(\mathrm {mod}~7),$$ el número $n_1$ debe ser múltiplo de $35$ y queremos que además sea congruente a $2 ~(\mathrm {mod}~3)$. Directamente el primer múltiplo de $35$ resuelve esta congruencia, por lo que $n_1=35$.
+
+Para la segunda congruencia $$n_2\equiv 0 ~(\mathrm {mod}~3), \quad n_2\equiv 3 ~(\mathrm {mod}~5), \quad n_2\equiv 0 ~(\mathrm {mod}~7),$$ necesitamos un múltiplo de $21$ congruente a $3 ~(\mathrm {mod}~5)$. El $21\equiv 1~(\mathrm {mod}~5)$ no funciona directamente, por lo que debemos buscar un múltiplo más grande. Claramente $n_2=3\cdot 21=63$ funciona.
+
+Finalmente, para la tercera congruencia $$n_3\equiv 0 ~(\mathrm {mod}~3), \quad n_3\equiv 0 ~(\mathrm {mod}~5), \quad n_3\equiv 2 ~(\mathrm {mod}~7),$$ necesitamos un múltiplo de $15$ que sea congruente a $2 ~(\mathrm {mod}~7)$. Como $15\equiv 1~(\mathrm {mod}~7)$, el primer múltiplo que funciona es $n_2=30$.
+
+Entonces $n=35+63-30=128$ es una solución al sistema de congruencias. Como es mayor o igual a $105$ le restamos $105$ (de esta forma no afectamos ninguna de las congruencias) y obtenemos $23$.
+
+\begin{teorema}[Teorema Chino del Residuo]
+Si $n_1,n_2,\dots, n_k$ son primos relativos entre sí (cada dos), y sea $N=n_1\cdot n_2 \cdot \cdots \cdot n_k$. Entonces, para cualesquiera enteros $x_1,x_2, \dots x_k$, el sistema de congruencias
+$$n\equiv x_1 ~(\mathrm {mod}~n_1), \quad n\equiv x_2 ~(\mathrm {mod}~n_2), \quad \dots \quad  ,n\equiv x_k ~(\mathrm {mod}~n_k),$$
+tiene exactamente una solución $0\leq m< N$. Todas las posibles soluciones son de la forma $m+Nk$.
+\end{teorema}
+
+
+\begin{ejercicio}
+Considera un entero positivo $n$ tal que:  
+\begin{itemize}
+\item al dividir a $n$ entre $7$, sobra $6$,
+\item al dividir a $n$ entre $11$, sobra $10$,
+\item al dividir a $n$ entre $13$, sobra $12$.
+\end{itemize}
+
+Encuentra el mínimo valor posible de $n$.
+\end{ejercicio}
+
+\newpage
+¿Qué sucede si cambiamos el problema anterior con residuos más complicados? 
+
+\begin{ejercicio}
+Supón que $n$ es un entero positivo tal que:  
+\begin{itemize}
+\item al dividir a $n$ entre $12$, sobra $10$,
+\item al dividir a $n$ entre $16$, sobra $8$,
+\item al dividir a $n$ entre $9$, sobra $4$.
+\end{itemize}
+¿Tiene solución el sistema de congruencias?
+En caso afirmativo, encuentra el mínimo valor posible de $n$.
+\end{ejercicio}
+
+\begin{ejercicio}
+Supón que $n$ es un entero positivo tal que:  
+\begin{itemize}
+\item al dividir a $n$ entre $25$, sobra $16$,
+\item al dividir a $n$ entre $16$, sobra $8$,
+\item al dividir a $n$ entre $9$, sobra $4$.
+\end{itemize}
+¿Tiene solución el sistema de congruencias?
+En caso afirmativo, encuentra el mínimo valor posible de $n$.
+\end{ejercicio}
+
+\begin{ejercicio}
+Encuentra el mínimo entero positivo $n$ tal que:  
+\begin{itemize}
+\item al dividir a $n$ entre $25$, sobra $16$,
+\item al dividir a $n$ entre $16$, sobra $8$,
+\item al dividir a $n$ entre $9$, sobra $4$.
+\item al dividir a $n$ entre $11$, sobra $2$.
+\end{itemize}
+¿Tiene solución?
+Encuentra el mínimo valor posible de $n$.
+\end{ejercicio}
+
+
+\newpage 
+\section{Anillos de residuos}
+
+Como toda relación de equivalencia, la reducción módulo $n$ parte al conjunto de números enteros $\mathbb Z$ en $n$ {\bf clases de equivalencia}. Cada clase de equivalencia contiene todos los enteros con el mismo residuo $r$ al dividir entre $n$, $r=0,1,2,3,\dots, n-1$.
+
+Lo que se hace típicamente es fijar un representativo para cada clase de equivalencia. Lo más normal es usar los representantes $r\in \{0,1,2,3,\dots, n-1\}$. Otra posible lista de representantes que a veces conviene considerar es una lista más simétrica (para así sumar/multiplicar números más pequeños): por ejemplo $\{-3,-2,-1,0,+1+2,-3\}$, para los residuos módulo $7$ o $\{-1,0,+1+2\}$, para los residuos módulo $4$.
+
+Como hemos visto, cuando queremos calcular el residuo módulo $n$ de una multiplicación, suma o potencia, nos basta conocer el residuo modulo $n$ de los sumandos o factores. Entonces nos interesa ver en concreto cómo se ven esas operaciones de forma resumida.
+
+Tomando un conjunto de representantes, se pueden representar las operaciones de manera sucinta 
+
+Por ejemplo, la multiplicación y suma de congruencias módulo $5$ está dada por:
+
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|} 
+ \hline
+  $\plus$ & 0 & 1 & 2 & 3 & 4 \\ 
+  \hline
+  \hline
+  0 & 0 & 1 & 2 & 3 & 4 \\ 
+  \hline
+  1 & 1 & 2 & 3 & 4 & 0 \\ 
+  \hline
+  2 & 2 & 3 & 4 & 0 & 1 \\ 
+  \hline
+  3 & 3 & 4 & 0 & 1 & 2 \\ 
+  \hline
+  4 & 4 & 0 & 1 & 2 & 3 \\ 
+  \hline  
+  \end{tabular}
+  \hspace{2cm}
+  \begin{tabular}{|c||c|c|c|c|c|} 
+ \hline
+  $\times$ & 0 & 1 & 2 & 3 & 4 \\ 
+  \hline
+  \hline
+  0 & 0 & 0 & 0 & 0 & 0 \\ 
+  \hline
+  1 & 0 & 1 & 2 & 3 & 4 \\ 
+  \hline
+  2 & 0 & 2 & 4 & 1 & 3 \\ 
+  \hline
+  3 & 0 & 3 & 1 & 4 & 2 \\ 
+  \hline
+  4 & 0 & 4 & 3 & 2 & 1 \\ 
+  \hline  
+  \end{tabular}
+  \end{center}
+  
+
+La multiplicación y suma de congruencias módulo $6$, por su parte, tiene las siguientes tablas:  
+  \begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|} 
+ \hline
+  $\plus$ & 0 & 1 & 2 & 3 & 4 & 5 \\ 
+  \hline
+  \hline
+  0 & 0 & 1 & 2 & 3 & 4 & 5\\ 
+  \hline
+  1 & 1 & 2 & 3 & 4 & 5 & 0\\ 
+  \hline
+  2 & 2 & 3 & 4 & 5 & 0 & 1\\ 
+  \hline
+  3 & 3 & 4 & 5 & 0 & 1 & 2\\ 
+  \hline
+  4 & 4 & 5 & 0 & 1 & 2 & 3\\ 
+  \hline   
+  5 & 5 & 0 & 1 & 2 & 3 & 4\\ 
+  \hline   
+  \end{tabular}
+  \hspace{2cm}
+  \begin{tabular}{|c||c|c|c|c|c|c|c|} 
+ \hline
+  $\times$ & 0 & 1 & 2 & 3 & 4 & 5 \\ 
+  \hline
+  \hline
+  0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  \hline
+  1 & 0 & 1 & 2 & 3 & 4 & 5 \\ 
+  \hline
+  2 & 0 & 2 & 4 & 0 & 2 & 4 \\ 
+  \hline
+  3 & 0 & 3 & 0 & 3 & 0 & 3 \\ 
+  \hline
+  4 & 0 & 4 & 2 & 0 & 4 & 2 \\ 
+  \hline  
+  5 & 0 & 5 & 4 & 3 & 2 & 1 \\ 
+  \hline  
+  \end{tabular}
+  \end{center}
+
+  \begin{center}
+  \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|} 
+ \hline
+  $+$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+  \hline
+  0 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+  1 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 0 \\
+  \hline
+  2 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 0 & 1\\ 
+  \hline
+  3 & 3 & 4 & 5 & 6 & 7 & 8 & 0 & 1 & 2\\ 
+  \hline
+  4 & 4 & 5 & 6 & 7 & 8 & 0 & 1 & 2 & 3\\ 
+  \hline  
+  5 & 5 & 6 & 7 & 8 & 0 & 1 & 2 & 3 & 4\\
+    \hline
+  6 & 6 & 7 & 8 & 0 & 1 & 2 & 3 & 4 & 5\\ 
+    \hline
+  7 & 7 & 8 & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\ 
+    \hline
+  8 & 8 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ 
+  \hline  
+  \end{tabular}
+  \hspace{2cm}
+  \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|} 
+ \hline
+  $\times$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+  \hline
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  \hline
+  1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8\\ 
+  \hline
+  2 & 0 & 2 & 4 & 6 & 8 & 1 & 3 & 5 & 7\\ 
+  \hline
+  3 & 0 & 3 & 6 & 0 & 3 & 6 & 0 & 3 & 6\\ 
+  \hline
+  4 & 0 & 4 & 8 & 3 & 7 & 2 & 6 & 1 & 5\\ 
+  \hline  
+  5 & 0 & 5 & 1 & 6 & 2 & 7 & 3 & 8 & 4\\
+    \hline
+  6 & 0 & 6 & 3 & 0 & 6 & 3 & 0 & 6 & 3 \\ 
+    \hline
+  7 & 0 & 7 & 5 & 3 & 1 & 8 & 6 & 4 & 2 \\ 
+    \hline
+  8 & 0 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 \\ 
+  \hline  
+  \end{tabular}
+  \end{center}
+
+\begin{observacion}
+\begin{enumerate}
+    \item En el caso de la suma aparecen todas las congruencias en cada columna y en cada fila exactamente una vez, parecido a un Sudoku. Además, las congruencias son constantes en las anti-diagonales.
+    \item En el caso de la multiplicación la estructura es más complicada.
+\end{enumerate} 
+\end{observacion}   
+
+Observa que si se ignoran todas las filas y columnas correspondientes a los residuos no invertibles, quedándonos solo con los residuos invertibles módulo $n$, se vuelve a formar un arreglo tipo <<sudoku>> en la tabla multiplicativa.
+
+Los siguientes ejercicios pueden parecer laboriosos y repetitivos, como cuando el Sr. Miyagi le puso a lavar todos sus autos a Daniel Larusso. El objetivo es familiarizarnos con las simetrías que esconden las tablas de multiplicar. Detrás de esas simetrías están las ideas que permiten entender varias nociones importantes: raiz primitiva, órden de un elemento, así como las ideas detrás de la demostración del Teorema de Lagrange (que a su vez se utiliza para demostrar el Teorema de Euler).
+
+
+La suma y multiplicación  modulo 1 son triviales. Todo entero es congruente a cero módulo 1. Entonces $0+0=0$ y $0\cdot 0=0$. 
+
+\begin{tabular}{|c||c|} 
+ \hline
+  $\plus$ & 0  \\ 
+  \hline
+  \hline
+  0 & 0  \\ 
+  \hline
+\end{tabular}
+\hspace{2cm}
+\begin{tabular}{|c||c|} 
+ \hline
+  $\times$ & 0  \\ 
+  \hline
+  \hline
+  0 & 0  \\ 
+  \hline
+\end{tabular}    
+
+Completa las tablas de suma y multiplicación que se solicitan en los siguientes ejercicios. Como en el caso multiplicativo nos interesan principalmente los residuos invertibles (es decir los que son primos relativos con el módulo), pondremos primero a éstos en las tablas multiplicativas.
+
+\begin{ejercicio}
+ Modulo 2
+
+\begin{tabular}{|c||c|c|} 
+ \hline
+  $\plus$ & 0 & 1 \\ 
+  \hline
+  \hline
+  0 &  &  \\ 
+  \hline
+  1 &  &  \\ 
+  \hline
+\end{tabular}
+\hspace{2cm}
+\begin{tabular}{|c||c|c|} 
+ \hline
+  $\times$ & 1 & 0 \\ 
+  \hline
+  \hline
+  1 &  &  \\ 
+  \hline
+  0 &  &  \\ 
+  \hline
+\end{tabular}
+\end{ejercicio}
+
+\begin{ejercicio}
+ Modulo 3
+
+\begin{tabular}{|c||c|c|c|} 
+ \hline
+  $\plus$ & 0 & 1 & 2\\ 
+  \hline
+  \hline
+  0 &  & & \\ 
+  \hline
+  1 &  & & \\
+    \hline
+  2 &  & & \\ 
+  \hline
+\end{tabular}
+\hspace{2cm}
+\begin{tabular}{|c||c|c|c|} 
+ \hline
+  $\times$ & 1 & 2 & 0\\ 
+  \hline
+  \hline
+  1 &  & & \\ 
+  \hline
+  2 &  & & \\
+    \hline
+  0 &  & & \\ 
+  \hline
+\end{tabular}
+
+Observa que el cuadrante de $2\times 2$ de la esquina superior izquierda tiene las mismas simetrías que la tabla de adición módulo $2$.
+\end{ejercicio}
+
+
+\begin{ejercicio}
+Modulo 4. Completa las siguientes tablas aditivas modulo $4$. Notarás en sus simetrías que dos de ellas se parecen entre sí y otra es un poco distinta: ¿Cuales?
+
+\begin{tabular}{|c||c|c|c|c|} 
+ \hline
+  $\plus$ & 0 & 1 & 2 & 3\\ 
+  \hline
+  \hline
+  0 &  & & & \\ 
+  \hline
+  1 &  & & &\\
+    \hline
+  2 &  & & & \\
+      \hline
+  3 &  & & & \\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+\begin{tabular}{|c||c|c|c|c|} 
+ \hline
+  $\plus$ & 0 & 2 & 1 & 3\\ 
+  \hline
+  \hline
+  0 &  & & & \\ 
+  \hline
+  2 &  & & &\\
+    \hline
+  1 &  & & & \\
+      \hline
+  3 &  & & & \\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+\begin{tabular}{|c||c|c|c|c|} 
+ \hline
+  $\plus$ & 0 & 3 & 2 & 1\\ 
+  \hline
+  \hline
+  0 &  & & & \\ 
+  \hline
+  3 &  & & &\\
+    \hline
+  2 &  & & & \\
+      \hline
+  1 &  & & & \\ 
+  \hline
+\end{tabular}
+
+Ahora completa las tablas multiplicativas.
+
+\begin{tabular}{|c||c|c|c|c|} 
+ \hline
+  $\times$ & 0 & 1 & 2 & 3\\ 
+  \hline
+  \hline
+  0 &  & & & \\ 
+  \hline
+  1 &  & & &\\
+    \hline
+  2 &  & & & \\
+      \hline
+  3 &  & & & \\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+\begin{tabular}{|c||c|c|c|c|} 
+ \hline
+  $\times$ & 1 & 3 & 0 & 2\\ 
+  \hline
+  \hline
+  1 &  & & & \\ 
+  \hline
+  3 &  & & &\\
+    \hline
+  0 &  & & & \\
+      \hline
+  2 &  & & & \\ 
+  \hline
+\end{tabular}
+
+Observa que, en la última tabla, los subcuadrantes de $2\times 2$ se encuentran mucho mejor organizados. En particular, el cuadrante superior izquierdo tiene el mismo patrón de simetrías que la tabla aditiva módulo $2$.
+\end{ejercicio}
+
+\begin{ejercicio}
+Pasemos a módulo $5$. Completa las siguientes tablas de sumas. Observa que ambas tienen el mismo patrón de simetrías.
+ 
+  \begin{tabular}{|c||c|c|c|c|c|} 
+ \hline
+  $+$ & 0 & 1 & 2 & 3 & 4\\ 
+  \hline
+  \hline
+  0 &  & & & & \\ 
+  \hline
+  1 &  & & & &\\
+    \hline
+  2 &  & & & & \\
+      \hline
+  3 &  & & & & \\ 
+        \hline
+  4 &  & & & & \\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+\begin{tabular}{|c||c|c|c|c|c|} 
+ \hline
+  $+$ & 0 & 2 & 4 & 1 & 3\\ 
+  \hline
+  \hline
+  0 &  & & & & \\ 
+  \hline
+  2 &  & & & &\\
+    \hline
+  4 &  & & & & \\
+      \hline
+  1 &  & & & & \\ 
+        \hline
+  3 &  & & & & \\ 
+  \hline
+\end{tabular}
+
+Ahora pasemos al caso multiplicativo. Completa las tablas y compara sus simetrías con las tres tablas del ejercicio modulo $4$ (ignorando la fila y columna del cero).
+
+ \begin{tabular}{|c||c|c|c|c|c|} 
+ \hline
+  $\times$ & 1 & 2 & 3 & 4 & 0\\ 
+  \hline
+  \hline
+  1 &  & & & & \\ 
+  \hline
+  2 &  & & & &\\
+    \hline
+  3 &  & & & & \\
+      \hline
+  4 &  & & & & \\ 
+        \hline
+  0 &  & & & & \\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+\begin{tabular}{|c||c|c|c|c|c|} 
+ \hline
+  $\times$ & 1 & 4 & 2 & 3 & 0\\ 
+  \hline
+  \hline
+  1 &  & & & & \\ 
+  \hline
+  4 &  & & & &\\
+    \hline
+  2 &  & & & & \\
+      \hline
+  3 &  & & & & \\ 
+        \hline
+  0 &  & & & & \\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+\begin{tabular}{|c||c|c|c|c|c|} 
+ \hline
+  $\times$ & 1 & 2 & 4 & 3 & 0\\ 
+  \hline
+  \hline
+  1 &  & & & & \\ 
+  \hline
+  2 &  & & & &\\
+    \hline
+  4 &  & & & & \\
+      \hline
+  3 &  & & & & \\ 
+        \hline
+  0 &  & & & & \\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+\begin{tabular}{|c||c|c|c|c|c|} 
+ \hline
+  $\times$ & 1 & 3 & 4 & 2 & 0\\ 
+  \hline
+  \hline
+  1 &  & & & & \\ 
+  \hline
+  3 &  & & & &\\
+    \hline
+  4 &  & & & & \\
+      \hline
+  2 &  & & & & \\ 
+        \hline
+  0 &  & & & & \\ 
+  \hline
+\end{tabular}    
+\end{ejercicio}
+
+\begin{ejercicio}
+Módulo $6$. Revisemos las congruencias módulo $6$, primero el caso aditivo. Como $6$ tiene varios divisores, se pueden formar varios patrones cambiando el orden en que aparecen los residuos en la tabla:
+
+ \begin{tabular}{|c||c|c|c|c|c|c|} 
+ \hline
+  $+$ & 0 & 1 & 2 & 3 & 4 & 5\\ 
+  \hline
+  \hline
+  0 &  & & & & & \\ 
+  \hline
+  1 &  & & & & &\\
+    \hline
+  2 &  & & & & & \\
+      \hline
+  3 &  & & & & &\\ 
+        \hline
+  4 &  & & & & &\\ 
+          \hline
+  5 &  & & & & &\\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+ \begin{tabular}{|c||c|c|c|c|c|c|} 
+ \hline
+  $+$ & 0 & 2 & 4 & 1 & 3 & 5\\ 
+  \hline
+  \hline
+  0 &  & & & & & \\ 
+  \hline
+  2 &  & & & & &\\
+    \hline
+  4 &  & & & & & \\
+      \hline
+  1 &  & & & & &\\ 
+        \hline
+  3 &  & & & & &\\ 
+          \hline
+  5 &  & & & & &\\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+ \begin{tabular}{|c||c|c|c|c|c|c|} 
+ \hline
+  $+$ & 0 & 3 & 1 & 4 & 2 & 5\\ 
+  \hline
+  \hline
+  0 &  & & & & & \\ 
+  \hline
+  3 &  & & & & &\\
+    \hline
+  1 &  & & & & & \\
+      \hline
+  4 &  & & & & &\\ 
+        \hline
+  2 &  & & & & &\\ 
+          \hline
+  5 &  & & & & &\\ 
+  \hline
+\end{tabular}
+
+Observa que la segunda tabla se acomoda en subcuadrantes de $3\times 3$, mientras que la tercera tabla se acomoda en subcuadrantes de $2\times 2$.
+
+El caso multiplicativo modulo $6$ no es demasiado interesante porque solo hay dos residuos invertibles ($1,5$) y por tanto no hay muchas maneras de ordenarlos:
+
+ \begin{tabular}{|c||c|c|c|c|c|c|} 
+ \hline
+  $\times$ & 1 & 5 & 0 & 2 & 4 & 3\\ 
+  \hline
+  \hline
+  1 &  & & & & & \\ 
+  \hline
+  5 &  & & & & &\\
+    \hline
+  0 &  & & & & & \\
+      \hline
+  2 &  & & & & &\\ 
+        \hline
+  4 &  & & & & &\\ 
+          \hline
+  3 &  & & & & &\\ 
+  \hline
+\end{tabular}
+
+¿Cómo son las simetrías del cuadradito superior izquierdo $2\times 2$ con respecto a las tablas de módulos más pequeños?
+\end{ejercicio}
+
+\begin{definicion}
+El orden aditivo del residuo $k$ módulo $n$ es el mínimo entero positivo $o_+(k)=m$ tal que $$\underbrace{k+k+k+\dots+k}_{o_+(k)=m~\text{veces}}=m\cdot k\equiv 0 (\mathrm{mod} n)$$ 
+\end{definicion}
+Por ejemplo, los órdenes aditivos modulo $12$ son:
+
+\begin{tabular}{c||c|c|c|c|c|c|c|c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+    $o_+(k)$ & 1 & 12 & 6 & 4 & 3 & 12 & 2 & 12 & 3 & 4 & 6 & 12 
+\end{tabular}
+
+\begin{ejercicio}
+Muestra que el orden aditivo de $k$ en módulo $n$ es simplemente $m=\frac{n}{d}$, donde $d=(k,n)$.
+\end{ejercicio}
+En particular, el órden aditivo de cada elemento siempre es un divisor del módulo. 
+
+La razón por la que observamos subpatrones de $6\times 6$, $3\times 3$ y $2\times 2$, en el ejercicio aditivo módulo $6$, se debe a que los órdenes aditivos de los residuos $k=1,2,3$ son $o_+(1)=6$, $o_+(2)=3$ y $o_+(3)=2$, respectivamente.
+
+En el siguiente ejercicio veremos que ocurre algo similar con el pedazo de las tablas multiplicativas correspondiente a los residuos invertibles. Sin embargo, en el caso multiplicativo el orden es un poco más misterioso. Calcularemos algunos ejemplos para obtener un poco de intuición.
+
+\begin{definicion}
+El orden multiplicativo de un residuo $k$ módulo $n$ es el mínimo entero positivo $o_{\times}(k)=m$ tal que $$\underbrace{k\cdot k\cdot k\dots k}_{o_{\times}(k)=m~\text{veces}}=k^m\equiv 1 (\mathrm{mod} n)$$ 
+\end{definicion}
+
+Por ejemplo, los órdenes multiplicativos modulo $3, 4, 5$ son:
+
+\begin{tabular}{c||c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 \\
+    $o_{\times}(k)$ & - & 1 & 2  
+\end{tabular}
+\hspace{1.5cm}
+\begin{tabular}{c||c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3\\
+    $o_{\times}(k)$ & - & 1 & - & 2 
+\end{tabular}
+\hspace{1.5cm}
+\begin{tabular}{c||c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3 & 4\\
+    $o_{\times}(k)$ & - & 1 & 4 & 4 & 2 
+\end{tabular}
+
+\begin{ejercicio}
+Calcula el orden multiplicativo módulo $6$ y $7$
+\end{ejercicio}
+
+\begin{tabular}{c||c|c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3 & 4 & 5 \\
+    $o_{\times}(k)$ & &&&&& 
+\end{tabular}
+\hspace{1cm}
+\begin{tabular}{c||c|c|c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+    $o_{\times}(k)$ & &&&&&& 
+\end{tabular}
+
+\begin{ejercicio}
+Módulo $7$. Completa las tablas. 
+
+i) Calcula la tabla de sumas de residuos:
+
+ \begin{tabular}{|c||c|c|c|c|c|c|c|} 
+ \hline
+  $+$ & 0 & 4 & 1 & 5 & 2 & 6 & 3\\ 
+  \hline
+  \hline
+  0 &  & & & & & &\\ 
+  \hline
+  4 &  & & & & & &\\
+    \hline
+  1 &  & & & & & &\\
+      \hline
+  5 &  & & & & & &\\ 
+        \hline
+  2 &  & & & & & &\\ 
+          \hline
+  6 &  & & & & & &\\ 
+            \hline
+  3 &  & & & & & &\\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+ \begin{tabular}{|c||c|c|c|c|c|c|c|} 
+ \hline
+  $+$ & 0 & 1 & 2 & 3 & 4 & 5 & 6\\ 
+  \hline
+  \hline
+  0 &  & & & & & &\\ 
+  \hline
+  1 &  & & & & & &\\
+    \hline
+  2 &  & & & & & &\\
+      \hline
+  3 &  & & & & & &\\ 
+        \hline
+  4 &  & & & & & &\\ 
+          \hline
+  5 &  & & & & & &\\ 
+            \hline
+  6 &  & & & & & &\\ 
+  \hline
+\end{tabular}
+
+ii) Completa la tabla de ordenes aditivos módulo $7$.
+
+\begin{tabular}{c||c|c|c|c|c|c|c|c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+    $o_{+}(k)$ & &&&&&& 
+\end{tabular}
+
+Como el orden aditivo de todos los residuos distintos de cero son iguales, se obtendrá la misma simetría en el caso aditivo, siempre que los residuos se ordenen de acuerdo a una progresión aritmética. Ahora pasemos al caso multiplicativo.
+
+ \begin{tabular}{|c||c|c|c|c|c|c|c|} 
+ \hline
+  $\times$ & 1 & 2 & 4 & 3 & 6 & 5 & 0\\ 
+  \hline
+  \hline
+  1 &  & & & & & &\\ 
+  \hline
+  2 &  & & & & & &\\
+    \hline
+  4 &  & & & & & &\\
+      \hline
+  3 &  & & & & & &\\ 
+        \hline
+  6 &  & & & & & &\\ 
+          \hline
+  5 &  & & & & & &\\ 
+            \hline
+  0 &  & & & & & &\\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+ \begin{tabular}{|c||c|c|c|c|c|c|c|} 
+ \hline
+  $\times$ & 1 & 6 & 2 & 5 & 3 & 4 & 0\\ 
+  \hline
+  \hline
+  1 &  & & & & & &\\ 
+  \hline
+  6 &  & & & & & &\\
+    \hline
+  2 &  & & & & & &\\
+      \hline
+  5 &  & & & & & &\\ 
+        \hline
+  3 &  & & & & & &\\ 
+          \hline
+  4 &  & & & & & &\\ 
+            \hline
+  0 &  & & & & & &\\ 
+  \hline
+\end{tabular}
+\hspace{.5cm}
+ \begin{tabular}{|c||c|c|c|c|c|c|c|} 
+ \hline
+  $\times$ & 1 & 3 & 2 & 6 & 4 & 5 & 0\\ 
+  \hline
+  \hline
+  1 &  & & & & & &\\ 
+  \hline
+  3 &  & & & & & &\\
+    \hline
+  2 &  & & & & & &\\
+      \hline
+  6 &  & & & & & &\\ 
+        \hline
+  4 &  & & & & & &\\ 
+          \hline
+  5 &  & & & & & &\\ 
+            \hline
+  0 &  & & & & & &\\ 
+  \hline
+\end{tabular}
+
+¿Como se comparan las simetrías de las tablas multiplicativas de residuos invertibles módulo $7$ con las tablas aditivas de residuos módulo $6$?
+\end{ejercicio}
+
+En el ejercicio anterior la última tabla multiplicativa módulo $7$ tiene las mismas simetrías que la tabla de sumas modulo $6$, porque el orden se basa en las potencias del residuo $3$: $1,3,2,6,4,5,1,\dots $, que se ciclan después de recorrer todos los residuos invertibles módulo $7$. Esto ocurre si y solo si $o_{\times}(k)=\varphi(n)$.
+
+A este tipo de residuos de orden máximo, cuyas potencias recorren todos los residuos invertibles, se les llama raíces primitivas modulo $n$.
+
+\begin{ejercicio}
+Hasta ahora, para cada módulo $n=2,3,4,5,6,7$, hemos encontrado al menos una raíz primitiva ¿Cuáles son todas las raíces primitivas en cada caso $n=2,3,4,5,6,7$?
+\end{ejercicio}
+
+\begin{ejercicio}
+Módulo $8$. Calcula los órdenes multiplicativos módulo $8$. Concluye que no hay raíces primitivas módulo $8$.
+
+\begin{tabular}{c||c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+    $o_{\times}(k)$ & &&&&&& & 
+\end{tabular}
+
+\end{ejercicio}
+
+\begin{ejercicio}
+Encuentra las raíces primitivas módulo $n$ para $n=9, 10, 11$.
+
+\begin{tabular}{c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+    $o_{\times}(k)$ & &&&&&& & &
+\end{tabular}
+
+\begin{tabular}{c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+    $o_{\times}(k)$ & &&&&&& & & &
+\end{tabular}
+
+\begin{tabular}{c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    $o_{\times}(k)$ & &&&&&& & & & &
+\end{tabular}
+
+Usando esas raíces primitivas, elabora una tabla multiplicativa con patrones similares a los de la suma de residuos (puedes hacer la tabla solo con los $\varphi(9)=6$, $\varphi(10)=4$ y $\varphi(11)=10$ residuos invertibles).
+\end{ejercicio}
+
+\begin{ejercicio}
+Módulo $12$. Calcula los órdenes multiplicativos módulo $12$. Concluye que no hay raíces primitivas módulo $12$.
+
+\begin{tabular}{c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    $k=$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+    $o_{\times}(k)$ & &&&&&& & &&&&
+\end{tabular}
+\end{ejercicio}
+
+\begin{ejercicio}
+Demuestra que si existe una raíz primitiva módulo $n$, entonces de hecho existen exactamente $\varphi(\varphi(n))$ raíces primitivas en total.  
+\end{ejercicio}
+
+La siguiente proposición no es tan fácil de demostrar por lo que solo incluiremos el enunciado. Este nos indica exactamente para qué módulos existen raíces primitivas.
+
+\begin{proposicion}
+Existe una raíz primitiva en módulo $n$ si y solo si $n$ es de alguna de las siguientes formas:
+
+$n=2$
+
+$n=4$
+
+$n=p^{\alpha}$, para algún primo impar $p$
+
+$n=2p^{\alpha}$, para algún primo impar $p$.
+\end{proposicion}
+
+Observa que los órdenes multiplicativos de todos los residuos invertibles módulo $n$ siempre son divisores de $\varphi (n)$. De esta observación se sigue el Teorema de Euler.
+
+Al hecho de que el orden multiplicativo divida $\varphi(n)$ se conoce como el Teorema de Lagrange. Este resultado se cumple y se demuestra en un contexto más general, en el marco de teoría de grupos elemental.
+
+\newpage
+
+\section{Elementos de teoría de grupos}
+
+A continuación introducimos la definición de un grupo.
+
+\begin{definicion}
+Un {\bf grupo} es un conjunto $G$ dotado de una operación <<$\circledast$>> que manda a cualesquiera dos elementos $g,h\in G$ a otro elemento $(g\circledast h)\in G$, con las siguientes propiedades:
+\begin{itemize}
+    \item Asociatividad: Para cualesquiera  $a,b,c\in G$ se tiene que $(a\circledast b)\circledast c =a\circledast (b\circledast c)$.
+    \item Neutro: Existe un elemento neutro $e\in G$, que cumple que $a\circledast e=a=e\circledast a$ para todo $a\in G$.
+    \item Inversos: Para todo $a\in G$ existe un inverso $a^{-1}$, tal que $a\circledast a^{-1}=e= a^{-1}\circledast a$.
+\end{itemize}
+Si $a\circledast b=b\circledast a$ para todos $a,b\in G$ decimos que el grupo es {\bf conmutativo} o {\bf abeliano}.
+\end{definicion}
+
+Un aspecto importante de trabajar con grupos es que se vale cancelar operaciones repetidas gracias a la existencia de los inversos: Si $a,b,c\in G$ entonces
+$$a\circledast c=b\circledast c\quad  \Longleftrightarrow \quad a\circledast c\circledast c^{-1}=b\circledast c\circledast c^{-1} \quad  \Longleftrightarrow \quad a=b $$
+
+Aunque parezcan un poco abstractos, los grupos abundan en la naturaleza y los hemos estudiado desde la primaria sin darnos cuenta. Por ejemplo, considerando $G$ como cualquiera de los conjuntos de números $G=\mathbb Z, \mathbb Q, \mathbb R, \mathbb C$, y $\circledast =+$.
+
+Si en lugar de la suma consideramos la multiplicación $\circledast :=\cdot$, entonces los conjuntos de números $\mathbb Q, \mathbb R, \mathbb C$ son grupos si les extirpamos el cero, que es el único que causa problemas por no tener inverso.  
+
+Entonces ya hemos trabajado con grupos, solo que no lo sabíamos. De hecho, usando las reglas de distributividad para la suma y la multiplicación, sabemos manipular combinaciones de ambas operaciones.
+
+Al trabajar con grupos nos enfocamos en una sola operación. Sorprendentemente, hay teoremas muy importantes, como el de Lagrange, que solo se basan en estas estructuras relativamente simples.
+
+\begin{ejercicio}
+El conjunto de números naturales $\mathbb N$ con $\circledast=+$ no es un grupo. ¿Por qué?
+\end{ejercicio}
+
+\begin{ejercicio}
+Con respecto $\circledast=+$, los conjuntos de números $\mathbb Z, \mathbb Q, \mathbb R, \mathbb C$ sí son grupos.
+
+¿Quién es el elemento neutro en cada caso?
+
+¿Quién es el inverso de $n\in \mathbb Z$?
+
+¿Quién es el inverso de $\frac{a}{b}\in \mathbb Q$?
+
+¿Quién es el inverso de $\frac{2+8\sqrt{\pi}}{7}\in \mathbb R$?
+
+¿Quién es el inverso de $z=a+b\mathrm{i}\in \mathbb C$?
+\end{ejercicio}
+
+Con respecto a la multiplicación $\circledast=\cdot$ es claro que los conjuntos de números $\mathbb Z, \mathbb Q, \mathbb R, \mathbb C$ no pueden ser grupos: aunque sí se cuenta con el elemento neutro  $e=1$, el cero nos causa problemas. 
+
+El cero no puede tener inverso porque la multiplicación por cero siempre da cero, por tanto $0\circledast x=1$ no tiene solución.
+
+Para remediar esto se consideran los conjuntos de números sin el cero:
+$$\mathbb Z^{\times}:=\mathbb Z\setminus \{0\}, \quad \mathbb Q^{\times}:=\mathbb Q\setminus \{0\},  \quad \mathbb R^{\times}:=\mathbb R\setminus \{0\},  \quad \mathbb C^{\times}:=\mathbb C\setminus \{0\}.$$
+
+\begin{ejercicio}
+Con respecto a la multiplicación $\circledast=\cdot$, los conjuntos $\mathbb Q^{\times}, \mathbb R^{\times}, \mathbb C^{\times}$ sí son grupos 
+
+¿Por qué $\mathbb Z^{\times}$ no es un grupo?
+
+¿Quién es el elemento neutro en cada caso?
+
+¿Quién es el inverso de $0\neq \frac{a}{b}\in \mathbb Q$?
+
+¿Quién es el inverso de $\frac{2+8\sqrt{\pi}}{7}\in \mathbb R$?
+
+¿Quién es el inverso de $z=2+\mathrm{i}$?
+
+¿Quién es el inverso de $z=a+b\mathrm{i}\neq 0$?
+\end{ejercicio}
+
+Ambas operaciones $+,\cdot$ son conmutativas en $\mathbb Q, \mathbb R$ $\mathbb C$ y los tres conjuntos cumplen las reglas distributivas: $$a\cdot(b+c)=a\cdot b+a\cdot c, \quad (a+b)\cdot c= a\cdot c+b\cdot c.$$
+A este tipo de estructuras algebraicas les conoce como {\bf campos}. Los campos son estructuras muy importantes en física y matemáticas (en particular en la teoría de números).
+
+\begin{ejercicio}
+El conjunto de matrices de $n\times n$ con entradas en $\mathbb Z, \mathbb Q, \mathbb R, \mathbb C$ es un grupo con respecto a la operación de suma de matrices.
+
+¿Quién es el elemento neutro?
+
+Escribe es el inverso de la matriz 
+
+$\left(\begin{array}{ccc}
+     a_{11} & a_{12} & a_{13}\\
+     a_{21} & a_{22} & a_{23}\\
+     a_{31} & a_{32} & a_{33}
+\end{array}\right)
+$
+\end{ejercicio}
+
+Nuevamente, como ocurrió con los conjuntos de números, el conjunto de matrices de $n\times n$ no es un grupo con respecto a la operación $\circledast$ de multiplicación de matrices. En concreto, hay matrices que fallan en tener inversos, como se muestra en el siguiente ejercicio.
+
+\begin{ejercicio}
+Para las siguientes matrices, decide si tienen o no inverso (multiplicativo), en caso afirmativo calcula el inverso.
+
+$$
+\left(\begin{array}{ccc}
+     0 & 1 & 0\\
+     0 & 0 & 1\\
+     1 & 0 & 0
+\end{array}\right),
+\quad
+\left(\begin{array}{ccc}
+     0 & 1 & 0\\
+     1 & 0 & 0\\
+     0 & 0 & 1
+\end{array}\right),
+\quad
+\left(\begin{array}{ccc}
+     0 & 1 & 0\\
+     1 & 0 & 0\\
+     0 & 0 & 0
+\end{array}\right),
+\quad
+\left(\begin{array}{cc}
+     a & 0\\
+     0 & b
+\end{array}\right),
+\quad
+\left(\begin{array}{ccc}
+     1 & 1\\
+     1 & 1
+\end{array}\right).
+$$
+\end{ejercicio}
+
+\begin{proposicion}
+Una matriz de $n\times n$ con entradas reales o complejas tiene inverso multiplicativo si y solo si su determinante es distinto de cero.  
+\end{proposicion}
+
+Todos los ejemplos anteriores de grupos consisten de conjuntos infinitos. Sin embargo, en esta ocasión estamos más interesados en {\bf grupos finitos}. Ahora presentamos algunos grupos finitos importantes. Nuestros principales ejemplos son residuos modulo $n$, con los que ya hemos trabajado.
+
+\begin{ejercicio}
+Muestra que el conjunto de residuos módulo $n$, $$\frac{\mathbb Z}{n \mathbb Z}=\{[k]:0\leq  k< n\}$$ es un grupo finito con respecto a la operación $\circledast$ de adición de residuos. 
+
+¿Quién es el elemento neutro $e$?
+
+¿Quién es el inverso del elemento $[k]$?
+
+\end{ejercicio}
+Obs: La asociatividad se hereda de la asociatividad de la suma usual en $\mathbb Z$, por lo que se cumple automáticamente.  
+
+\begin{ejercicio}
+Muestra que el conjunto de residuos invertibles módulo $n$, $$\left(\frac{\mathbb Z}{n \mathbb Z}\right)^{\times}=\{[k]: 0\leq k< n, (k,n)=1\}$$ es un grupo finito con respecto a la operación $\circledast$ de multiplicación de residuos. 
+
+¿Quién es el elemento neutro $e$?
+
+¿Cómo sabemos que existe el inverso del elemento $[k]$?
+
+¿Es verdad que si se multiplica un residuo invertible módulo $n$ con otro, el producto vuelve a ser un residuo invertible?
+
+\end{ejercicio}
+Obs: La asociatividad se hereda de la asociatividad de la multiplicación usual en $\mathbb Z$, por lo que se cumple automáticamente.
+
+Como observamos en el caso de operaciones con congruencias, estas quedan completamente determinadas por la tabla de multiplicación. Podemos hacer lo mismo con grupos finitos, listando sus elementos y calculando las tablas de multiplicar.
+
+Si $G$ tiene un solo elemento, solo existe un único grupo, con tabla de multiplicar:
+
+\begin{tabular}{|c||c|} 
+ \hline
+  $\circledast$ & e  \\ 
+  \hline
+  \hline
+  e &  e \\ 
+  \hline
+\end{tabular}
+\hspace{1cm}
+\begin{tabular}{|c||c|} 
+ \hline
+  $+$ & 0  \\ 
+  \hline
+  \hline
+  0 &  0 \\ 
+  \hline
+\end{tabular}
+\hspace{1cm}
+\begin{tabular}{|c||c|} 
+ \hline
+  $\times$ & 1  \\ 
+  \hline
+  \hline
+  1 &  1 \\ 
+  \hline
+\end{tabular}
+
+Observa que este grupo tiene la misma estructura que el grupo aditivo de residuos módulo $1$, y que el grupo multiplicativo de residuos invertibles módulo $2$.
+
+Si $G$ tiene dos elementos $e,h$, solo existe un único grupo. Observa que para que $h$ tenga inverso necesitamos que $h\circledast h=e$. Entonces la tabla queda:
+
+\begin{tabular}{|c||c|c|} 
+ \hline
+  $\circledast$ & $e$ & $h$ \\ 
+  \hline
+  \hline
+  $e$ & $e$ & $h$  \\ 
+  \hline
+  $h$ & $h$ & $e$ \\ 
+  \hline
+\end{tabular}
+\hspace{1cm}
+\begin{tabular}{|c||c|c|} 
+ \hline
+  $+$ & 0 & 1 \\ 
+  \hline
+  \hline
+  0 & 0 & 1 \\ 
+  \hline
+  1 & 1 & 0 \\ 
+  \hline
+\end{tabular}
+\hspace{1cm}
+\begin{tabular}{|c||c|c|} 
+ \hline
+  $\times$ & 1 & 2 \\ 
+  \hline
+  \hline
+  1 & 1 & 2 \\ 
+  \hline
+  2 & 2 & 1 \\ 
+  \hline
+\end{tabular}
+
+Observa que esta tabla es la misma que la del grupo aditivo de residuos módulo $2$, que es la misma que la tabla multiplicativa de residuos invertibles módulo $3$:
+
+Hasta el momento únicamente hemos visto grupos finitos para los que la operación es conmutativa. 
+
+Las permutaciones de $n$ elementos forman un grupo con respecto a la operación $\circledast$ de {\bf composición} de permutaciones, a partir de $n=3$ el grupo no es conmutativo.
+
+La composición de permutaciones se define como la composición usual de funciones. 
+
+Por ejemplo, sea $n=5$. Si tenemos dos permutaciones $\tau$ y $\sigma$ determinadas por las quintuplas $$(\sigma(1),\sigma(2),\sigma(3),\sigma(4), \sigma(5)), \quad (\tau(1),\tau(2),\tau(3),\tau(4),\tau(5)),$$
+Las permutación $\sigma\circ \tau$ está determinada por la fórmula $$(\sigma\circ \tau(1),\sigma\circ \tau(2),\sigma\circ \tau(3),\sigma\circ \tau(4),\sigma\circ \tau(5))=(\sigma(\tau(1)),\sigma(\tau(2)),\sigma( \tau(3)),\sigma(\tau(4)),\sigma(\tau(5)))$$ 
+
+En adelante vamos a omitir el símbolo $\circ$ como se hace cuando se multiplican variables y escribiremos $\sigma \tau$ en lugar de $\sigma \circ \tau$. 
+
+Por ejemplo, supongamos que $$(\sigma(1),\sigma(2),\sigma(3),\sigma(4), \sigma(5))=(2,3,4,5,1), \quad (\tau(1),\tau(2),\tau(3),\tau(4),\tau(5))=(2,1,3,4,5),$$
+
+Tenemos que $\sigma \tau$ está dado por $$(\sigma \tau(1),\sigma \tau(2),\sigma \tau(3),\sigma \tau(4), \sigma \tau (5))=(\sigma(\tau(1)),\sigma(\tau(2)),\sigma( \tau(3)),\sigma(\tau(4)),\sigma(\tau(5)))$$ $$=(\sigma(2),\sigma(1),\sigma(3),\sigma(4), \sigma(5))=(3,2,4,5,1).$$ 
+
+De manera análoga $\tau \sigma$ está dado por $$(\tau\sigma(1),\tau\sigma(2), \tau(3)\sigma, \tau\sigma(4),  \tau \sigma (5))=(\tau(\sigma(1)),\tau(\sigma(2)),\tau(\sigma( 3)),\tau(\sigma(4)),\tau(\sigma(5)))$$ $$=(\tau(2),\tau(3),\tau(4),\tau(5),\tau(1))=(1,3,4,5,2).$$ 
+
+Para cualquier grupo finito $G$ se puede definir el orden de un elemento $g\in G$.
+
+\begin{definicion}
+Sea $(G,\circledast)$ un grupo finito con neutro $e$. El orden de un elemento $g\in G$ se define como el mínimo entero positivo $o_{\circledast}(g)=m$ tal que $$\underbrace{g\circledast g\circledast g \circledast \dots \circledast g}_{o_{\circledast}(g)=m~\text{veces}}=g^{\circledast m}= e$$ 
+\end{definicion}
+
+\begin{ejercicio}
+Demuestra que en cualquier grupo finito $(G, \circledast)$ y para cualquier $h\in G$, existe el orden $o(h)=m$.
+
+Muestra que en ese caso los elementos de la lista $h, h^{\circledast 2}, h^{\circledast 3}, h^{\circledast 4}, \dots, h^{\circledast m}$ son todos distintos.
+\end{ejercicio}
+
+\begin{ejercicio}
+Calcula los órdenes de las permutaciones $\sigma$, $\tau$ del ejemplo anterior. 
+\end{ejercicio}
+
+Para $n=1$ la situación no es muy interesante. Se obtiene el grupo trivial con un solo elemento $e$.
+
+Como hemos visto, este grupo es idéntico (isomorfo) al grupo aditivo mod 1 (todo es congruente a 0 mod 1), o al grupo multiplicativo generado por el número 1. En todas estas situaciones solo hay un $e$ en el grupo y $e\circledast e=e$.
+
+Para $n=2$ solo hay dos permutaciones: la identidad $(e(1),e(2))=(1,2)$ y la transposición $(\tau(1),\tau(2))=(2,1)$. La tabla para la composición se ve igual que la de los otros grupos de dos elementos que habíamos encontrado antes:
+
+\begin{tabular}{|c||c|c|} 
+ \hline
+  $\circ$ & $e$ & $\tau$ \\ 
+  \hline
+  \hline
+  $e$ & $e$ & $\tau$  \\ 
+  \hline
+  $\tau$ & $\tau$ & $e$ \\ 
+  \hline
+\end{tabular}
+
+A partir de $3$ elementos el grupo de permutaciones no es conmutativo.
+
+\begin{ejercicio}
+Consideremos las permutaciones de tres elementos $$(\sigma(1),\sigma(2),\sigma(3))=(2,3,1),\quad (\tau(1), \tau(2), \tau(3))=(2,1,3).$$
+
+Muestra que $\sigma \circ \tau$ no es la misma permutación que $\tau \circ \sigma$.
+
+Muestra que la lista $\{e,\sigma, \sigma^2,\tau, \tau \sigma, \tau \sigma^2 \}$ contiene  cada una de las seis permutaciones de tres elementos.
+
+Muestra que la lista $\{e,\tau, \sigma, \sigma\tau, \sigma^2, \sigma^2\tau \}$ contiene cada una de las seis permutaciones de tres elementos.
+
+Completa las tablas de composiones de permutaciones (recuerda que ahora la operación no es conmutativa).
+
+\end{ejercicio}
+
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|} 
+ \hline
+  $\circ$ & $e$ & $\sigma$ & $\sigma^2$ & $\tau$ & $\tau\sigma$ & $\tau\sigma^2$ \\ 
+  \hline
+  \hline
+$e$ & $e$ & $\sigma$ & $\sigma^2$ & $\tau$ & $\tau\sigma$ & $\tau\sigma^2$ \\
+  \hline
+$\sigma$ & $\sigma$ &  &  &  &  & \\
+  \hline
+$\sigma^2$ & $\sigma^2$ &  &  &  &  & \\
+  \hline
+$\tau$ & $\tau$ &  &  &  &  & \\
+  \hline
+$\tau\sigma$ & $\tau\sigma$ &  &  &  &  & \\
+  \hline  
+$\tau\sigma^2$ & $\tau\sigma^2$ &  &  &  &  & \\
+    \hline
+  \end{tabular}
+\hspace{2cm}
+\begin{tabular}{|c||c|c|c|c|c|c|} 
+ \hline
+  $\circ$ & $e$ & $\tau$ & $\sigma$ & $\sigma\tau$ & $\sigma^2$ & $\sigma^2\tau$ \\ 
+  \hline
+  \hline
+$e$ & $e$ & $\tau$ & $\sigma$ & $\sigma\tau$ & $\sigma^2$ & $\sigma^2\tau$ \\
+  \hline
+$\tau$ & $\tau$ &  &  &  &  & \\
+  \hline
+$\sigma$ & $\sigma$ &  &  &  &  & \\
+  \hline
+$\sigma\tau$ & $\sigma\tau$ &  &  &  &  & \\
+  \hline
+$\sigma^2$ & $\sigma^2$ &  &  &  &  & \\
+  \hline  
+$\sigma^2\tau$ & $\sigma^2\tau$ &  &  &  &  & \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Ahora estamos listos para demostrar el teorema de Lagrange.
+
+\begin{teorema}[Teorema de Lagrange]
+El orden de cualquier elemento de un grupo finito divide al número de elementos en el grupo. Es decir $$h^{|G|}=e$$  
+\end{teorema}
+Sug: llamemos $g_1=e$ y consideremos la lista de potencias del elemento $h$: $h, h^{\circledast 2}, h^{\circledast 3}, h^{\circledast 4}, \dots, h^{\circledast m}$ hasta que aparezca $e=h^{\circledast m}$. Por el ejercicio de arriba, todos estos elementos de $G$ son distintos.
+
+Si la lista contiene a todos los elementos, terminamos pues el orden $m=|G|$, que en efecto divide a $|G|$.
+
+Si la lista no contiene todos los elementos de $G$, consideremos alguno de los que faltan, digamos $g_2$, y consideremos la lista de elementos en la clase lateral $g_2h, g_2h^{\circledast 2}, g_2h^{\circledast 3}, g_2h^{\circledast 4}, \dots, g_2h^{\circledast m}$. Nuevamente se puede mostrar que todos los elementos de esta lista son distintos entre sí y son distintos a los elementos de la primera lista. 
+
+Si después de esto hemos listado todos los elementos de $G$, entonces $|G|=2m$. 
+
+En caso contrario tomamos otro elemento $g_3$ que no esté en ninguna de las listas y procedemos de la misma manera. El proceso debe terminar en algún momento porque hay un número finito de elementos. Como en cada paso se añaden exactamente $m$ elementos nuevos, $m\mid G$.
+
+Para el caso del grupo aditivo de residuos, el Teorema de Lagrange no es muy sorprendente, pues nos dice que el orden aditivo es divisor de $n$, lo cual ya habíamos visto por nuestra cuenta antes.
+
+Para el caso de permutaciones, el Teorema de Lagrange nos dice que el orden multiplicativo de una permutación de $n$ elementos es un divisor de $n!$. Aunque apreciamos esta información, no es suficientemente descriptiva. 
+
+Pensándole mejor a las permutaciones podemos obtener una fórmula bonita para calcular exactamente el orden de una permutación:
+
+(Añadir ejemplo)
+
+\begin{ejercicio}
+Calcular ordenes multiplicativos de las siguiente permutaciones:
+\end{ejercicio}
+
+\begin{ejercicio}
+¿Se te ocurre una formula para calcular el orden multiplicativo de una permutación en general?
+\end{ejercicio}
+
+\section{Teoremas de Wilson, Fermat y Euler}
+
+Para el caso del grupo multiplicativo de residuos invertibles módulo $n$, el Teorema de Lagrange justamente demuestra el Teorema de Euler.
+
+\begin{ejercicio}
+Sea $p$ un primo. Demuestra que $x^2\equiv 1~(\mathrm {mod} p)$ si y solo si $x\equiv \pm 1~(\mathrm {mod} p
+)$
+\end{ejercicio}
+
+\begin{ejercicio}[Teorema de Wilson]
+Sea $p$ un número primo. Entonces $$(p-1)!\equiv -1~(\mathrm {mod} p)$$
+\end{ejercicio}
+
+\begin{ejercicio}[Pequeño Teorema de Fermat]
+Sean $a$ un número entero y $p$ un número primo. Entonces $$p|a^p-a$$
+\end{ejercicio}
+
+\begin{ejercicio}[Teorema de Euler]
+Sea $n$ un número entero positivo y $a$ un entero, coprimo con $n$. Entonces $$a^{\varphi (n)}\equiv 1~(\mathrm {mod} n)$$
+\end{ejercicio}
+
+\begin{ejercicio}
+Encuentra el entero positivo capicúa $n$ más pequeño tal que $2022|1001^{2018}-n$.
+\end{ejercicio}
+%$2022=2\cdot 3\cdot 337$. Como $1001=7\cdot 11\cdot 13$, $(2022,1001)=1$. Entonces $\varphi(2022)=1\cdot 2\cdot 336=672$ y como $2018=672\cdot 3+2$, tenemos que $1001^{2018}\equiv 1001^2~(\mathrm {mod} 2022)$. Como $1001^2\equiv 1111~(\mathrm {mod} 2022)$, el mínimo natural tal que $2022\mid 1001^{2018}-n$ es $n=1111$. Como además $1111$ es capicúa, es la respuesta al problema.
+\newpage
+
+\section{Ejercicios y Problemas}
+
+%% Popurrí de Teoremas sencillos.
+
+\begin{ejercicio}
+  Demuestra que para todo $n > 0$ se cumple $n^2 \mid (n+1)^n - 1$.
+\end{ejercicio}
+
+\begin{ejercicio}
+  Sea $a$ un número entero.
+
+  \begin{enumerate}
+  \item[a)] Demuestra que $6 \mid a\,(a+1)\,(a+2)$.
+
+  \item[b)] Demuestra que si $a$ es impar, entonces $8 \mid (a^2 - 1)$.
+
+  \item[c)] Demuestra que si $3\nmid a$, entonces $6 \mid (a^2 - 1)$.
+  \end{enumerate}
+\end{ejercicio}
+
+\begin{ejercicio}
+  ¿Para cuáles $a$ se cumple $a+1 \mid a^2 + 1$?
+\end{ejercicio}
+
+\begin{ejercicio}
+  Demuestra que $(n+1) \mid {2n \choose n}$ para todo $n = 0,1,2,\ldots$
+\end{ejercicio}
+
+\begin{ejercicio}
+  Demuestra que para todo $a > 0$ el número $3\,(1^5 + 2^5 + \cdots + a^5)$ es
+  divisible por $1^3 + 2^3 + \cdots + a^3$.
+\end{ejercicio}
+
+\begin{ejercicio}
+  Demuestra que para cualesquiera $a,b,c \in \ZZ$ se cumple
+  $$9 \mid (a^3 + b^3 + c^3) \Longrightarrow 3 \mid abc.$$
+\end{ejercicio}
+
+\begin{ejercicio}
+  Sea $a$ un entero.
+
+  \begin{enumerate}
+  \item[a)] Demuestra que para $n = 1,2,3,\ldots$ los números $a$ y $a^n$ tienen
+    la misma paridad.
+
+  \item[b)] Demuestra que si $a$ es impar, entonces el residuo de división de
+    $a^2$ por $8$ es igual a $1$.
+  \end{enumerate}
+\end{ejercicio}
+
+\begin{ejercicio}
+  \label{ejerc:criterios-de-divisibilidad}
+  Expresemos un entero $a \ge 0$ en la base $10$:
+  $$a = a_0 + a_1\cdot 10 + a_2\cdot 10^2 + \cdots + a_k\cdot 10^k.$$
+
+  Demuestre los siguientes criterios de divisibilidad.
+
+  \begin{itemize}
+  \item $2\mid a$ si y solamente si el último dígito de $a$ es par
+    ($0, 2, 4, 6, 8$).
+
+  \item $4\mid a$ si y solamente si los últimos dos dígitos forman un número
+    $a_1 a_0$ que es divisible por $4$.
+
+  \item $5\mid a$ si y solamente si el último dígito $a_0$ es $0$ o $5$.
+
+  \item $10\mid a$ si y solamente si el último dígito $a_0$ es $0$.
+
+  \item $11\mid a$ si y solamente si la suma alternante de los dígitos
+    $\sum_i (-1)^i\,a_i$ es divisible por $11$, por ejemplo
+    \[ 11\mid 87109, \quad 8 - 7 + 1 - 0 + 9 = 11. \]
+  \end{itemize}
+\end{ejercicio}
+
+También existen criterios de divisibilidad por $7$, $13$, etc. pero son más
+complicados y al mismo tiempo bastante inútiles.
+
+
+\begin{problema}
+%[OMM '87]
+¿Cuántos enteros positivos dividen al número $20!$ (veinte factorial)?
+\end{problema}
+
+\begin{problema}
+%[OMM '87]
+Muestra que para todo $n$ entero positivo se tiene que $(n^3-n)(5^{8n+1}-3^{4n+2})$ es divisible entre $3804$.
+\end{problema}
+%\vspace{3cm}
+
+\begin{problema}
+%[OMM '87]
+Muestra que para todo $n$ entero positivo se tiene que $$\frac{n^2+n-1}{n^2+2n}$$ es una fracción irreducible.
+\end{problema}
+%\vspace{3cm}
+
+\begin{problema}
+%[OMM '88]
+Si $a$ y $b$ son enteros positivos, muestre que $19\mid 11a+2b$ si y solo si $19\mid 18a+5b$
+\end{problema}
+%\vspace{3cm}
+
+\begin{problema}
+%[OMM '89]
+Encuentra enteros positivos $a$ y $b$ tales que:
+
+$b^2$ sea múltiplo de $a$,
+
+$a^3$ sea múltiplo de $b^2$,
+
+$b^4$ sea múltiplo de $a^3$,
+
+$a^5$ sea múltiplo de $b^4$,
+
+pero $b^6$ no sea múltiplo de $a^5$.
+\end{problema}
+%Sug: intentar $a=p^m$, $b=p^n$. Condiciones se transforman en $$m\leq 2n\leq 3m\leq 4n \leq 5m >6n.$$ 
+%\vspace{3cm}
+
+\newpage
+\begin{problema}
+%[OMM '90]
+  Demuestra que para todo $n > 0$ se cumple $n^2 \mid (n+1)^n - 1$.
+\end{problema}
+%Sug: Teorema del binomio.
+%\vspace{3cm}
+
+
+\begin{problema}
+%[OMM '90]
+  Se tiene una colección de diecinueve puntos con coordenadas enteras $\{P_1,P_2,\dots, P_19\}$, no tres colineales. Demuestra que hay un triángulo formado por tres de esos puntos, cuyo baricentro también tiene coordenadas enteras.
+\end{problema}
+%Sug: Congruencias módulo 3 en las coordenadas y casillas.
+%\vspace{3cm}
+
+
+\begin{problema}
+%[OMM '04]
+Encuentra todas las ternas de primos $p<q<r$, tales que $pqr+1$ es cuadrado perfecto y $25pq+r=2004$
+\end{problema}
+%Sug: Congruencias en la segunda propiedad para descartar casi todos los casos.
+\vspace{3cm}
+
+
+\begin{problema}
+%[OMM '01]
+Encuentra todos los números de siete dígitos con solo $3$'s y $7$'s que sean múltiplos de $3$ y de $7$.
+\end{problema}
+
+\section{Algoritmo Euclidiano de la división con residuo}
+
+
+Cuando $b \nmid a$, la división $\frac{a}{b}$ no es posible en números enteros,
+pero se puede usar la \textbf{división con residuo}. Esta también se conoce como
+la \textbf{división euclidiana}, ya que aparece en los «Elementos» de Euclides.
+
+\begin{proposicion}[División con residuo]
+  Para dos números enteros $a$ y $b \ne 0$, existen $q$ (cociente) y $r$
+  (residuo) tales que
+  \[ a = qb + r,
+    \quad
+    0 \le r < |b|. \]
+  Además, estas propiedades definen a $q$ y $r$ de manera única.
+\end{proposicion}
+
+La demostración de este teorema se encuentra en el apéndice.
+
+La división con residuo se usa muy a menudo en la vida cotidiana. Por ejemplo,
+en lugar de «$\frac{5}{4}$» a veces se escribe «$1\frac{1}{4}$».
+
+\begin{ejemplo}
+  Tenemos $b \mid a$ si y solamente si $r = 0$ y $q = a/b$.
+\end{ejemplo}
+
+\begin{ejemplo}
+  Para $a = 15$ y $b = 7$ se tiene $15 = 2\cdot 7 + 1$, así que $(q,r) = (2,1)$.
+\end{ejemplo}
+
+\begin{ejemplo}
+  El residuo de división por $b = 2$ es $r = 0$, cuando $a = 2q$ es un
+  \textbf{número par} y el residuo es $r = 1$ cuando $q = 2q+1$ es un
+  \textbf{número impar}.
+\end{ejemplo}
+
+He aquí una aplicación de la división con residuo.
+
+\begin{proposicion}
+  Para un entero $a > 1$ y números naturales $m, n$, se tiene
+  $$(a^m - 1) \mid (a^n-1) \iff m \mid n.$$
+
+  \begin{proof}
+    Dividiendo con residuo
+    $n = qm + r$,
+    \begin{align*}
+      \frac{a^n-1}{a^m-1} & = \frac{(a^{qm + r} - a^r) + (a^r - 1)}{a^m - 1} \\
+                          & = \frac{a^{qm} - 1}{a^m - 1}\,a^r + \frac{a^r - 1}{a^m - 1} \\
+                          & = \underbrace{a^r \, \sum_{0 \le i < q} a^{im}}_{\text{entero}} + \frac{a^r - 1}{a^m - 1}.
+    \end{align*}
+    Entonces,
+    $$(a^m - 1) \mid (a^n-1) \iff (a^m - 1) \mid (a^r - 1).$$
+    Pero ojo: siendo el residuo de división por $m$, sabemos que $r < |m|$, así
+    que la única opción es $r = 0$. Entonces, $m \mid n$.
+  \end{proof}
+\end{proposicion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Descomposición en base $b$}
+
+El siguiente resultado, seguramente conocido al lector para el caso de $b = 10$,
+también se demuestra usando la división con residuo.
+
+\begin{teorema}
+  Fijemos un entero $b \ge 2$. Todo entero $a \ge 0$ puede ser escrito como
+  \begin{equation}
+    \label{eqn:expresion-en-base-b}
+    a = a_0 + a_1\,b + a_2\,b^2 + \cdots + a_k\,b^k,
+  \end{equation}
+  donde $0 \le a_i \le b-1$ y $a_k \ne 0$. Además, esta expresión es única.
+
+  \begin{proof}
+    Usando división con residuo, podemos escribir sucesivamente, hasta obtener
+    $q_{k+1} = 0$,
+    \begin{align*}
+      a & = b q_0 + a_0 \\
+        & = b \, (b q_1 + a_1) + a_0 \\
+        & = b \, (b \, (b q_2 + a_2) + a_1) + a_0 \\
+        & = \cdots \\
+        & = a_0 + a_1\,b + a_2\,b^2 + \cdots + a_k\,b^k.
+    \end{align*}
+
+    Para la unicidad, supongamos que
+    $$a = a_0' + a_1'\,b + a_2'\,b^2 + \cdots + a_k'\,b^k.$$
+    Sin pérdida de generalidad, $a_0 \ge a_0'$. En este caso $a_0 - a_0'$ es un
+    múltiplo de $b$, y además $0 \le a_0 - a_0' \le b-1$, así que $a_0 = a_0'$.
+    Podemos pasar a los números $\frac{a - a_0}{b}$ y $\frac{a' - a_0'}{b}$ para
+    concluir que $a_1 = a_1'$, etcétera.
+  \end{proof}
+\end{teorema}
+
+\begin{comentario}
+  Normalmente la expresión \eqref{eqn:expresion-en-base-b} se escribe como
+  $$a_k a_{k-1} \cdots a_1 a_0.$$
+  Por ejemplo,
+  $$12345 = 10^4 + 2\cdot 10^3 + 3\cdot 10^2 + 4\cdot 10 + 5.$$
+\end{comentario}
+
+\begin{comentario}
+  En la vida cotidiana se usa la base \textbf{decimal} ($b = 10$).
+
+  En la informática son comunes la base \textbf{binaria} ($b = 2$),
+  \textbf{octal} ($b = 8$), y \textbf{hexadecimal} ($b = 16$). Los dígitos
+  hexadecimales más allá de $9$ normalmente se denotan por $A,B,C,D,E,F$.
+
+  En el fondo, todos los datos en la computadora se representan como una
+  sucesión de unos y ceros, es decir en la base binaria. De allí vienen las
+  unidades tradicionales de información:
+
+
+  \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{lll}
+      \hline
+      \textbf{bit} & & dígito $0$ ó $1$ \\
+      \hline
+      \textbf{byte} & (\textbf{B}; \textbf{octeto}) & $8$ bits \\
+      \hline
+      \textbf{kilobyte} & (\textbf{KB}) & $2^{10}$ bytes \\
+      \hline
+      \textbf{megabyte} & (\textbf{MB}) & $2^{20}$ bytes \\
+      \hline
+      \textbf{gigabyte} & (\textbf{GB}) & $2^{30}$ bytes \\
+      \hline
+      \textbf{terabyte} & (\textbf{TB}) & $2^{40}$ bytes \\
+      \hline
+      \dots & \dots
+    \end{tabular}
+  \end{center}
+    En el sistéma métrico los prefijos \emph{kilo-},
+    \emph{mega-}, \emph{giga-}, \emph{tera-} significan $10^3$, $10^6$, $10^9$,
+    $10^{12}$. Los mercadotécnicos sacaron provecho de esta confusión, y por
+    esto un disco duro marcado «$1$~TB» normalmente contiene $10^{12}$ bytes,
+    mucho menos de $2^{40}$. Así un disco «de $1$ terabyte» contiene un poco más
+    de $931$ verdaderos gigabytes.
+\end{comentario}
+
+\begin{ejemplo}
+  Para expresar $2021$ en la base $3$, podemos ecribir
+  \begin{align*}
+    2021 & = 3\cdot 673 + 2 \\
+         & = 3\cdot (3\cdot 224 + 1) + 2 \\
+         & = 3\cdot (3\cdot (3\cdot 74 + 2) + 1) + 2 \\
+         & = 3\cdot (3\cdot (3\cdot (3\cdot 24 + 2) + 2) + 1) + 2 \\
+         & = 3\cdot (3\cdot (3\cdot (3\cdot (3\cdot 8 + 0) + 2) + 2) + 1) + 2 \\
+         & = 3\cdot (3\cdot (3\cdot (3\cdot (3\cdot (3\cdot \boxed{2} + \boxed{2}) + \boxed{0}) + \boxed{2}) + \boxed{2}) + \boxed{1}) + \boxed{2} \\
+         & = 2 + 3 + 2\cdot 3^2 + 2\cdot 3^3 + 2\cdot 3^5 + 2\cdot 3^6.
+  \end{align*}
+\end{ejemplo}
+
+\begin{comentario}
+  Los números reales también admiten una expresión en la base $b$
+  \[
+    x = a_k a_{k-1} \cdots a_1 a_0, a_{-1} a_{-2} a_{-3} \cdots
+    \longleftrightarrow
+    x = \sum_i a_i\cdot b^i.
+  \]
+  Los dígitos no son exactamente únicos, como por ejemplo en el caso de
+  $$1,000000\ldots = 0,999999\ldots$$
+
+  El $x$ de arriba es un número racional si y solamente si los dígitos son
+  «eventualmente periódicos»: es decir existe $n$ tal que $a_{-i} = a_{-(i+n)}$
+  para todo $i$ suficientemente grande. 
+\end{comentario}
+
+\begin{proposicion}
+  El número de los dígitos de $a \ge 0$ en la base $b \ge 2$ es igual a
+  $$\lfloor\log_b (a)\rfloor + 1.$$
+
+  \begin{proof}
+    Notamos que $a$ tiene $n$ dígitos en la base $b$ si y solamente si
+    \[
+      b^{n-1} \le a < b^n
+      \iff
+      n-1 \le \log_b (a) < n
+      \iff
+      n = \lfloor\log_b (a)\rfloor + 1.
+      \qedhere
+    \]
+  \end{proof}
+\end{proposicion}
+
+Como consecuencia, si pasamos de base $b_1$ a otra base $b_2 > b_1$, el número
+de dígitos necesarios se disminuye proporcionalmente, con factor
+$\log (b_2) / \log (b_1)$. En este sentido, la elección de base no es muy
+importante, lo importante es no usar la base unaria
+\[ 1 = |, ~ 2 = ||, ~ 3 = |||, ~ 4 = ||||, ~ \ldots \]
+
+\begin{ejemplo}
+  Hay evidencia de que hace cerca de 360 millones
+    de años todavía había animales vertebrados con seis, siete, u ocho dedos en
+    sus extremidades.
+  Si la especie humana tuviera ocho dedos en cada mano en lugar de cinco,
+  seguramente usaríamos la base hexadecimal. Esto nos daría una economía en
+  dígitos de $\log(16)/\log(10) = 1.204119\ldots$ alrededor de $20\%$, que no es
+  mucho.
+\end{ejemplo}
+
+\begin{ejemplo}
+  Tenemos $3^6 < 2021 < 3^7$, así que $6 < \log_3 (2021) < 7$. Entonces,
+  $a = 2021$ tiene $7$ dígitos en la base $3$.
+\end{ejemplo}
+
+Se conocen varios «criterios de divisibilidad» que se formulan en términos de la
+expresión en la base $b$, normalmente $b = 10$. Vamos a probar el criterio de
+divisibilidad por $3$, y dejaremos algunos otros criterios en el
+ejercicio~\ref{ejerc:criterios-de-divisibilidad}.
+
+\begin{proposicion}
+  Expresemos un entero $a \ge 0$ en la base $10$:
+  $$a = a_0 + a_1\cdot 10 + a_2\cdot 10^2 + \cdots + a_k\cdot 10^k.$$
+
+  Ahora $3\mid a$ si y solamente si $3 \mid \sum_i a_i$.
+
+  \begin{proof}
+    Notamos que para cualquier $i \ge 1$, la división de $10^i$ por $3$ da
+    residuo $1$. De esta forma se obtiene la expresión
+    \[ a = a_0 + a_1 + a_2 + \cdots + a_k + (\text{algo divisible por }3). \qedhere \]
+  \end{proof}
+\end{proposicion}
+
+La última proposición es un típico ejemplo de resultados acerca de los dígitos
+de un número en cierta base. Estos normalmente no son muy profundos y pertenecen
+al terreno de las «matemáticas recreativas». No hay que olvidar que la expresión
+en base $b$ es nada más una manera cómoda de escribir los números.
+
+En el último argumento, la idea de ignorar el resto de términos que son
+divisibles por $3$ es algo que se llama la «reducción módulo $3$».
+
+\begin{ejercicio}
+  Consideremos los números que son sumas de diferentes potencias de $3$:
+  \begin{align*}
+    a_1 & = 3^0 = 1, \\
+    a_2 & = 3^1 = 3, \\
+    a_3 & = 3^0 + 3^1 = 4, \\
+    a_4 & = 3^2 = 9, \\
+    a_5 & = 3^0 + 3^2 = 10, \\
+    a_6 & = 3^1 + 3^2 = 12, \\
+    a_7 & = 3^0 + 3^1 + 3^2 = 13, \\
+        & \cdots
+  \end{align*}
+  Encuentre el número $a_{100}$ en esta sucesión.
+\end{ejercicio}
+
+\begin{ejercicio}
+  ¿Cuántos dígitos binarios tiene el número $10^n$?
+\end{ejercicio}
+
+\begin{ejercicio}
+  ¿Cuántos dígitos decimales tiene $n!$ para $n = 2021$?
+\end{ejercicio}
+
+\begin{ejercicio}
+  En la base hexadecimal los dígitos normalmente se denotan por
+  $$0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F.$$
+  Con ayuda de calculadora, exprese en la base decimal los números hexadecimales
+  $BADCAFE$ y $DEADBEEF$.
+\end{ejercicio}
+
+A parte de la expresión en la base $b$ de la forma $\sum_i a_i\,b^i$ con
+$0 \le a_i < b$, existen otras representaciones un poco más exóticas. Vamos a
+explorar un par de estas en el siguiente ejercicio.
+
+\begin{ejercicio}
+  Sea $a \ge 0$ un número entero.
+
+  \begin{enumerate}
+  \item[a)] Demuestre que $a$ puede ser escrito de manera única como
+
+    $$a = a_0 + a_1\,3 + a_2\,3^2 + \cdots + a_k\,3^k,$$
+    donde $a_i \in \{ -1, 0, +1 \}$.
+
+  \item[b)] Demuestre lo mismo con $b = 2n+1$ en lugar de $3$ los dígitos
+    $$a_i \in \{ -n, \ldots, -1, 0, +1, \ldots, +n \}.$$
+
+  \item[c)] Demuestre que $a$ puede ser escrito de manera única como
+    $$a = a_1\cdot 1! + a_2\cdot 2! + a_3\,3! + \cdots + a_k\cdot k!,$$
+    donde $0 \le a_i \le i$.
+  \end{enumerate}
+
+  ¿Cómo se expresa $a = 100$ en cada una de estas bases?
+\end{ejercicio}
+
+\begin{ejercicio}[N.\,Anning]
+  Demuestre que la fracción
+  $$\frac{101010101}{110010011}$$
+  tiene el mismo valor si «$1$» en el medio del numerador y denominador se
+  remplaza por un número impar de $1$'s:
+  \[
+    \frac{101010101}{110010011} =
+    \frac{10101110101}{11001110011} =
+    \frac{1010111110101}{1100111110011} = \cdots
+  \]
+
+  Esto es válido en cualquier base $b$.
+\end{ejercicio}
+
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
